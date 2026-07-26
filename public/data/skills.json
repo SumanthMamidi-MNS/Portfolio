@@ -1,0 +1,37 @@
+{
+  "categories": [
+    {
+      "id": "ai-ml",
+      "name": "AI & Machine Learning",
+      "skills": [
+        "Python", "Machine Learning", "Deep Learning", "NLP",
+        "Generative AI", "LLMs", "Computer Vision", "Prompt Engineering",
+        "RAG Pipelines", "MLOps"
+      ]
+    },
+    {
+      "id": "frontend",
+      "name": "Frontend Development",
+      "skills": [
+        "React", "JavaScript", "TypeScript", "HTML5", "CSS3",
+        "Tailwind CSS", "Framer Motion", "Three.js"
+      ]
+    },
+    {
+      "id": "backend",
+      "name": "Backend & Data",
+      "skills": [
+        "Node.js", "Express.js", "Java", "REST APIs",
+        "JWT Auth", "MySQL", "MongoDB", "Python"
+      ]
+    },
+    {
+      "id": "devops",
+      "name": "DevOps & Cloud",
+      "skills": [
+        "Git", "GitHub", "Docker", "Kubernetes",
+        "CI/CD", "AWS", "Linux", "Postman"
+      ]
+    }
+  ]
+}

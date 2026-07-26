@@ -1,0 +1,98 @@
+[
+  {
+    "id": "omnifix",
+    "title": "OMNIFIX",
+    "subtitle": "Autonomous Multi-Agent Security Repair",
+    "category": "ai-ml",
+    "tags": ["Python", "LLMs", "Bandit", "Multi-Agent Systems", "Security"],
+    "description": "A coordinated team of AI agents that detects vulnerabilities in Python code, writes exploits to prove impact, applies patches, and validates fixes — all in a closed-loop autonomous workflow with zero human intervention.",
+    "features": [
+      "Security Auditor: Static analysis mapped to CWE vulnerability standards",
+      "Exploit Generator: Creates proof-of-concept exploits for real-world impact demonstration",
+      "Patch Architect: Generates secure, regression-free code patches",
+      "Patch Validator: Bandit static analysis ensures fix validity",
+      "Closed-loop execution: Repeats until code passes all security checks"
+    ],
+    "github": "https://github.com/SumanthMamidi-MNS/OMNIFIX",
+    "demo": null,
+    "cover": "/assets/projects/omnifix/cover.png",
+    "featured": true,
+    "year": 2026
+  },
+  {
+    "id": "emailenv",
+    "title": "EmailEnv",
+    "subtitle": "AI Email Agent Simulation & Training Platform",
+    "category": "ai-ml",
+    "tags": ["Python", "Streamlit", "Gemini API", "AI Agents", "Simulation"],
+    "description": "A Streamlit-based interactive platform simulating how AI agents read, classify, and act on email streams — modeling sequential decision-making, rewards, and a hybrid fallback architecture for high-confidence processing.",
+    "features": [
+      "Interactive Training Mode with Starter, Medium, and Advanced difficulty levels",
+      "Step-by-step email processing with live status updates and reward scoring",
+      "Hybrid AI System: Gemini API with instantaneous local fallback agent",
+      "Premium dark-theme UI built natively in Streamlit for optimal observability"
+    ],
+    "github": "https://github.com/SumanthMamidi-MNS/EmailEnv",
+    "demo": null,
+    "cover": "/assets/projects/emailenv/cover.png",
+    "featured": true,
+    "year": 2026
+  },
+  {
+    "id": "qubitscope",
+    "title": "QubitScope",
+    "subtitle": "Interactive Quantum Bloch Sphere Simulator",
+    "category": "interactive",
+    "tags": ["React", "Three.js", "WebGL", "Quantum Computing", "Framer Motion"],
+    "description": "An interactive quantum simulation tool that visualizes the real-time evolution of a single qubit on a 3D Bloch sphere — enabling users to apply quantum gates and inspect superposition and phase shifts directly in the browser.",
+    "features": [
+      "Interactive 3D Bloch Sphere with real-time qubit state visualization",
+      "Live quantum gate transformations: X, Z, and Hadamard gates",
+      "Real-time measurement probability calculations",
+      "State representation in Dirac notation with complete gate history tracking"
+    ],
+    "github": "https://github.com/SumanthMamidi-MNS/QubitScope",
+    "demo": null,
+    "cover": "/assets/projects/qubitscope/cover.png",
+    "featured": true,
+    "year": 2026
+  },
+  {
+    "id": "airforge",
+    "title": "AirForge",
+    "subtitle": "Gesture-Controlled Creative Workspace",
+    "category": "interactive",
+    "tags": ["HTML5", "JavaScript", "MediaPipe", "Three.js", "Computer Vision"],
+    "description": "A webcam-based gesture-controlled workspace where hand tracking maps complex gestures to 2D brush strokes and 3D voxel model construction — no plugins, no stylus, just your hands.",
+    "features": [
+      "Ink Space: Neon glow drawing, freehand shapes, and gesture-based select/move",
+      "Build Space: Orbit controls, grid overlays, and 3D voxel placement",
+      "Computer Vision Hand Tracking: Pinch to draw, open palm to place or orbit camera",
+      "Canvas Export: High-resolution PNG outputs from both 2D and 3D scenes"
+    ],
+    "github": "https://github.com/SumanthMamidi-MNS/AirForge",
+    "demo": null,
+    "cover": "/assets/projects/airforge/cover.png",
+    "featured": false,
+    "year": 2026
+  },
+  {
+    "id": "deepfocus",
+    "title": "DeepFocus",
+    "subtitle": "Offline-First Cognitive Flow Workspace",
+    "category": "systems",
+    "tags": ["IndexedDB", "Web Audio API", "LocalStorage", "PWA", "Framer Motion"],
+    "description": "A highly optimized browser workspace for cognitive flow using real-time Web Audio API procedural soundscapes synthesized entirely in-browser — no server calls, no accounts, completely private.",
+    "features": [
+      "Auditory Studio & 5-Band Equalizer: Real-time synthesis of Zen Rain, Forest Wind, Coffee Murmur",
+      "Focus Engine: Automatic Pomodoro intervals with distraction-free fullscreen Zen mode",
+      "Local Analytics: SVG productivity charts powered by IndexedDB behavioral tracking",
+      "Privacy First: Zero server calls — runs fully client-side on any device"
+    ],
+    "github": "https://github.com/SumanthMamidi-MNS/DeepFocus",
+    "demo": null,
+    "cover": "/assets/projects/deepfocus/cover.png",
+    "featured": false,
+    "year": 2026
+  }
+]

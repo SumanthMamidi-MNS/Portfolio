@@ -1,0 +1,21 @@
+{
+  "name": "Sumanth Mamidi",
+  "role": "AI/ML Engineer & Developer",
+  "location": "Chennai, India",
+  "email": "sumanthmamidi77@gmail.com",
+  "bio": "I build intelligent systems, neural network pipelines, and high-performance interactive interfaces. From closed-loop multi-agent security engines to quantum visualization tools — I combine deep ML expertise with full-stack engineering to ship products that actually matter.",
+  "avatar": "/assets/profile/Profile.png",
+  "video": "/assets/videos/AI_ML_engineer_speaking_portfolio_202607221711.mp4",
+  "resume": "/assets/resume/Sumanth_Mamidi_Resume.pdf",
+  "social": {
+    "github": "https://github.com/SumanthMamidi-MNS",
+    "linkedin": "https://www.linkedin.com/in/mns-sumanth",
+    "instagram": "https://www.instagram.com/_m_n_s_sumanth_"
+  },
+  "status": "Available for AI Engineering roles",
+  "stats": [
+    { "value": "5+", "label": "Projects Shipped" },
+    { "value": "14", "label": "Certifications" },
+    { "value": "2+", "label": "Years Building" }
+  ]
+}
