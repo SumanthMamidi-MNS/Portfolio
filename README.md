@@ -139,9 +139,6 @@ flowchart TD
 
 ```
 WebPortfolio/
-├── .github/
-│   └── workflows/
-│       └── deploy.yml          # Automated GitHub Pages CI/CD workflow
 ├── public/
 │   ├── assets/                 # Profile avatars, certificates, video assets
 │   └── data/
@@ -211,9 +208,8 @@ npm run preview
 
 ### Deployment
 
-- **Vercel**: Live at **[sumanth-portfolio-delta.vercel.app](https://sumanth-portfolio-delta.vercel.app/)** — automatic continuous deployment connected to Git.
-- **GitHub Pages**: Automated workflow pre-configured at `.github/workflows/deploy.yml`.
-- **Netlify**: Build command `npm run build` with publish directory `dist`.
+- **Vercel (Production)**: Live at **[sumanth-portfolio-delta.vercel.app](https://sumanth-portfolio-delta.vercel.app/)** — automatic continuous deployment connected to Git.
+- **Custom Domain / Netlify**: Build command `npm run build` with publish directory `dist`.
 
 ---
 
