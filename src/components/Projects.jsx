@@ -104,8 +104,6 @@ function ProjectCard({ project, index, onClick }) {
 }
 
 function ProjectModal({ project, onClose }) {
-  if (!project) return null;
-  const accent = categoryAccents[project.category] || categoryAccents['ai-ml'];
   const [imageError, setImageError] = React.useState(false);
 
   // Lock body scroll when modal is open
@@ -120,6 +118,9 @@ function ProjectModal({ project, onClose }) {
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
   }, [onClose]);
+
+  if (!project) return null;
+  const accent = categoryAccents[project.category] || categoryAccents['ai-ml'];
 
   return (
     <motion.div

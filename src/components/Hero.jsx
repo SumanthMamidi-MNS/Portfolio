@@ -123,16 +123,14 @@ export default function Hero() {
                   delay={0}
                   stagger={0.1}
                 />{' '}
-                {/* Animated shimmer "intelligent" */}
-                <span className="gradient-text-animated">
-                  <SplitText
-                    text="intelligent"
-                    trigger="onLoad"
-                    isLoaded={isLoaded}
-                    delay={0.2}
-                    stagger={0.06}
-                  />
-                </span>
+                <SplitText
+                  text="intelligent"
+                  trigger="onLoad"
+                  isLoaded={isLoaded}
+                  delay={0.2}
+                  stagger={0.06}
+                  wordClass="gradient-text-animated"
+                />
                 <br />
                 <SplitText
                   text="systems."

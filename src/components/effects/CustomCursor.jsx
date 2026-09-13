@@ -6,7 +6,6 @@ export default function CustomCursor() {
   const cursorY = useMotionValue(-200);
   const [hovered, setHovered] = useState(false);
   const [label, setLabel] = useState('');
-  const [prevLabel, setPrevLabel] = useState('');
 
   // Inner dot — snappy spring
   const springCfg = { damping: 28, stiffness: 400 };
@@ -34,31 +33,20 @@ export default function CustomCursor() {
   }, [cursorX, cursorY]);
 
   useEffect(() => {
-    const enter = (e) => {
-      if (!e.target || typeof e.target.closest !== 'function') return;
-      const el = e.target.closest('[data-cursor]') || e.target.closest('a, button, [role="button"]');
+    const handleOver = (e) => {
+      const el = e.target?.closest?.('[data-cursor], a, button, [role="button"]');
       if (el) {
         setHovered(true);
-        setPrevLabel(label);
         setLabel(el.getAttribute('data-cursor') || '');
-      }
-    };
-    const leave = (e) => {
-      if (!e.target || typeof e.target.closest !== 'function') return;
-      const el = e.target.closest('[data-cursor]') || e.target.closest('a, button, [role="button"]');
-      if (el) {
+      } else {
         setHovered(false);
-        setPrevLabel(label);
         setLabel('');
       }
     };
-    document.addEventListener('mouseenter', enter, true);
-    document.addEventListener('mouseleave', leave, true);
-    return () => {
-      document.removeEventListener('mouseenter', enter, true);
-      document.removeEventListener('mouseleave', leave, true);
-    };
-  }, [label]);
+
+    window.addEventListener('mouseover', handleOver);
+    return () => window.removeEventListener('mouseover', handleOver);
+  }, []);
 
   return (
     <>

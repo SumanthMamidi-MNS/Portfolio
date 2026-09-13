@@ -17,7 +17,7 @@ const lineVariants = {
   visible: { scaleX: 1, opacity: 1, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
 };
 
-export default function SectionHeader({ label, heading, subtext, theme = 'dark', className = '' }) {
+export default function SectionHeader({ label, heading, subtext, theme: _theme = 'dark', className = '' }) {
   return (
     <motion.div
       variants={containerVariants}

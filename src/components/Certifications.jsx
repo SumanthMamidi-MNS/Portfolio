@@ -23,6 +23,13 @@ const categoryConfig = {
     border: 'rgba(16,185,129,0.3)',
     bg: 'rgba(16,185,129,0.1)',
   },
+  'simulations': {
+    label: 'Job Simulations',
+    badge: 'Simulation',
+    accent: '#EC4899',
+    border: 'rgba(236,72,153,0.35)',
+    bg: 'rgba(236,72,153,0.1)',
+  },
   'hackathons': {
     label: 'Hackathons',
     badge: 'Hackathon',
@@ -43,6 +50,7 @@ const filterTabs = [
   { id: 'all', label: 'All' },
   { id: 'ai-ml', label: 'AI & Agents' },
   { id: 'systems', label: 'Systems & Cloud' },
+  { id: 'simulations', label: 'Job Simulations' },
   { id: 'hackathons', label: 'Hackathons' },
   { id: 'workshops', label: 'Workshops' },
 ];
@@ -68,7 +76,7 @@ function CertCard({ cert, index, onClick }) {
         {/* Top Preview Banner */}
         <div
           className="h-40 relative overflow-hidden flex items-center justify-center border-b border-white/5"
-          style={{ background: 'rgba(99,102,241,0.05)' }}
+          style={{ background: `radial-gradient(circle at 50% 30%, ${cat.accent}15 0%, rgba(10,15,30,0.6) 100%)` }}
         >
           {previewSrc ? (
             <img
@@ -79,9 +87,14 @@ function CertCard({ cert, index, onClick }) {
               onError={e => { e.target.style.display = 'none'; }}
             />
           ) : (
-            <div className="flex flex-col items-center gap-2">
-              <FileText size={28} className="text-indigo-400/50" />
-              <span className="label-sm text-slate-600">PDF Certificate</span>
+            <div className="flex flex-col items-center gap-2.5">
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center border transition-transform duration-300 group-hover:scale-110"
+                style={{ background: `${cat.accent}18`, borderColor: `${cat.accent}40` }}
+              >
+                <FileText size={22} style={{ color: cat.accent }} />
+              </div>
+              <span className="label-sm text-slate-400 tracking-wider text-[10px]">Verified PDF</span>
             </div>
           )}
 
@@ -144,7 +157,7 @@ export default function Certifications() {
           <SectionHeader
             label="Credentials"
             heading={loading ? 'Certifications' : `${certificates.length} Verified Credentials`}
-            subtext="Specialized certifications across Multi-Agent Systems, MLOps, System Design, Hackathons, and AI Bootcamps."
+            subtext="Specialized certifications across Multi-Agent Systems, MLOps, System Design, Job Simulations, Hackathons, and AI Bootcamps."
             theme="dark"
           />
 

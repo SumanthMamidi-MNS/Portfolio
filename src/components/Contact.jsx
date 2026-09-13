@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Send, CheckCircle, AlertCircle, Mail, MapPin, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Send, CheckCircle, AlertCircle, Mail, MapPin } from 'lucide-react';
 import SectionHeader from '../components/ui/SectionHeader';
 import GradientMesh from '../components/effects/GradientMesh';
 import SpotlightCard from '../components/ui/SpotlightCard';
@@ -10,10 +10,6 @@ const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY || '51babd9f-f8ac-4f39-
 
 export default function Contact() {
   const { profile } = useProfile();
-  const sectionRef = useRef(null);
-
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
-  const bgTextY = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
 
   const [form, setForm] = useState({ firstName: '', lastName: '', email: '', message: '', consent: false });
   const [status, setStatus] = useState('idle');
@@ -59,7 +55,7 @@ export default function Contact() {
   };
 
   return (
-    <section ref={sectionRef} id="contact" className="section-1 relative overflow-hidden py-24 md:py-32 px-6 md:px-12 border-t border-white/5">
+    <section id="contact" className="section-1 relative overflow-hidden py-24 md:py-32 px-6 md:px-12 border-t border-white/5">
       <GradientMesh className="opacity-50" />
 
       <div className="max-w-6xl mx-auto relative z-10">

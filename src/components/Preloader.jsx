@@ -10,13 +10,13 @@ export default function Preloader() {
   const { onLoaded } = usePreloader();
 
   useEffect(() => {
-    // Animate progress 0 → 100 over ~1.8s
+    // Animate progress 0 → 100 over ~1.7s
     let frame;
     let start;
     const animate = (ts) => {
       if (!start) start = ts;
       const elapsed = ts - start;
-      const pct = Math.min(Math.round((elapsed / 1800) * 100), 100);
+      const pct = Math.min(Math.round((elapsed / 1700) * 100), 100);
       setProgress(pct);
       if (pct < 100) {
         frame = requestAnimationFrame(animate);
@@ -24,15 +24,15 @@ export default function Preloader() {
     };
     frame = requestAnimationFrame(animate);
 
-    const t1 = setTimeout(() => setPhase(1), 600);
-    const t2 = setTimeout(() => setPhase(2), 2000);
+    const t1 = setTimeout(() => setPhase(1), 550);
+    const t2 = setTimeout(() => setPhase(2), 1900);
     const t3 = setTimeout(() => {
       setCurtainOpen(true);
-    }, 2400);
+      onLoaded(); // Synchronize hero reveal right as curtain splits open
+    }, 2250);
     const t4 = setTimeout(() => {
-      onLoaded();
       setShow(false);
-    }, 3000);
+    }, 2950);
 
     return () => {
       cancelAnimationFrame(frame);
@@ -44,29 +44,37 @@ export default function Preloader() {
     <AnimatePresence>
       {show && (
         <motion.div
-          className="fixed inset-0 z-[100] overflow-hidden"
-          style={{ background: '#070B14' }}
+          className="fixed inset-0 z-[100] overflow-hidden pointer-events-none"
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
         >
-          {/* ── Top curtain panel ── */}
+          {/* ── Top curtain panel (slides up offscreen) ── */}
           <motion.div
-            className="absolute inset-x-0 top-0 z-10"
-            initial={{ height: '50%' }}
-            animate={{ height: curtainOpen ? '0%' : '50%' }}
-            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1], delay: curtainOpen ? 0 : 0 }}
-            style={{ background: '#070B14', originY: 0 }}
+            className="absolute inset-x-0 top-0 h-1/2 z-10"
+            initial={{ y: '0%' }}
+            animate={{ y: curtainOpen ? '-100%' : '0%' }}
+            transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
+            style={{ background: '#070B14' }}
           />
 
-          {/* ── Bottom curtain panel ── */}
+          {/* ── Bottom curtain panel (slides down offscreen) ── */}
           <motion.div
-            className="absolute inset-x-0 bottom-0 z-10"
-            initial={{ height: '50%' }}
-            animate={{ height: curtainOpen ? '0%' : '50%' }}
-            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1], delay: curtainOpen ? 0 : 0 }}
-            style={{ background: '#070B14', originY: '100%' }}
+            className="absolute inset-x-0 bottom-0 h-1/2 z-10"
+            initial={{ y: '0%' }}
+            animate={{ y: curtainOpen ? '100%' : '0%' }}
+            transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
+            style={{ background: '#070B14' }}
           />
 
-          {/* ── Center content ── */}
-          <div className="absolute inset-0 flex items-center justify-center flex-col gap-8">
+          {/* ── Center content (fades out as curtain splits) ── */}
+          <motion.div
+            className="absolute inset-0 z-20 flex items-center justify-center flex-col gap-8 pointer-events-auto"
+            animate={{
+              opacity: curtainOpen ? 0 : 1,
+              scale: curtainOpen ? 0.94 : 1,
+            }}
+            transition={{ duration: 0.35, ease: 'easeInOut' }}
+          >
             {/* Ambient glow */}
             <motion.div
               className="absolute w-80 h-80 rounded-full pointer-events-none"
@@ -166,7 +174,7 @@ export default function Preloader() {
                 {progress}%
               </span>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
