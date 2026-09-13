@@ -7,7 +7,9 @@ import DotGrid from '../components/effects/DotGrid';
 import TiltCard from '../components/ui/TiltCard';
 import SpotlightCard from '../components/ui/SpotlightCard';
 import ScrambleText from '../components/ui/ScrambleText';
+import SplitText from '../components/ui/SplitText';
 import { useProfile } from '../hooks/useProfile';
+import { usePreloader } from '../context/PreloaderContext';
 
 const GithubIcon = ({ size = 18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -22,7 +24,7 @@ const LinkedInIcon = ({ size = 18 }) => (
 
 const containerVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 2.4 } },
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 const itemVariants = {
   hidden: { opacity: 0, y: 28 },
@@ -34,6 +36,7 @@ export default function Hero() {
   const sectionRef = useRef(null);
   const [muted, setMuted] = useState(true);
   const { profile } = useProfile();
+  const { isLoaded } = usePreloader();
 
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] });
   const bgY    = useTransform(scrollYProgress, [0, 1], ['0%', '35%']);
@@ -101,7 +104,7 @@ export default function Hero() {
             style={{ y: textY }}
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            animate={isLoaded ? 'visible' : 'hidden'}
             className="flex-1 flex flex-col items-start gap-7 lg:max-w-xl"
           >
             <motion.div variants={itemVariants}>
@@ -113,9 +116,31 @@ export default function Hero() {
 
             <motion.div variants={itemVariants} className="flex flex-col gap-3">
               <h1 className="heading-xl text-white">
-                I build{' '}
-                <span className="gradient-text">intelligent</span>
-                <br />systems.
+                <SplitText
+                  text="I build"
+                  trigger="onLoad"
+                  isLoaded={isLoaded}
+                  delay={0}
+                  stagger={0.1}
+                />{' '}
+                {/* Animated shimmer "intelligent" */}
+                <span className="gradient-text-animated">
+                  <SplitText
+                    text="intelligent"
+                    trigger="onLoad"
+                    isLoaded={isLoaded}
+                    delay={0.2}
+                    stagger={0.06}
+                  />
+                </span>
+                <br />
+                <SplitText
+                  text="systems."
+                  trigger="onLoad"
+                  isLoaded={isLoaded}
+                  delay={0.5}
+                  stagger={0.1}
+                />
               </h1>
               <p
                 className="text-lg font-medium text-slate-400"
@@ -142,18 +167,26 @@ export default function Hero() {
 
             <motion.div variants={itemVariants} className="flex items-center gap-5">
               {profile?.social?.github && (
-                <a href={profile.social.github} target="_blank" rel="noopener noreferrer"
+                <motion.a
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+                  href={profile.social.github} target="_blank" rel="noopener noreferrer"
                   className="text-slate-500 hover:text-white transition-colors duration-200" aria-label="GitHub"
                   data-cursor="GitHub">
                   <GithubIcon size={18} />
-                </a>
+                </motion.a>
               )}
               {profile?.social?.linkedin && (
-                <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer"
+                <motion.a
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+                  href={profile.social.linkedin} target="_blank" rel="noopener noreferrer"
                   className="text-slate-500 hover:text-white transition-colors duration-200" aria-label="LinkedIn"
                   data-cursor="LinkedIn">
                   <LinkedInIcon size={18} />
-                </a>
+                </motion.a>
               )}
               <div className="h-4 w-px bg-white/10" />
               <span className="label-sm text-slate-600">Chennai, India</span>
@@ -164,8 +197,8 @@ export default function Hero() {
           <motion.div
             style={{ y: videoY }}
             initial={{ opacity: 0, scale: 0.94, x: 40 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ delay: 2.7, duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+            animate={isLoaded ? { opacity: 1, scale: 1, x: 0 } : { opacity: 0, scale: 0.94, x: 40 }}
+            transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="w-full lg:w-[580px] xl:w-[640px] shrink-0"
           >
             <TiltCard maxTilt={8}>
@@ -262,8 +295,8 @@ export default function Hero() {
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 4, duration: 1 }}
+        animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ delay: 0.5, duration: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="label-sm text-slate-700">Scroll</span>

@@ -51,14 +51,20 @@ export default function Footer() {
     <footer className="section-0 border-t border-white/5 py-12 px-6 md:px-12 relative overflow-hidden">
       <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <motion.div
+        className="max-w-6xl mx-auto relative z-10"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
 
           {/* Brand */}
           <div className="flex flex-col gap-1.5">
             <motion.p
               whileHover={{ scale: 1.02 }}
-              className="font-black text-white text-2xl tracking-tight gradient-text"
+              className="font-black text-white text-2xl tracking-tight gradient-text-animated"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               Sumanth Mamidi
@@ -120,7 +126,7 @@ export default function Footer() {
           <p>© {year} Sumanth Mamidi. All rights reserved.</p>
           <p className="label-sm" style={{ fontSize: '0.6rem' }}>React · Vite · Tailwind CSS · Framer Motion</p>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }

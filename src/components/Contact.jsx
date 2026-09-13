@@ -137,7 +137,7 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {[{ name: 'firstName', label: 'First Name', autocomplete: 'given-name' }, { name: 'lastName', label: 'Last Name', autocomplete: 'family-name' }].map(field => (
-                      <div key={field.name} className="relative">
+                      <div key={field.name} className="relative transition-all duration-300 rounded-lg">
                         <label htmlFor={field.name} className="label-sm text-slate-400 mb-2 block text-[10px]">{field.label}</label>
                         <input
                           id={field.name}
@@ -146,24 +146,24 @@ export default function Contact() {
                           onChange={handleChange} onFocus={() => setFocused(field.name)} onBlur={() => setFocused('')}
                           className="form-input w-full" placeholder={field.label}
                         />
-                        <div className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-indigo-500 via-violet-500 to-amber-500 transition-all duration-300 ${focused === field.name ? 'w-full' : 'w-0'}`} />
+                        <div className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-indigo-500 via-violet-500 to-amber-500 transition-all duration-300 ${focused === field.name ? 'w-full shadow-[0_0_12px_rgba(99,102,241,0.6)]' : 'w-0'}`} />
                       </div>
                     ))}
                   </div>
-                  <div className="relative">
+                  <div className="relative transition-all duration-300 rounded-lg">
                     <label htmlFor="email" className="label-sm text-slate-400 mb-2 block text-[10px]">Email Address</label>
                     <input id="email" type="email" name="email" value={form.email} required
                       autoComplete="email"
                       onChange={handleChange} onFocus={() => setFocused('email')} onBlur={() => setFocused('')}
                       className="form-input w-full" placeholder="your@email.com" />
-                    <div className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-indigo-500 via-violet-500 to-amber-500 transition-all duration-300 ${focused === 'email' ? 'w-full' : 'w-0'}`} />
+                    <div className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-indigo-500 via-violet-500 to-amber-500 transition-all duration-300 ${focused === 'email' ? 'w-full shadow-[0_0_12px_rgba(99,102,241,0.6)]' : 'w-0'}`} />
                   </div>
-                  <div className="relative">
+                  <div className="relative transition-all duration-300 rounded-lg">
                     <label htmlFor="message" className="label-sm text-slate-400 mb-2 block text-[10px]">Your Message</label>
                     <textarea id="message" name="message" value={form.message} required rows={4}
                       onChange={handleChange} onFocus={() => setFocused('message')} onBlur={() => setFocused('')}
                       className="form-input w-full resize-none" placeholder="Tell me about your project, timeline, or opportunity..." />
-                    <div className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-indigo-500 via-violet-500 to-amber-500 transition-all duration-300 ${focused === 'message' ? 'w-full' : 'w-0'}`} />
+                    <div className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-indigo-500 via-violet-500 to-amber-500 transition-all duration-300 ${focused === 'message' ? 'w-full shadow-[0_0_12px_rgba(99,102,241,0.6)]' : 'w-0'}`} />
                   </div>
                   <div className="flex items-start gap-3 pt-1">
                     <input type="checkbox" name="consent" id="consent" required checked={form.consent} onChange={handleChange}

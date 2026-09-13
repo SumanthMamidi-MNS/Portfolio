@@ -46,7 +46,7 @@ function ProjectCard({ project, index, onClick }) {
                 src={project.cover}
                 alt={project.title}
                 onError={() => setImageError(true)}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
               />
             ) : (
               <div className="relative w-full h-full flex items-center justify-center">

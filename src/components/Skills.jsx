@@ -43,7 +43,7 @@ export default function Skills() {
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
-                  transition={{ delay: i * 0.1, duration: 0.6 }}
+                  transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   whileHover={{ y: -4, transition: { duration: 0.25 } }}
                 >
                   <SpotlightCard
@@ -57,10 +57,19 @@ export default function Skills() {
                       </span>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {category.skills.map(skill => (
+                      {category.skills.map((skill, si) => (
                         <motion.span
                           key={skill}
-                          whileHover={{ scale: 1.06, y: -1 }}
+                          initial={{ opacity: 0, scale: 0.85, y: 8 }}
+                          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: i * 0.1 + si * 0.03, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                          whileHover={{
+                            scale: 1.08, y: -2,
+                            color: config.accent,
+                            borderColor: `${config.accent}55`,
+                            background: `${config.accent}12`,
+                          }}
                           className="skill-pill text-xs"
                         >
                           {skill}

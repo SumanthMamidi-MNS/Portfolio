@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { PreloaderProvider } from './context/PreloaderContext';
 import CustomCursor from './components/effects/CustomCursor';
 import ScrollProgress from './components/effects/ScrollProgress';
 import FilmGrain from './components/effects/FilmGrain';
@@ -20,31 +21,33 @@ function App() {
   const [cmdOpen, setCmdOpen] = useState(false);
 
   return (
-    <SmoothScroll>
-      {/* Global effects */}
-      <CustomCursor />
-      <ScrollProgress />
-      <FilmGrain />
+    <PreloaderProvider>
+      <SmoothScroll>
+        {/* Global effects */}
+        <CustomCursor />
+        <ScrollProgress />
+        <FilmGrain />
 
-      {/* UI Overlays */}
-      <Preloader />
-      <CommandPalette open={cmdOpen} onClose={() => setCmdOpen(false)} />
-      <Navbar onOpenCommandPalette={() => setCmdOpen(true)} />
+        {/* UI Overlays */}
+        <Preloader />
+        <CommandPalette open={cmdOpen} onClose={() => setCmdOpen(false)} />
+        <Navbar onOpenCommandPalette={() => setCmdOpen(true)} />
 
-      {/* Page */}
-      <main>
-        <Hero />
-        <About />
-        <Expertise />
-        <Skills />
-        <AIPlayground />
-        <Projects />
-        <Certifications />
-        <Contact />
-      </main>
+        {/* Page */}
+        <main>
+          <Hero />
+          <About />
+          <Expertise />
+          <Skills />
+          <AIPlayground />
+          <Projects />
+          <Certifications />
+          <Contact />
+        </main>
 
-      <Footer />
-    </SmoothScroll>
+        <Footer />
+      </SmoothScroll>
+    </PreloaderProvider>
   );
 }
 

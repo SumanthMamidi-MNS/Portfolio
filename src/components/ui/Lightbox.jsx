@@ -67,22 +67,22 @@ export default function Lightbox({ cert, onClose }) {
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-auto p-2 flex items-center justify-center bg-black/20">
+            <div className="flex-1 overflow-auto p-2 flex items-center justify-center bg-black/20 min-h-[360px] md:min-h-[500px]">
               {isPdf ? (
-                <div className="flex flex-col items-center gap-4 py-12 text-center px-6">
-                  <div className="w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
-                    <ExternalLink size={24} className="text-indigo-400" />
-                  </div>
-                  <div>
-                    <p className="text-white font-semibold mb-2">{cert.title}</p>
-                    <p className="text-slate-400 text-sm mb-6">This certificate is a PDF document.</p>
+                <div className="w-full h-full flex flex-col items-center gap-2 min-h-[380px] md:min-h-[480px]">
+                  <iframe
+                    src={`${src}#toolbar=0`}
+                    title={cert.title}
+                    className="w-full flex-1 min-h-[340px] md:min-h-[440px] rounded-lg border border-white/10 bg-slate-900/50"
+                  />
+                  <div className="w-full flex justify-end pt-1">
                     <a
                       href={src}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-primary"
+                      className="btn-primary text-xs py-1.5 px-3"
                     >
-                      Open PDF
+                      <ExternalLink size={13} /> Open Full PDF
                     </a>
                   </div>
                 </div>

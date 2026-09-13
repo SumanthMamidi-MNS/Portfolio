@@ -26,7 +26,7 @@ const InstagramIcon = ({ size = 15 }) => (
 
 const defaultStats = [
   { value: 5, suffix: '+', label: 'Projects Shipped' },
-  { value: 14, suffix: '',  label: 'Certifications' },
+  { value: 17, suffix: '',  label: 'Certifications' },
   { value: 2,  suffix: '+', label: 'Years Building' },
 ];
 
@@ -57,13 +57,19 @@ export default function About() {
               <div className="absolute -inset-3 rounded-2xl pointer-events-none"
                 style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)' }} />
 
-              <div className="glass rounded-2xl overflow-hidden aspect-[3/4] relative">
-                <img
-                  src={profile?.avatar || '/assets/profile/Profile.png'}
-                  alt="Sumanth Mamidi"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              {/* Floating wrapper */}
+              <motion.div
+                animate={{ y: [0, -10, 0], rotate: [0, 0.8, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <div className="glass rounded-2xl overflow-hidden aspect-[3/4] relative">
+                  <img
+                    src={profile?.avatar || '/assets/profile/Profile.png'}
+                    alt="Sumanth Mamidi"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </motion.div>
 
               {/* Name card */}
               <motion.div
@@ -147,10 +153,10 @@ export default function About() {
                 {(profile?.stats || defaultStats).map((stat, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, scale: 0.8, rotate: -3 }}
+                    whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.12, duration: 0.5 }}
+                    transition={{ delay: i * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <SpotlightCard className="card p-5 text-center">
                       <p

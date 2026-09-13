@@ -61,17 +61,23 @@ export default function Expertise() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
+                transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ y: -6, transition: { duration: 0.25 } }}
               >
                 <SpotlightCard className="card p-7 h-full flex flex-col gap-4 group">
                   <div className="flex items-start justify-between">
                     <span className="label-sm" style={{ color: cap.accent, fontFamily: 'var(--font-mono)' }}>{cap.number}</span>
                     <div
-                      className="w-8 h-8 rounded-xl flex items-center justify-center"
+                      className="w-8 h-8 rounded-xl flex items-center justify-center relative"
                       style={{ background: `${cap.accent}14`, border: `1px solid ${cap.accent}22` }}
                     >
-                      <div className="w-2 h-2 rounded-full" style={{ background: cap.accent }} />
+                      <motion.div
+                        className="w-2 h-2 rounded-full"
+                        style={{ background: cap.accent }}
+                        whileHover={{ scale: 1.5 }}
+                        animate={{ boxShadow: [`0 0 0px ${cap.accent}00`, `0 0 8px ${cap.accent}88`, `0 0 0px ${cap.accent}00`] }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+                      />
                     </div>
                   </div>
 
@@ -87,7 +93,13 @@ export default function Expertise() {
 
                   <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
                     {cap.tags.map(tag => (
-                      <span key={tag} className="skill-pill text-xs">{tag}</span>
+                      <motion.span
+                        key={tag}
+                        className="skill-pill text-xs"
+                        whileHover={{ scale: 1.06, y: -1 }}
+                      >
+                        {tag}
+                      </motion.span>
                     ))}
                   </div>
                 </SpotlightCard>

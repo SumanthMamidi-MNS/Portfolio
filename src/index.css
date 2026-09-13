@@ -178,6 +178,21 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+.gradient-text-animated {
+  background: linear-gradient(
+    120deg,
+    #a5b4fc 0%,
+    #8B5CF6 25%,
+    #6366F1 50%,
+    #F59E0B 75%,
+    #a5b4fc 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shimmer 6s linear infinite;
+}
 .gradient-text-amber {
   background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%);
   -webkit-background-clip: text;
@@ -514,6 +529,53 @@ body {
   50%  { transform: translate(-1%, 2%); }
   70%  { transform: translate(3%, 1%); }
   90%  { transform: translate(-3%, 2%); }
+}
+
+/* ── Button Micro-Interactions ── */
+.shimmer-sweep {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.22),
+    transparent
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+.btn-primary:hover .shimmer-sweep,
+.btn-secondary:hover .shimmer-sweep {
+  animation: shimmer-sweep 0.75s ease forwards;
+}
+
+.btn-ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+  pointer-events: none;
+  animation: ripple-expand 0.6s ease-out forwards;
+}
+
+@keyframes shimmer-sweep {
+  0%   { left: -100%; }
+  100% { left: 200%; }
+}
+@keyframes ripple-expand {
+  to {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+  }
+}
+@keyframes gradient-shimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
 }
 
 .animate-float         { animation: float 6s ease-in-out infinite; }

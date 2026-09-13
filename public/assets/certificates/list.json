@@ -4,6 +4,7 @@
     "issuer": "AI Engineering & MLOps Certification",
     "googleDriveId": "1QdOOS793QKTxDOlVpTh33EovfrLXQjTr",
     "localFile": "ML Ops Fundamentals - Building Deploying and Scaling AI Solutions.png",
+    "category": "ai-ml",
     "date": "July 2026"
   },
   {
@@ -11,6 +12,7 @@
     "issuer": "Multi-Agent AI Developer Program",
     "googleDriveId": "1D3WHSJj6VzfDDFS-JtxBAbkUAcC3DlkE",
     "localFile": "Orchestrating Multi-Agent Systems.png",
+    "category": "ai-ml",
     "date": "July 2026"
   },
   {
@@ -18,6 +20,7 @@
     "issuer": "Retrieval Augmented Generation Certification",
     "googleDriveId": "1sEUUfQ3lcq7JMeqiIHsg6w9gkySiENqd",
     "localFile": "Designing Scalable RAG Pipelines.png",
+    "category": "ai-ml",
     "date": "April 2026"
   },
   {
@@ -25,6 +28,7 @@
     "issuer": "Anthropic Claude API Training",
     "googleDriveId": "14_RhO0uONPOQHc6HemqUX-s1rPmnOhCW",
     "localFile": "Building with the Claude API.jpg",
+    "category": "ai-ml",
     "date": "July 2026"
   },
   {
@@ -32,6 +36,7 @@
     "issuer": "Anthropic Developer Program",
     "googleDriveId": "1DmBkdttaqdr3zh6uZurlG1JtAPA5LUSq",
     "localFile": "Claude Code 101.jpg",
+    "category": "ai-ml",
     "date": "July 2026"
   },
   {
@@ -39,6 +44,7 @@
     "issuer": "Anthropic Developer Program",
     "googleDriveId": "17tpG02PZXRIvlr1JboaNWgUo3DZwFbEE",
     "localFile": "Claude Code in Action.jpg",
+    "category": "ai-ml",
     "date": "July 2026"
   },
   {
@@ -46,6 +52,7 @@
     "issuer": "AI Agentic Development Certification",
     "googleDriveId": "1X2Yw_NgvbxO12bq_33Y9VRbU6NhlxA5u",
     "localFile": "Introduction to agent skills.jpg",
+    "category": "ai-ml",
     "date": "July 2026"
   },
   {
@@ -53,6 +60,7 @@
     "issuer": "Anthropic Model Context Protocol Course",
     "googleDriveId": "1P9iwcMoDh7P5RLpZcHBhn9nPbmarmCFo",
     "localFile": "Introduction to Model Context Protocol.jpg",
+    "category": "ai-ml",
     "date": "July 2026"
   },
   {
@@ -60,13 +68,23 @@
     "issuer": "Agentic Workflows & Subagents Academy",
     "googleDriveId": "1IjxZNjT4TvFyKucCxMBHjlT7geq2F11P",
     "localFile": "Introduction to subagents.jpg",
+    "category": "ai-ml",
     "date": "July 2026"
+  },
+  {
+    "title": "GenAI Job Simulation",
+    "issuer": "BCG X & Forage",
+    "googleDriveId": "6a7f13e7ba854243f4fa6979",
+    "localFile": "GenAl Job Simulation.pdf",
+    "category": "ai-ml",
+    "date": "August 2026"
   },
   {
     "title": "Fundamentals of Docker & Kubernetes",
     "issuer": "Cloud Infrastructure Certification",
     "googleDriveId": "1x74RtfT-P_g93jHQ2r7Cm8JxGwRX36J_",
     "localFile": "Fundamentals of Docker & Kubernetes.png",
+    "category": "systems",
     "date": "April 2026"
   },
   {
@@ -74,6 +92,7 @@
     "issuer": "Software Architecture & LLD Course",
     "googleDriveId": "1oYexUnIGuA7YIaGa_1r9hNs5PEVYal53",
     "localFile": "Low-Level Design of Payment Apps.png",
+    "category": "systems",
     "date": "April 2026"
   },
   {
@@ -81,13 +100,31 @@
     "issuer": "Software Design Patterns Certificate",
     "googleDriveId": "1CLOEo2D4nkC8hGjR4L2FOEdRkjk3pN_j",
     "localFile": "SOLID Principles Every Developer Must Know.png",
+    "category": "systems",
     "date": "July 2026"
+  },
+  {
+    "title": "Advanced Software Engineering Job Simulation",
+    "issuer": "Walmart Global Tech & Forage",
+    "googleDriveId": "6a7f23376dfcb5ce71b8a869",
+    "localFile": "Advanced Software Engineering Job Simulation.pdf",
+    "category": "systems",
+    "date": "August 2026"
+  },
+  {
+    "title": "Adobe University Hackathon",
+    "issuer": "Adobe & Unstop",
+    "googleDriveId": "unstop-adobe-2026",
+    "localFile": "Adobe Hackathon.pdf",
+    "category": "hackathons",
+    "date": "August 2026"
   },
   {
     "title": "Outskill Professional Certification",
     "issuer": "Outskill Developer Bootcamp",
     "googleDriveId": "1BlOkZJULhFiQwqHjN0nxxgfUHwul4Rz3",
     "localFile": "Outskill Certificate.pdf",
+    "category": "workshops",
     "date": "June 2026"
   },
   {
@@ -95,6 +132,7 @@
     "issuer": "be10x Professional Development Program",
     "googleDriveId": "10fZxuUfyG7Xdz2J3214NtzkrE4YcIlav",
     "localFile": "be10x Certificate.pdf",
+    "category": "workshops",
     "date": "June 2026"
   }
 ]

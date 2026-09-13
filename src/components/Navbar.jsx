@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Search } from 'lucide-react';
+import { usePreloader } from '../context/PreloaderContext';
 
 const navLinks = [
   { label: 'About',           href: '#about' },
@@ -18,6 +19,7 @@ export default function Navbar({ onOpenCommandPalette }) {
   const [scrolled, setScrolled]         = useState(false);
   const [mobileOpen, setMobileOpen]     = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const { isLoaded } = usePreloader();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 60);
@@ -44,8 +46,8 @@ export default function Navbar({ onOpenCommandPalette }) {
     <>
       <motion.header
         initial={{ y: -24, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 2.2, duration: 0.7, ease: 'easeOut' }}
+        animate={isLoaded ? { y: 0, opacity: 1 } : { y: -24, opacity: 0 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-[50] transition-all duration-500 ${
           scrolled ? 'py-3 px-4 md:px-8' : 'py-5 px-6 md:px-12'
         }`}
@@ -69,14 +71,18 @@ export default function Navbar({ onOpenCommandPalette }) {
               const isActive = activeSection === id;
               return (
                 <a key={link.href} href={link.href}
-                  className={`relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors no-underline group ${
+                  className={`relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors no-underline ${
                     isActive ? 'text-white' : 'text-slate-500 hover:text-slate-300'
                   }`}>
-                  {link.label}
-                  <span className={`absolute bottom-0.5 left-3 right-3 h-px rounded-full transition-all duration-300 ${
-                    isActive ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-50'
-                  }`}
-                    style={{ background: 'linear-gradient(90deg, #6366F1, #8B5CF6)' }} />
+                  {isActive && (
+                    <motion.span
+                      layoutId="navbar-active-pill"
+                      className="absolute inset-0 rounded-lg"
+                      style={{ background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.2)' }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{link.label}</span>
                 </a>
               );
             })}
