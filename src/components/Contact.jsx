@@ -6,7 +6,9 @@ import GradientMesh from '../components/effects/GradientMesh';
 import SpotlightCard from '../components/ui/SpotlightCard';
 import { useProfile } from '../hooks/useProfile';
 
-const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY || '51babd9f-f8ac-4f39-93fa-f61c63d57ece';
+// Set VITE_WEB3FORMS_KEY (Vercel env var / .env). Without it the form falls back to the visitor's mail app.
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
+const CONTACT_EMAIL = 'sumanthmamidi77@gmail.com';
 
 export default function Contact() {
   const { profile } = useProfile();
@@ -24,11 +26,12 @@ export default function Contact() {
     e.preventDefault();
     if (!form.consent) return;
     setStatus('loading');
-    if (WEB3FORMS_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY') {
-      setTimeout(() => {
-        setStatus('success');
-        setForm({ firstName: '', lastName: '', email: '', message: '', consent: false });
-      }, 1200);
+    if (!WEB3FORMS_KEY || WEB3FORMS_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY') {
+      // No form service configured: open the visitor's mail app with the message pre-filled.
+      const subject = encodeURIComponent(`Portfolio inquiry from ${`${form.firstName} ${form.lastName}`.trim()}`);
+      const body = encodeURIComponent(`${form.message}\n\n— ${form.firstName} ${form.lastName} (${form.email})`);
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+      setStatus('idle');
       return;
     }
     try {
@@ -67,7 +70,7 @@ export default function Contact() {
               <SectionHeader
                 label="Get In Touch"
                 heading="Let's work together"
-                subtext="Open to full-time roles, freelance contracts, and interesting AI collaborations."
+                subtext="Open to AI systems, ML and full-stack internships, research collaborations, and interesting projects."
                 theme="dark"
                 className="mb-8"
               />
@@ -96,7 +99,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="label-sm text-slate-400 text-[10px] tracking-wider mb-1 uppercase font-mono">Location</p>
-                    <p className="text-white text-xs md:text-sm font-semibold">{profile?.location || 'Chennai, India'} — Remote Worldwide</p>
+                    <p className="text-white text-xs md:text-sm font-semibold">{profile?.location || 'Chennai, India'} · open to remote</p>
                   </div>
                 </div>
 
@@ -123,7 +126,7 @@ export default function Contact() {
                   <CheckCircle className="text-emerald-400" size={26} />
                 </div>
                 <h3 className="font-bold text-white text-2xl" style={{ fontFamily: 'var(--font-display)' }}>Message Sent!</h3>
-                <p className="text-slate-400 text-sm max-w-xs leading-relaxed">Thanks for reaching out — your message has been transmitted to sumanthmamidi77@gmail.com. I'll reply shortly.</p>
+                <p className="text-slate-400 text-sm max-w-xs leading-relaxed">Thanks for reaching out. I'll reply as soon as I can.</p>
                 <button onClick={() => setStatus('idle')} className="mt-4 text-xs font-semibold text-violet-400 hover:text-violet-300 transition-colors">
                   ← Send another message
                 </button>
@@ -158,7 +161,7 @@ export default function Contact() {
                     <label htmlFor="message" className="label-sm text-slate-400 mb-2 block text-[10px]">Your Message</label>
                     <textarea id="message" name="message" value={form.message} required rows={4}
                       onChange={handleChange} onFocus={() => setFocused('message')} onBlur={() => setFocused('')}
-                      className="form-input w-full resize-none" placeholder="Tell me about your project, timeline, or opportunity..." />
+                      className="form-input w-full resize-none" placeholder="Tell me about the internship, project, or collaboration..." />
                     <div className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-indigo-500 via-violet-500 to-amber-500 transition-all duration-300 ${focused === 'message' ? 'w-full shadow-[0_0_12px_rgba(99,102,241,0.6)]' : 'w-0'}`} />
                   </div>
                   <div className="flex items-start gap-3 pt-1">
@@ -176,13 +179,12 @@ export default function Contact() {
                   )}
                   <motion.button
                     type="submit"
-                    disabled={status === 'loading' || !form.consent}
                     whileHover={{ scale: 1.02, y: -1 }}
                     whileTap={{ scale: 0.97 }}
-                    className="btn-primary text-sm px-4 py-2 self-start disabled:opacity-50 disabled:cursor-not-allowed no-underline"
+                    className="btn-primary text-sm font-semibold text-white px-5 py-2.5 self-start disabled:cursor-not-allowed no-underline inline-flex items-center gap-2 select-none shadow-md"
                   >
                     <span>{status === 'loading' ? 'Sending Message...' : 'Send Message'}</span>
-                    <Send size={14} />
+                    <Send size={15} />
                   </motion.button>
                 </form>
               </SpotlightCard>

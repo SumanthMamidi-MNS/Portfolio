@@ -2,84 +2,74 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import SectionHeader from '../components/ui/SectionHeader';
 import DotGrid from '../components/effects/DotGrid';
-import GradientMesh from '../components/effects/GradientMesh';
-import SpotlightCard from '../components/ui/SpotlightCard';
 import Skeleton from '../components/ui/Skeleton';
 import { useSkills } from '../hooks/useSkills';
 
-const categoryConfig = {
-  'ai-ml':     { accent: '#8B5CF6', glow: 'rgba(139,92,246,0.08)',  label: 'AI & ML' },
-  'frontend':  { accent: '#10B981', glow: 'rgba(16,185,129,0.08)',  label: 'Frontend' },
-  'backend':   { accent: '#F59E0B', glow: 'rgba(245,158,11,0.08)',  label: 'Backend' },
-  'devops':    { accent: '#EF4444', glow: 'rgba(239,68,68,0.08)',   label: 'DevOps & Cloud' },
-};
+const EASE = [0.22, 1, 0.36, 1];
 
 export default function Skills() {
   const { skills, loading } = useSkills();
 
   return (
-    <section id="skills" className="section-2 relative overflow-hidden py-24 md:py-32 px-6 md:px-12 border-t border-white/4">
+    <section id="skills" className="section-2 relative overflow-hidden py-20 md:py-28 px-6 md:px-12 border-t border-white/5">
       <DotGrid theme="dark" />
-      <GradientMesh className="opacity-60" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeader
           label="Technical Stack"
           heading="Skills & Technologies"
-          subtext="Full-stack expertise across AI/ML, frontend, backend, and cloud infrastructure."
+          subtext="Four areas, and every tool in them has been used in the projects above."
           theme="dark"
-          className="mb-14"
+          className="mb-12"
         />
 
         {loading ? (
           <Skeleton.Grid cols={2} count={4} />
         ) : (
+          /* Four boxes in a 2 x 2 grid. Each box holds at most four lines of tools. */
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {(skills.categories || []).map((category, i) => {
-              const config = categoryConfig[category.id] || categoryConfig['frontend'];
-              return (
-                <motion.div
-                  key={category.id}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={{ y: -4, transition: { duration: 0.25 } }}
-                >
-                  <SpotlightCard
-                    className="card p-6 h-full"
-                    style={{ background: `linear-gradient(135deg, ${config.glow}, transparent)` }}
-                  >
-                    <div className="flex items-center gap-2 mb-5">
-                      <div className="w-2 h-2 rounded-full" style={{ background: config.accent }} />
-                      <span className="label-sm" style={{ color: config.accent }}>
-                        {config.label || category.name}
-                      </span>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {category.skills.map((skill, si) => (
-                        <motion.span
-                          key={skill}
-                          initial={{ opacity: 0, scale: 0.85, y: 8 }}
-                          whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: i * 0.1 + si * 0.03, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                          whileHover={{
-                            scale: 1.08, y: -2,
-                            color: config.accent,
-                            borderColor: `${config.accent}55`,
-                            background: `${config.accent}12`,
-                          }}
-                          className="skill-pill text-xs"
-                        >
-                          {skill}
-                        </motion.span>
-                      ))}
-                    </div>
-                  </SpotlightCard>
-                </motion.div>
-              );
-            })}
+            {(skills.categories || []).slice(0, 4).map((category, i) => (
+              <motion.article
+                key={category.id}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ delay: (i % 2) * 0.1, duration: 0.55, ease: EASE }}
+                className="group rounded-2xl border border-white/10 bg-[#0D1426] p-6 md:p-7 transition-all duration-300 hover:border-violet-400/45 hover:shadow-[0_14px_40px_-16px_rgba(139,92,246,0.5)]"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="text-sm font-mono text-violet-300/80 mt-1 tabular-nums" aria-hidden="true">
+                    {category.number}
+                  </span>
+                  <div className="min-w-0">
+                    <h3
+                      className="text-lg font-semibold text-white leading-snug m-0"
+                      style={{ fontFamily: 'var(--font-display)' }}
+                    >
+                      {category.name}
+                    </h3>
+                    {category.blurb && (
+                      <p className="text-sm text-slate-400 leading-relaxed mt-1.5 mb-0">{category.blurb}</p>
+                    )}
+                  </div>
+                </div>
+
+                <ul className="flex flex-wrap gap-2 list-none p-0 mt-5 mb-0">
+                  {category.skills.map((skill, si) => (
+                    <motion.li
+                      key={skill}
+                      initial={{ opacity: 0, y: 8 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 + si * 0.025, duration: 0.35, ease: EASE }}
+                      className="skill-pill text-xs"
+                    >
+                      {skill}
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.article>
+            ))}
           </div>
         )}
       </div>

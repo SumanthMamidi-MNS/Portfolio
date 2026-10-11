@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, User, Briefcase, Code2, Award, Mail } from 'lucide-react';
+import { Search, User, Briefcase, Code2, Award, Mail, BookOpen, GraduationCap, FileText } from 'lucide-react';
 
 const commands = [
-  { id: 'about',           label: 'About Me',        icon: User,      href: '#about' },
-  { id: 'projects',        label: 'Projects',         icon: Briefcase, href: '#projects' },
-  { id: 'skills',          label: 'Skills',           icon: Code2,     href: '#skills' },
-  { id: 'certifications',  label: 'Certifications',   icon: Award,     href: '#certifications' },
-  { id: 'contact',         label: 'Contact',          icon: Mail,      href: '#contact' },
+  { id: 'about',           label: 'About Me',         icon: User,          href: '#about' },
+  { id: 'projects',        label: 'Projects',         icon: Briefcase,     href: '#projects' },
+  { id: 'publications',    label: 'Publications',     icon: BookOpen,      href: '#publications' },
+  { id: 'education',       label: 'Education',        icon: GraduationCap, href: '#education' },
+  { id: 'skills',          label: 'Skills',           icon: Code2,         href: '#skills' },
+  { id: 'certifications',  label: 'Certifications',   icon: Award,         href: '#certifications' },
+  { id: 'contact',         label: 'Contact',          icon: Mail,          href: '#contact' },
+  { id: 'resume',          label: 'Download Resume (PDF)', icon: FileText, href: '/assets/resume/Sumanth_Mamidi_Resume.pdf' },
 ];
 
-export default function CommandPalette({ open, onClose }) {
+export default function CommandPalette({ open, onClose, onToggle }) {
   const [query, setQuery] = useState('');
 
   const filtered = query
@@ -26,12 +29,13 @@ export default function CommandPalette({ open, onClose }) {
       if (e.key === 'Escape') onClose();
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
-        onClose();
+        if (onToggle) onToggle();
+        else onClose();
       }
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [onClose]);
+  }, [onClose, onToggle]);
 
   return (
     <AnimatePresence>
@@ -48,6 +52,9 @@ export default function CommandPalette({ open, onClose }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: -10 }}
             transition={{ type: 'spring', stiffness: 400, damping: 28 }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Search sections"
             className="cmd-panel w-[90vw] max-w-lg"
             onClick={e => e.stopPropagation()}
           >

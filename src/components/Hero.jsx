@@ -1,12 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Download, ArrowDown, Volume2, VolumeX } from 'lucide-react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { Download, ArrowDown, Volume2, VolumeX, Play, RotateCcw } from 'lucide-react';
 import Button from '../components/ui/Button';
 import GradientMesh from '../components/effects/GradientMesh';
 import DotGrid from '../components/effects/DotGrid';
 import TiltCard from '../components/ui/TiltCard';
 import SpotlightCard from '../components/ui/SpotlightCard';
-import ScrambleText from '../components/ui/ScrambleText';
 import SplitText from '../components/ui/SplitText';
 import { useProfile } from '../hooks/useProfile';
 import { usePreloader } from '../context/PreloaderContext';
@@ -34,7 +33,11 @@ const itemVariants = {
 export default function Hero() {
   const videoRef = useRef(null);
   const sectionRef = useRef(null);
-  const [muted, setMuted] = useState(true);
+  const [muted, setMuted] = useState(false);
+  const [playing, setPlaying] = useState(false);   // video is currently playing
+  const [started, setStarted] = useState(false);   // visitor has pressed play at least once
+  const [ended, setEnded] = useState(false);
+  const [buffering, setBuffering] = useState(false);
   const { profile } = useProfile();
   const { isLoaded } = usePreloader();
 
@@ -45,49 +48,49 @@ export default function Hero() {
 
   const toggleMute = (e) => {
     if (e) e.stopPropagation();
-    if (videoRef.current) {
-      const targetMuted = !videoRef.current.muted;
-      videoRef.current.muted = targetMuted;
-      setMuted(targetMuted);
-    }
-  };
-
-  useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    video.muted = !video.muted;
+    setMuted(video.muted);
+  };
 
-    // Try to play unmuted automatically on startup
+  // Click-to-play: nothing downloads or plays until the visitor asks for it.
+  const startVideo = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (ended) video.currentTime = 0;
     video.muted = false;
     setMuted(false);
+    setBuffering(true);
+    video.play().then(() => {
+      setStarted(true);
+      setEnded(false);
+    }).catch(() => {
+      // Some browsers refuse unmuted playback; retry muted so the click still does something.
+      video.muted = true;
+      setMuted(true);
+      video.play().then(() => { setStarted(true); setEnded(false); }).catch(() => setBuffering(false));
+    });
+  };
 
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Autoplay unmuted was blocked by browser policies.
-        // Fallback to muted autoplay.
-        video.muted = true;
-        setMuted(true);
-        video.play().catch(() => {});
-
-        // Listen for first interaction (click/tap) to unmute
-        const enableAudio = () => {
-          video.muted = false;
-          setMuted(false);
-          video.play().catch(() => {});
-          document.removeEventListener('click', enableAudio);
-          document.removeEventListener('touchstart', enableAudio);
-        };
-        document.addEventListener('click', enableAudio, { passive: true });
-        document.addEventListener('touchstart', enableAudio, { passive: true });
-      });
-    }
+  // Pause automatically when the hero scrolls out of view so audio never plays in the background.
+  useEffect(() => {
+    const video = videoRef.current;
+    const section = sectionRef.current;
+    if (!video || !section || typeof IntersectionObserver === 'undefined') return undefined;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (!entry.isIntersecting && !video.paused) video.pause(); },
+      { threshold: 0.2 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
   }, []);
 
   return (
     <section
       ref={sectionRef}
       id="home"
-      className="section-0 relative min-h-screen flex items-center pt-28 pb-20 px-6 md:px-12 overflow-hidden"
+      className="section-0 relative min-h-screen flex items-center pt-24 pb-32 px-6 md:px-12 overflow-hidden"
     >
       {/* Layered backgrounds with parallax */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none">
@@ -110,7 +113,7 @@ export default function Hero() {
             <motion.div variants={itemVariants}>
               <span className="status-badge">
                 <span className="status-dot" />
-                {profile?.status || 'Available for AI Engineering roles'}
+                {profile?.status || 'Seeking AI systems, ML or full-stack internships'}
               </span>
             </motion.div>
 
@@ -140,20 +143,40 @@ export default function Hero() {
                   stagger={0.1}
                 />
               </h1>
-              <p
-                className="text-lg font-medium text-slate-400"
-                style={{ fontFamily: 'var(--font-sans)' }}
+              {/* Even, calm tagline: one clear line plus equal-sized focus chips that rise in one by one */}
+              <div className="flex flex-col gap-1">
+                <p className="text-lg font-semibold text-slate-100 tracking-wide m-0">
+                  {profile?.tagline || 'B.Tech in Computer Science & Engineering'}
+                </p>
+                <p className="text-sm text-slate-400 leading-snug m-0">
+                  {profile?.specialization || 'Specialization in Artificial Intelligence & Machine Learning · SRMIST, Chennai'}
+                </p>
+              </div>
+              <motion.ul
+                className="flex flex-wrap gap-2 list-none p-0 m-0 mt-1"
+                variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } } }}
               >
-                <ScrambleText text="AI/ML Engineer & Full-Stack Developer" trigger="inView" speed={35} />
-              </p>
+                {(profile?.focus || ['Machine Learning', 'Computer Vision', 'RAG Pipelines', 'LLM Agents']).map((item) => (
+                  <motion.li
+                    key={item}
+                    variants={{
+                      hidden: { opacity: 0, y: 10 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+                    }}
+                    className="px-3.5 py-1.5 rounded-full text-xs font-medium text-violet-200 border border-violet-400/30 bg-violet-500/10 hover:bg-violet-500/20 hover:border-violet-300/50 transition-colors"
+                  >
+                    {item}
+                  </motion.li>
+                ))}
+              </motion.ul>
             </motion.div>
 
             <motion.p variants={itemVariants} className="text-base text-slate-400 leading-relaxed">
-              {profile?.bio || 'Building closed-loop multi-agent systems, neural network pipelines, and high-performance interactive interfaces from Chennai, India.'}
+              {profile?.bio || 'Second-year B.Tech CSE (AI & ML) student building applied ML and LLM agent systems from Chennai, India.'}
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3">
-              <Button variant="primary" href="#projects" data-cursor="View">
+              <Button variant="primary" href="#projects">
                 View Projects
                 <ArrowDown size={15} />
               </Button>
@@ -199,7 +222,8 @@ export default function Hero() {
             transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="w-full lg:w-[580px] xl:w-[640px] shrink-0"
           >
-            <TiltCard maxTilt={8}>
+            {/* Gentle on the hero card: a small tilt and almost no lift, so it never "jumps" at the pointer */}
+            <TiltCard maxTilt={5} lift={1.01}>
               <SpotlightCard className="rounded-2xl overflow-hidden">
                 {/* Ambient glow behind card */}
                 <div
@@ -211,37 +235,28 @@ export default function Hero() {
                 <div className="glass rounded-2xl overflow-hidden relative">
                   {/* Top chrome bar */}
                   <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/5">
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-3 h-3 rounded-full bg-red-500/70" />
-                      <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
-                      <div className="w-3 h-3 rounded-full bg-green-500/70" />
-                    </div>
                     <div className="flex items-center gap-2.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-soft" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-violet-400" />
                       <span
                         className="label-sm text-slate-400"
                         style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem' }}
                       >
-                        Sumanth Mamidi — AI/ML Engineer
+                        Sumanth Mamidi — Intro
                       </span>
                     </div>
+                    {/* Sound toggle only matters once the video has started */}
                     <button
                       onClick={toggleMute}
-                      className={`relative flex items-center justify-center p-2 rounded-full transition-all duration-300 ${
-                        muted 
-                          ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40 shadow-[0_0_12px_rgba(245,158,11,0.3)] animate-pulse-soft' 
+                      disabled={!started}
+                      className={`relative flex items-center justify-center p-2 rounded-full transition-all duration-300 disabled:opacity-30 disabled:cursor-default ${
+                        muted
+                          ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40'
                           : 'bg-white/10 text-white border border-white/10 hover:bg-white/20'
                       }`}
-                      aria-label={muted ? 'Unmute' : 'Mute'}
+                      aria-label={muted ? 'Unmute video' : 'Mute video'}
                       data-cursor="Sound"
                     >
                       {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-                      {muted && (
-                        <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
-                        </span>
-                      )}
                     </button>
                   </div>
 
@@ -250,12 +265,20 @@ export default function Hero() {
                     <video
                       ref={videoRef}
                       src={profile?.video || '/assets/videos/AI_ML_engineer_speaking_portfolio_202607221711.mp4'}
-                      autoPlay
-                      loop
-                      muted={muted}
+                      poster={profile?.poster || '/assets/videos/video_poster.jpg'}
                       playsInline
-                      preload="auto"
+                      preload="none"
                       controls={false}
+                      onPlaying={() => { setPlaying(true); setBuffering(false); }}
+                      onPause={() => setPlaying(false)}
+                      onWaiting={() => setBuffering(true)}
+                      onEnded={() => { setPlaying(false); setEnded(true); }}
+                      onClick={() => {
+                        const v = videoRef.current;
+                        if (!v) return;
+                        if (v.paused) v.play().catch(() => {});
+                        else v.pause();
+                      }}
                       className="w-full h-full object-cover"
                     />
                     {/* Subtle vignette */}
@@ -265,13 +288,49 @@ export default function Hero() {
                         background: 'linear-gradient(to bottom, rgba(7,11,20,0.1) 0%, transparent 30%, transparent 70%, rgba(7,11,20,0.4) 100%)',
                       }}
                     />
-                    {/* "LIVE" badge */}
-                    <div className="absolute top-4 right-4">
-                      <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/10">
-                        <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse-soft" />
-                        <span className="label-sm text-white" style={{ fontSize: '0.55rem' }}>LIVE</span>
-                      </span>
-                    </div>
+                    {/* Click-to-play overlay: fades out while playing, returns on pause/end */}
+                    <AnimatePresence>
+                      {!playing && (
+                        <motion.button
+                          type="button"
+                          key="play-overlay"
+                          onClick={startVideo}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/25 hover:bg-black/15 transition-colors"
+                          aria-label={ended ? 'Replay intro video' : 'Play intro video'}
+                          data-cursor="Play"
+                        >
+                          <span className="relative flex items-center justify-center">
+                            {!buffering && (
+                              <motion.span
+                                className="absolute w-16 h-16 rounded-full border border-white/40"
+                                animate={{ scale: [1, 1.5], opacity: [0.6, 0] }}
+                                transition={{ duration: 1.8, repeat: Infinity, ease: 'easeOut' }}
+                              />
+                            )}
+                            <span className="relative w-16 h-16 rounded-full bg-white/15 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-xl">
+                              {buffering ? (
+                                <motion.span
+                                  className="block w-6 h-6 rounded-full border-2 border-white/30 border-t-white"
+                                  animate={{ rotate: 360 }}
+                                  transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }}
+                                />
+                              ) : ended ? (
+                                <RotateCcw size={22} />
+                              ) : (
+                                <Play size={24} className="ml-1" fill="currentColor" />
+                              )}
+                            </span>
+                          </span>
+                          <span className="label-sm text-white/90">
+                            {buffering ? 'Loading…' : ended ? 'Watch again' : 'Play intro'}
+                          </span>
+                        </motion.button>
+                      )}
+                    </AnimatePresence>
                   </div>
 
                   {/* Bottom info bar */}
@@ -279,7 +338,7 @@ export default function Hero() {
                     <span className="label-sm text-slate-500">Chennai, India</span>
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                      <span className="label-sm text-emerald-400" style={{ fontSize: '0.625rem' }}>Available</span>
+                      <span className="label-sm text-emerald-400" style={{ fontSize: '0.625rem' }}>Open to internships</span>
                     </div>
                   </div>
                 </div>

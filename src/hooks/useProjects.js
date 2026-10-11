@@ -1,17 +1,15 @@
 import { useState, useEffect } from 'react';
+import { fetchJson } from './fetchJson';
 
 export function useProjects() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/data/projects.json')
-      .then(r => r.json())
-      .then(data => {
-        setProjects(Array.isArray(data) ? data : data.projects || []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    fetchJson('/data/projects.json')
+      .then(data => setProjects(Array.isArray(data) ? data : data.projects || []))
+      .catch(() => {})
+      .finally(() => setLoading(false));
   }, []);
 
   return { projects, loading };
