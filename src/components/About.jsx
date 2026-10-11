@@ -29,6 +29,22 @@ const DEFAULT_ABOUT = [
   'Based in Chennai and looking for an internship in AI systems, machine learning or full-stack engineering.',
 ];
 
+const photoCardVariants = {
+  hidden: { clipPath: 'inset(0 0 100% 0 round 16px)' },
+  visible: {
+    clipPath: 'inset(0 0 0% 0 round 16px)',
+    transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1], delay: 0.1 },
+  },
+};
+
+const photoImgVariants = {
+  hidden: { scale: 1.15 },
+  visible: {
+    scale: 1,
+    transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.1 },
+  },
+};
+
 export default function About() {
   const { profile, loading: profileLoading } = useProfile();
   const { projects, loading: projectsLoading } = useProjects();
@@ -39,8 +55,6 @@ export default function About() {
   const featuredCount = projects?.filter((p) => p.featured).length || 6;
   const certCount = certificates?.length || 19;
   const paragraphs = profile?.about?.length ? profile.about : DEFAULT_ABOUT;
-
-
 
   const stats = [
     { value: 1, label: 'Published paper', note: 'AVE Trends, 2026' },
@@ -57,10 +71,13 @@ export default function About() {
 
           {/* Photo: wipes in from the top while the image settles; a status tab floats on its top edge */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.6, ease: EASE }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05 }}
+            variants={{
+              hidden: { opacity: 0, y: 16 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+            }}
             className="w-full max-w-xs mx-auto lg:mx-0"
           >
             {/* Floating tab: touches the photo's top edge, drifts gently up and down */}
@@ -82,10 +99,7 @@ export default function About() {
             <TiltCard maxTilt={7} radius={16}>
               <motion.div
                 data-cursor-solid
-                initial={{ clipPath: 'inset(0 0 100% 0 round 16px)' }}
-                whileInView={{ clipPath: 'inset(0 0 0% 0 round 16px)' }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1], delay: 0.1 }}
+                variants={photoCardVariants}
                 className="relative rounded-2xl overflow-hidden aspect-[3/4] border border-white/15 bg-white/[0.03] shadow-[0_18px_50px_-18px_rgba(99,102,241,0.45)]"
               >
                 <motion.img
@@ -93,10 +107,7 @@ export default function About() {
                   alt="Sumanth Mamidi"
                   loading="eager"
                   decoding="async"
-                  initial={{ scale: 1.15 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+                  variants={photoImgVariants}
                   className="w-full h-full object-cover"
                 />
               </motion.div>
@@ -105,7 +116,7 @@ export default function About() {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.5, ease: EASE, delay: 0.2 }}
               className="mt-2.5 rounded-xl border border-white/12 px-4 py-2.5 backdrop-blur-md"
               style={{
@@ -129,7 +140,7 @@ export default function About() {
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.55, ease: EASE, delay: 0.1 }}
               className="flex flex-col gap-4 max-w-2xl"
             >
@@ -144,7 +155,7 @@ export default function About() {
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.55, ease: EASE, delay: 0.18 }}
               className="flex flex-wrap items-center gap-3"
             >
@@ -181,7 +192,7 @@ export default function About() {
                     key={stat.label}
                     initial={{ opacity: 0, y: 14 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-40px' }}
+                    viewport={{ once: true, amount: 0.05 }}
                     transition={{ duration: 0.5, ease: EASE, delay: 0.2 + i * 0.1 }}
                     className="group relative overflow-hidden rounded-xl border border-violet-400/25 bg-gradient-to-b from-violet-500/[0.12] to-violet-500/[0.03] px-4 py-4 transition-all duration-300 hover:border-violet-300/60 hover:shadow-[0_10px_30px_-12px_rgba(139,92,246,0.55)]"
                   >
