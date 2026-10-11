@@ -1,10 +1,309 @@
 [
   {
+    "id": "oceanembed",
+    "title": "OceanEmbed",
+    "subtitle": "3D Subsurface Ocean Temperature Reconstruction via Satellite AI",
+    "category": "ai-ml",
+    "tags": [
+      "PyTorch",
+      "Vision Transformer",
+      "Deep Learning",
+      "FastAPI",
+      "React 19",
+      "Earth Observation"
+    ],
+    "badge": "Satellite AI Core",
+    "description": "A deep-learning framework that reconstructs daily 3D ocean temperature fields across 15 depths (0–1,000 m) in the North Indian Ocean from satellite surface observations, using a hybrid CNN–Vision Transformer. Validated on two unseen years and 5,512 in-situ Argo float profiles.",
+    "features": [
+      "Hybrid CNN + Vision Transformer encoder-decoder reconstructing 15 subsurface depth levels at 0.25° resolution",
+      "0.98°C thermocline RMSE across two unseen test years (33% lower error than seasonal climatology baselines)",
+      "Rigorously validated against 5,512 independent in-situ Argo profiling floats (77,388 physical matchups)",
+      "Harmonized 14-year multi-satellite dataset (Copernicus OSTIA, DUACS, NASA PO.DAAC) spanning 5,098 days",
+      "Rolling 60-day automated live nowcasting engine updating daily from near-real-time satellite feeds",
+      "Interactive React 19 oceanographic explorer with linked horizontal maps, vertical cross-sections, and NetCDF exports"
+    ],
+    "github": "https://github.com/SumanthMamidi-MNS/OceanEmbed",
+    "demo": null,
+    "cover": "/assets/projects/oceanembed/oceanembed-logo.svg",
+    "featured": true,
+    "year": 2026,
+    "metric": "Within about 1 °C of real ocean measurements",
+    "summary": "Reconstructs daily 3D ocean temperature (15 depths, down to 1,000 m) from satellite surface data with a hybrid CNN–Vision Transformer.",
+    "role": "Built end to end: satellite data pipeline, deep-learning model, API and explorer interface.",
+    "results": [
+      {
+        "value": "≈ 1 °C",
+        "label": "Average error",
+        "note": "0.98 °C RMSE at the thermocline on two years the model never saw, 33% lower than the seasonal-average baseline."
+      },
+      {
+        "value": "5,512",
+        "label": "Real ocean profiles",
+        "note": "Checked against independent Argo float measurements (77,388 matchups)."
+      },
+      {
+        "value": "15",
+        "label": "Depth levels",
+        "note": "Surface down to 1,000 m, rebuilt daily at 0.25° resolution."
+      }
+    ],
+    "gallery": [
+      {
+        "src": "/assets/projects/oceanembed/overview.png",
+        "caption": "Project overview"
+      }
+    ]
+  },
+  {
+    "id": "urbantrace",
+    "title": "UrbanTrace",
+    "subtitle": "Multi-Camera ANPR Tracking & Traffic Intelligence",
+    "category": "systems",
+    "tags": [
+      "Computer Vision",
+      "ANPR",
+      "YOLOv8",
+      "Graph Algorithms",
+      "Min-Cost Flow",
+      "FastAPI",
+      "WebSockets",
+      "React 19"
+    ],
+    "badge": "Edge Vision Engine",
+    "description": "An edge AI engine developed for high-assurance vehicle tracking under noisy sensor reads. Instead of brittle exact string matching, UrbanTrace fuses character-level OCR probability matrices, vehicle appearance embeddings, and congestion-aware travel times using a global min-cost flow solver.",
+    "features": [
+      "Global Min-Cost Flow tracking engine achieving 0.972 IDF1 and 9x fewer identity errors on 100K+ reads",
+      "Probabilistic 3-evidence fusion combining character OCR matrices, visual appearance, and road travel time",
+      "Consensus plate repair boosting degraded multi-camera plate accuracy from 87.8% to 99.95%",
+      "Real-time WebSocket alerts for cloned plates (0.998 AUC), impossible speeds, and probabilistic watchlists",
+      "Full-featured React 19 operator console with MapLibre GL heatmaps, corridor analytics, and journey explainability",
+      "Self-contained, zero-cloud edge deployment packaged in a 329 MB multi-stage Docker container"
+    ],
+    "github": "https://github.com/SumanthMamidi-MNS/UrbanTrace",
+    "demo": null,
+    "cover": "/assets/projects/urbantrace/urbantrace-logo.svg",
+    "featured": true,
+    "year": 2026,
+    "metric": "97% vehicle-identity accuracy across cameras",
+    "summary": "Tracks vehicles across city cameras by fusing noisy plate reads, appearance and travel time, and flags cloned plates in real time.",
+    "role": "Built end to end: tracking engine, plate-repair logic, real-time alerts and operator console.",
+    "results": [
+      {
+        "value": "97%",
+        "label": "Identity accuracy",
+        "note": "IDF1 0.972: how reliably each vehicle keeps the same identity across cameras, with 9× fewer identity errors than exact plate matching."
+      },
+      {
+        "value": "87.8% → 99.95%",
+        "label": "Plate accuracy",
+        "note": "Badly read plates repaired by combining reads from several cameras."
+      },
+      {
+        "value": "0.998",
+        "label": "Cloned-plate detection",
+        "note": "AUC 0.998 (1.0 is perfect): spots the same plate appearing in two places at once."
+      }
+    ],
+    "gallery": [
+      {
+        "src": "/assets/projects/urbantrace/live-map.png",
+        "caption": "Live corridor map"
+      }
+    ]
+  },
+  {
+    "id": "truecite",
+    "title": "TrueCite",
+    "subtitle": "Citation-Verified Legal RAG for Ayurveda IP & Regulatory Compliance",
+    "category": "ai-ml",
+    "tags": [
+      "Legal AI",
+      "RAG",
+      "AI Safety",
+      "FastAPI",
+      "ChromaDB",
+      "BGE-M3",
+      "Hybrid Search",
+      "Knowledge Graph"
+    ],
+    "badge": "Statutory Legal AI",
+    "description": "A high-assurance, citation-verified legal retrieval-augmented generation engine. Rather than allowing probabilistic LLM hallucinations, TrueCite enforces a 3-layer deterministic defense ensuring every legal claim strictly entails its statutory passage, declining ungrounded queries with calibrated confidence.",
+    "features": [
+      "3-layer deterministic defense against legal hallucinations with 0 false answers on benchmarks",
+      "Bilingual hybrid retrieval fusing BAAI/bge-m3 dense embeddings and BM25Okapi via Reciprocal Rank Fusion",
+      "2-of-3 statutory entailment consensus checking before any claim is presented to the user",
+      "Statutory knowledge graph connecting 20 legal instruments (Patents, Biodiversity, FSSAI, WIPO) and 509 cross-references",
+      "Multi-provider LLM backend supporting local Ollama (Qwen 2.5), Google Gemini, and Anthropic Claude",
+      "Zero-dependency vanilla web interface streaming live verification stages via Server-Sent Events (SSE)"
+    ],
+    "github": "https://github.com/SumanthMamidi-MNS/TrueCite",
+    "demo": null,
+    "cover": "/assets/projects/truecite/truecite-logo.svg",
+    "featured": true,
+    "year": 2026,
+    "metric": "0 false answers on benchmark questions",
+    "summary": "Legal Q&A assistant that cites its sources and checks every claim against the statute before answering.",
+    "role": "Built end to end: retrieval pipeline, verification layers, knowledge graph and streaming interface.",
+    "results": [
+      {
+        "value": "0",
+        "label": "False answers",
+        "note": "On the benchmark questions, a claim that fails verification is refused instead of shown."
+      },
+      {
+        "value": "2 of 3",
+        "label": "Consensus check",
+        "note": "A claim must pass two of three entailment checks against the statute text."
+      },
+      {
+        "value": "20 · 509",
+        "label": "Laws · cross-references",
+        "note": "Legal instruments and the links between them in the knowledge graph."
+      }
+    ]
+  },
+  {
+    "id": "fieldcast",
+    "title": "FieldCast",
+    "subtitle": "Hyperlocal Agro-Weather Downscaling with Calibrated Confidence",
+    "category": "ai-ml",
+    "tags": [
+      "Agrometeorology",
+      "Geospatial",
+      "LightGBM",
+      "FastAPI",
+      "React",
+      "MapLibre GL",
+      "TypeScript"
+    ],
+    "badge": "Climate Intelligence",
+    "description": "An agro-meteorological downscaling engine that downscales official block forecasts to 9,802 gram panchayats across the Western Ghats. Incorporates 245° orographic rain-shadow modeling and Mahalanobis epistemic support to provide farmers with honest prediction intervals and asymmetric risk-aware advisories.",
+    "features": [
+      "Downscales block weather forecasts to 9,802 gram panchayats across 134 Western Ghats blocks",
+      "Two-stage LightGBM quantile regression architecture modeling rain occurrence and conditional precipitation",
+      "Hyperlocal 245° monsoon orographic terrain modeling capturing windward slopes and leeward rain shadows",
+      "Calibrated 80% prediction intervals verified against historical NOAA GHCN-D rain gauge networks",
+      "Zero-dependency NumPy-only inference engine executing 257-panchayat block predictions in ~100 ms",
+      "Interactive MapLibre GL dashboard delivering plain-language agricultural spray, irrigation, and harvest advisories"
+    ],
+    "github": "https://github.com/SumanthMamidi-MNS/FieldCast",
+    "demo": null,
+    "cover": "/assets/projects/fieldcast/fieldcast-logo.svg",
+    "featured": true,
+    "year": 2026,
+    "metric": "Forecasts for 9,802 villages",
+    "summary": "Turns block-level weather forecasts into forecasts for 9,802 gram panchayats, with calibrated confidence ranges.",
+    "role": "Built end to end: terrain features, two-stage model, calibration and the map dashboard.",
+    "results": [
+      {
+        "value": "9,802",
+        "label": "Villages covered",
+        "note": "Gram panchayats across 134 Western Ghats blocks, from block-level forecasts."
+      },
+      {
+        "value": "80%",
+        "label": "Calibrated range",
+        "note": "Prediction intervals checked against NOAA rain-gauge records."
+      },
+      {
+        "value": "≈ 100 ms",
+        "label": "Per block",
+        "note": "257 village forecasts per block from a NumPy-only inference engine."
+      }
+    ]
+  },
+  {
+    "id": "auxin",
+    "title": "Auxin",
+    "subtitle": "AI-Powered Agricultural Commerce Platform",
+    "category": "systems",
+    "tags": [
+      "React",
+      "Next.js",
+      "FastAPI",
+      "PostgreSQL",
+      "Supabase",
+      "RAG"
+    ],
+    "badge": "Full-Stack Platform",
+    "description": "A full-stack platform connecting customers, farmers, and delivery partners: customers discover and order fresh produce, farmers manage inventory, orders, and earnings, and delivery partners handle location-aware deliveries with live tracking and OTP-based completion. Includes Milo AI, a retrieval-augmented assistant, and an admin portal for operations and analytics.",
+    "features": [
+      "Customer portal: produce discovery, cart, orders, and delivery tracking",
+      "Farmer portal: inventory management, order fulfilment, and earnings",
+      "Delivery partner portal: GPS-based job matching, guided missions, and OTP verification",
+      "Super-admin portal: platform operations, system health, and analytics",
+      "Milo AI: retrieval-augmented assistant for agricultural knowledge",
+      "Core API (FastAPI) handling authentication and business logic"
+    ],
+    "github": "https://github.com/SumanthMamidi-MNS/Auxin",
+    "demo": null,
+    "cover": "/assets/projects/auxin/auxin-logo.svg",
+    "featured": true,
+    "year": 2026,
+    "metric": "4 role portals with an AI assistant",
+    "summary": "Farm-to-customer commerce platform with customer, farmer, delivery and admin portals and an AI assistant.",
+    "role": "Designed and built the platform: portals, core API, database and the Milo AI assistant.",
+    "results": [
+      {
+        "value": "4",
+        "label": "Role portals",
+        "note": "Customer, farmer, delivery partner and admin."
+      },
+      {
+        "value": "OTP",
+        "label": "Verified delivery",
+        "note": "GPS-based job matching with one-time-code confirmation."
+      },
+      {
+        "value": "RAG",
+        "label": "Milo AI",
+        "note": "Retrieval-augmented answers for agricultural questions."
+      }
+    ]
+  },
+  {
+    "id": "campusflow",
+    "title": "CampusFlow",
+    "subtitle": "College LMS and Online Examination Platform",
+    "category": "systems",
+    "tags": [
+      "React 19",
+      "TypeScript",
+      "FastAPI",
+      "PostgreSQL",
+      "Redis",
+      "Docker"
+    ],
+    "badge": "In development",
+    "description": "A role-based college management, learning, and online examination platform for administrators, lecturers, and students: departments, sections, coursework, assignments, grading, and results. Secure online exams, a live invigilator view, and sandboxed coding assessments are under active development.",
+    "features": [
+      "Role-based access control for administrators, lecturers, and students",
+      "Departments, sections, coursework, assignments, grading, and results",
+      "Modular-monolith backend: FastAPI, SQLAlchemy 2, PostgreSQL, Redis",
+      "Frontend: React 19, TypeScript, Vite, Tailwind CSS v4",
+      "In progress: browser-based exam monitoring, live invigilator dashboard, sandboxed code execution (C, C++, Java, Python, SQL)"
+    ],
+    "github": "https://github.com/SumanthMamidi-MNS/CampusFlow",
+    "demo": null,
+    "cover": "/assets/projects/campusflow/campusflow-logo.svg",
+    "featured": true,
+    "year": 2026,
+    "metric": "Role-based LMS with online exams",
+    "summary": "College LMS and online examination platform with role-based access for admins, lecturers and students.",
+    "role": "Designing and building the platform: role-based access, coursework and the exam module."
+  },
+  {
     "id": "omnifix",
     "title": "OMNIFIX",
     "subtitle": "Autonomous Multi-Agent Security Repair",
     "category": "ai-ml",
-    "tags": ["Python", "LLMs", "Bandit", "Multi-Agent Systems", "Security"],
+    "tags": [
+      "Python",
+      "LLMs",
+      "Bandit",
+      "Multi-Agent Systems",
+      "Security"
+    ],
     "description": "A coordinated team of AI agents that detects vulnerabilities in Python code, writes exploits to prove impact, applies patches, and validates fixes — all in a closed-loop autonomous workflow with zero human intervention.",
     "features": [
       "Security Auditor: Static analysis mapped to CWE vulnerability standards",
@@ -16,15 +315,22 @@
     "github": "https://github.com/SumanthMamidi-MNS/OMNIFIX",
     "demo": null,
     "cover": "/assets/projects/omnifix/cover.png",
-    "featured": true,
-    "year": 2026
+    "featured": false,
+    "year": 2026,
+    "summary": "Multi-agent system that finds, exploits, patches and re-validates Python security vulnerabilities in a closed loop."
   },
   {
     "id": "emailenv",
     "title": "EmailEnv",
     "subtitle": "AI Email Agent Simulation & Training Platform",
     "category": "ai-ml",
-    "tags": ["Python", "Streamlit", "Gemini API", "AI Agents", "Simulation"],
+    "tags": [
+      "Python",
+      "Streamlit",
+      "Gemini API",
+      "AI Agents",
+      "Simulation"
+    ],
     "description": "A Streamlit-based interactive platform simulating how AI agents read, classify, and act on email streams — modeling sequential decision-making, rewards, and a hybrid fallback architecture for high-confidence processing.",
     "features": [
       "Interactive Training Mode with Starter, Medium, and Advanced difficulty levels",
@@ -33,36 +339,24 @@
       "Premium dark-theme UI built natively in Streamlit for optimal observability"
     ],
     "github": "https://github.com/SumanthMamidi-MNS/EmailEnv",
-    "demo": null,
+    "demo": "https://m-n-s-ai-email-agent.hf.space/",
     "cover": "/assets/projects/emailenv/cover.png",
-    "featured": true,
-    "year": 2026
-  },
-  {
-    "id": "qubitscope",
-    "title": "QubitScope",
-    "subtitle": "Interactive Quantum Bloch Sphere Simulator",
-    "category": "interactive",
-    "tags": ["React", "Three.js", "WebGL", "Quantum Computing", "Framer Motion"],
-    "description": "An interactive quantum simulation tool that visualizes the real-time evolution of a single qubit on a 3D Bloch sphere — enabling users to apply quantum gates and inspect superposition and phase shifts directly in the browser.",
-    "features": [
-      "Interactive 3D Bloch Sphere with real-time qubit state visualization",
-      "Live quantum gate transformations: X, Z, and Hadamard gates",
-      "Real-time measurement probability calculations",
-      "State representation in Dirac notation with complete gate history tracking"
-    ],
-    "github": "https://github.com/SumanthMamidi-MNS/QubitScope",
-    "demo": null,
-    "cover": "/assets/projects/qubitscope/cover.png",
-    "featured": true,
-    "year": 2026
+    "featured": false,
+    "year": 2026,
+    "summary": "Interactive simulator and benchmark for AI agents that read, classify and act on email streams."
   },
   {
     "id": "airforge",
     "title": "AirForge",
     "subtitle": "Gesture-Controlled Creative Workspace",
     "category": "interactive",
-    "tags": ["HTML5", "JavaScript", "MediaPipe", "Three.js", "Computer Vision"],
+    "tags": [
+      "HTML5",
+      "JavaScript",
+      "MediaPipe",
+      "Three.js",
+      "Computer Vision"
+    ],
     "description": "A webcam-based gesture-controlled workspace where hand tracking maps complex gestures to 2D brush strokes and 3D voxel model construction — no plugins, no stylus, just your hands.",
     "features": [
       "Ink Space: Neon glow drawing, freehand shapes, and gesture-based select/move",
@@ -71,17 +365,50 @@
       "Canvas Export: High-resolution PNG outputs from both 2D and 3D scenes"
     ],
     "github": "https://github.com/SumanthMamidi-MNS/AirForge",
-    "demo": null,
+    "demo": "https://air-forge.vercel.app",
     "cover": "/assets/projects/airforge/cover.png",
     "featured": false,
-    "year": 2026
+    "year": 2026,
+    "summary": "Browser workspace where webcam hand tracking draws in 2D and builds in 3D, no stylus or plugins."
+  },
+  {
+    "id": "qubitscope",
+    "title": "QubitScope",
+    "subtitle": "Interactive Quantum Bloch Sphere Simulator",
+    "category": "interactive",
+    "tags": [
+      "React",
+      "Three.js",
+      "WebGL",
+      "Quantum Computing",
+      "Framer Motion"
+    ],
+    "description": "An interactive quantum simulation tool that visualizes the real-time evolution of a single qubit on a 3D Bloch sphere — enabling users to apply quantum gates and inspect superposition and phase shifts directly in the browser.",
+    "features": [
+      "Interactive 3D Bloch Sphere with real-time qubit state visualization",
+      "Live quantum gate transformations: X, Z, and Hadamard gates",
+      "Real-time measurement probability calculations",
+      "State representation in Dirac notation with complete gate history tracking"
+    ],
+    "github": "https://github.com/SumanthMamidi-MNS/QubitScope",
+    "demo": "https://qubitscope.vercel.app",
+    "cover": "/assets/projects/qubitscope/cover.png",
+    "featured": false,
+    "year": 2026,
+    "summary": "Interactive 3D Bloch-sphere simulator for single-qubit states, gates and measurement."
   },
   {
     "id": "deepfocus",
     "title": "DeepFocus",
     "subtitle": "Offline-First Cognitive Flow Workspace",
     "category": "systems",
-    "tags": ["IndexedDB", "Web Audio API", "LocalStorage", "PWA", "Framer Motion"],
+    "tags": [
+      "IndexedDB",
+      "Web Audio API",
+      "LocalStorage",
+      "PWA",
+      "Framer Motion"
+    ],
     "description": "A highly optimized browser workspace for cognitive flow using real-time Web Audio API procedural soundscapes synthesized entirely in-browser — no server calls, no accounts, completely private.",
     "features": [
       "Auditory Studio & 5-Band Equalizer: Real-time synthesis of Zen Rain, Forest Wind, Coffee Murmur",
@@ -90,9 +417,10 @@
       "Privacy First: Zero server calls — runs fully client-side on any device"
     ],
     "github": "https://github.com/SumanthMamidi-MNS/DeepFocus",
-    "demo": null,
+    "demo": "https://deep-focus-three.vercel.app",
     "cover": "/assets/projects/deepfocus/cover.png",
     "featured": false,
-    "year": 2026
+    "year": 2026,
+    "summary": "Offline-first focus workspace with in-browser procedural soundscapes and local analytics."
   }
 ]

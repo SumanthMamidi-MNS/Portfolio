@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 116" width="520" height="116" fill="none">
+  <defs>
+    <!-- Satin Sheen for Outer Deep Green Arc (#0A3B34) -->
+    <linearGradient id="fcOuterGrad" x1="8" y1="8" x2="25" y2="25" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A3B34"/>
+      <stop offset="40%" stop-color="#14554A"/>
+      <stop offset="60%" stop-color="#14554A"/>
+      <stop offset="100%" stop-color="#08302A"/>
+    </linearGradient>
+
+    <!-- Lustrous Emerald Sheen for Inner Focal Arc (#10B981) -->
+    <linearGradient id="fcInnerGrad" x1="11" y1="11" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="30%" stop-color="#10B981"/>
+      <stop offset="50%" stop-color="#34D399"/>
+      <stop offset="70%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Specular Jewel Shine for Central Amber Beacon (#F59E0B) -->
+    <radialGradient id="fcBeaconGrad" cx="38%" cy="32%" r="62%" fx="35%" fy="30%">
+      <stop offset="0%" stop-color="#FFFBEB"/>
+      <stop offset="25%" stop-color="#FDE68A"/>
+      <stop offset="55%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </radialGradient>
+
+    <!-- Ambient Aura Glow behind the Beacon -->
+    <radialGradient id="fcBeaconGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#F59E0B" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <style>
+    /* Directional High-Intensity Meteorological Sonar Waves */
+    @keyframes sonarWave1 {
+      0% {
+        opacity: 0;
+        transform: scale(0.65);
+        stroke-width: 3.2px;
+      }
+      15% {
+        opacity: 1.0;
+        stroke: #34D399;
+      }
+      65% {
+        opacity: 0.45;
+        stroke: #10B981;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(2.1);
+        stroke-width: 1.2px;
+      }
+    }
+    @keyframes sonarWave2 {
+      0%, 25% {
+        opacity: 0;
+        transform: scale(0.65);
+        stroke-width: 3.0px;
+      }
+      40% {
+        opacity: 0.95;
+        stroke: #6EE7B7;
+      }
+      80% {
+        opacity: 0.4;
+        stroke: #059669;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(2.1);
+        stroke-width: 1.0px;
+      }
+    }
+    @keyframes sonarWave3 {
+      0%, 50% {
+        opacity: 0;
+        transform: scale(0.65);
+        stroke-width: 2.8px;
+      }
+      65% {
+        opacity: 0.9;
+        stroke: #A7F3D0;
+      }
+      90% {
+        opacity: 0.3;
+        stroke: #047857;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(2.1);
+        stroke-width: 0.8px;
+      }
+    }
+    @keyframes beaconGlowPulse {
+      0%, 100% {
+        opacity: 0.35;
+      }
+      50% {
+        opacity: 0.85;
+      }
+    }
+
+    .sonar-1 {
+      transform-origin: 48px 48px;
+      animation: sonarWave1 2.0s ease-out infinite;
+    }
+    .sonar-2 {
+      transform-origin: 48px 48px;
+      animation: sonarWave2 2.0s ease-out infinite;
+    }
+    .sonar-3 {
+      transform-origin: 48px 48px;
+      animation: sonarWave3 2.0s ease-out infinite;
+    }
+    .fc-beacon-glow {
+      animation: beaconGlowPulse 2.2s ease-in-out infinite;
+    }
+
+    /* Wordmark Typography in perfect ratio (76px font size matching showcase standards) */
+    .fc-wordmark {
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+      font-size: 76px;
+      letter-spacing: -1.2px;
+    }
+    .fc-field {
+      font-weight: 600;
+      fill: #FFFFFF;
+    }
+    .fc-cast {
+      font-weight: 600;
+      fill: #10B981;
+    }
+
+    @media (prefers-color-scheme: light) {
+      .fc-field {
+        fill: #131A17;
+      }
+      .fc-cast {
+        fill: #047857;
+      }
+    }
+  </style>
+
+  <!-- Lockup matching portfolio showcase standards (viewBox 520x116, translate 18, 10) -->
+  <g transform="translate(18, 10)">
+    <!-- Scaled Mark Container in perfect balanced ratio (scale 1.40x) -->
+    <g transform="translate(48, 48) scale(1.40) translate(-48, -48)">
+      <!-- Directional Sonar Wave Arcs -->
+      <path d="M 64 34 A 22 22 0 0 1 70 48 A 22 22 0 0 1 64 62"
+            fill="none"
+            stroke="#6EE7B7"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            class="sonar-1"/>
+
+      <path d="M 64 34 A 22 22 0 0 1 70 48 A 22 22 0 0 1 64 62"
+            fill="none"
+            stroke="#34D399"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            class="sonar-2"/>
+
+      <path d="M 64 34 A 22 22 0 0 1 70 48 A 22 22 0 0 1 64 62"
+            fill="none"
+            stroke="#A7F3D0"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            class="sonar-3"/>
+
+      <!-- Option 8.2 Mark (Original Geometry and Shiny Effect Preserved) -->
+      <g transform="translate(48, 48) scale(2.4) translate(-16.5, -16.5)">
+        <!-- Outer 270-deg Downscaling Aperture Arc with Satin Lustre (Color #0A3B34) -->
+        <path d="M8 8 C12.5 3.5 20.5 3.5 25 8 C29.5 12.5 29.5 20.5 25 25 C20.5 29.5 12.5 29.5 8 25"
+              stroke="url(#fcOuterGrad)"
+              stroke-width="2.6"
+              stroke-linecap="round"/>
+
+        <!-- Inner Downscale Focal Arc with Emerald Shine Highlight (Color #10B981) -->
+        <path d="M11 11 C14 8 19 8 22 11 C25 14 25 19 22 22"
+              stroke="url(#fcInnerGrad)"
+              stroke-width="2.6"
+              stroke-linecap="round"/>
+
+        <!-- Ambient Aura Glow behind the Beacon -->
+        <circle cx="16.5" cy="16.5" r="5.5" fill="url(#fcBeaconGlow)" class="fc-beacon-glow"/>
+
+        <!-- Central Panchayat Beacon with Specular Jewel Shine (Color #F59E0B) -->
+        <circle cx="16.5" cy="16.5" r="3" fill="url(#fcBeaconGrad)"/>
+
+        <!-- Tiny Crisp Specular Reflection Glint -->
+        <circle cx="15.4" cy="15.3" r="0.75" fill="#FFFFFF" opacity="0.85"/>
+      </g>
+    </g>
+
+    <!-- Wordmark "FieldCast" (76px font size, matching portfolio proportion at x=118, y=75) -->
+    <text x="118" y="75" class="fc-wordmark">
+      <tspan class="fc-field">Field</tspan><tspan class="fc-cast">Cast</tspan>
+    </text>
+  </g>
+</svg>

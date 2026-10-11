@@ -1,138 +1,211 @@
 [
   {
-    "title": "ML Ops Fundamentals — Building, Deploying & Scaling AI Solutions",
-    "issuer": "AI Engineering & MLOps Certification",
-    "date": "July 2026",
-    "file": "ML Ops Fundamentals - Building Deploying and Scaling AI Solutions.png",
-    "category": "ai-ml",
-    "driveId": "1QdOOS793QKTxDOlVpTh33EovfrLXQjTr"
+    "title": "Google AI Professional Specialization",
+    "issuer": "Google Career Certificates (Coursera)",
+    "date": "October 2026",
+    "file": "Google AI Professional.pdf",
+    "image": "Google AI Professional.png",
+    "category": "coursera",
+    "type": "Specialization (8 Courses)",
+    "driveId": "coursera-google-ai-pro",
+    "label": "Google · 8-course specialization"
   },
   {
-    "title": "Orchestrating Multi-Agent Systems",
-    "issuer": "Multi-Agent AI Developer Program",
-    "date": "July 2026",
-    "file": "Orchestrating Multi-Agent Systems.png",
-    "category": "ai-ml",
-    "driveId": "1D3WHSJj6VzfDDFS-JtxBAbkUAcC3DlkE"
-  },
-  {
-    "title": "Designing Scalable RAG Pipelines",
-    "issuer": "Retrieval Augmented Generation Certification",
-    "date": "April 2026",
-    "file": "Designing Scalable RAG Pipelines.png",
-    "category": "ai-ml",
-    "driveId": "1sEUUfQ3lcq7JMeqiIHsg6w9gkySiENqd"
+    "title": "Google AI Essentials Specialization",
+    "issuer": "Google Career Certificates (Coursera)",
+    "date": "September 2026",
+    "file": "Google AI Essentials.pdf",
+    "image": "Google AI Essentials.png",
+    "category": "coursera",
+    "type": "Specialization (5 Courses)",
+    "driveId": "coursera-google-ai-essentials",
+    "label": "Google · 5-course specialization"
   },
   {
     "title": "Building with the Claude API",
     "issuer": "Anthropic Developer Program",
     "date": "July 2026",
     "file": "Building with the Claude API.jpg",
-    "category": "ai-ml",
-    "driveId": "14_RhO0uONPOQHc6HemqUX-s1rPmnOhCW"
+    "image": "Building with the Claude API.jpg",
+    "category": "claude",
+    "type": "Interactive Course",
+    "driveId": "14_RhO0uONPOQHc6HemqUX-s1rPmnOhCW",
+    "label": "Anthropic · Claude API course"
   },
   {
     "title": "Claude Code 101",
     "issuer": "Anthropic Developer Program",
     "date": "July 2026",
     "file": "Claude Code 101.jpg",
-    "category": "ai-ml",
-    "driveId": "1DmBkdttaqdr3zh6uZurlG1JtAPA5LUSq"
+    "image": "Claude Code 101.jpg",
+    "category": "claude",
+    "type": "Interactive Course",
+    "driveId": "1DmBkdttaqdr3zh6uZurlG1JtAPA5LUSq",
+    "label": "Anthropic · Claude Code course"
   },
   {
     "title": "Claude Code in Action",
     "issuer": "Anthropic Developer Program",
     "date": "July 2026",
     "file": "Claude Code in Action.jpg",
-    "category": "ai-ml",
-    "driveId": "17tpG02PZXRIvlr1JboaNWgUo3DZwFbEE"
+    "image": "Claude Code in Action.jpg",
+    "category": "claude",
+    "type": "Interactive Course",
+    "driveId": "17tpG02PZXRIvlr1JboaNWgUo3DZwFbEE",
+    "label": "Anthropic · Claude Code course"
   },
   {
     "title": "Introduction to Agent Skills",
-    "issuer": "AI Agentic Development Certification",
+    "issuer": "Anthropic Developer Program",
     "date": "July 2026",
     "file": "Introduction to agent skills.jpg",
-    "category": "ai-ml",
-    "driveId": "1X2Yw_NgvbxO12bq_33Y9VRbU6NhlxA5u"
+    "image": "Introduction to agent skills.jpg",
+    "category": "claude",
+    "type": "Interactive Course",
+    "driveId": "1X2Yw_NgvbxO12bq_33Y9VRbU6NhlxA5u",
+    "label": "Anthropic · Agent Skills course"
   },
   {
     "title": "Introduction to Model Context Protocol (MCP)",
-    "issuer": "Anthropic MCP Developer Course",
+    "issuer": "Anthropic Developer Program",
     "date": "July 2026",
     "file": "Introduction to Model Context Protocol.jpg",
-    "category": "ai-ml",
-    "driveId": "1P9iwcMoDh7P5RLpZcHBhn9nPbmarmCFo"
+    "image": "Introduction to Model Context Protocol.jpg",
+    "category": "claude",
+    "type": "Developer Course",
+    "driveId": "1P9iwcMoDh7P5RLpZcHBhn9nPbmarmCFo",
+    "label": "Anthropic · MCP course"
   },
   {
     "title": "Introduction to Subagents",
-    "issuer": "Agentic Workflows & Subagents Academy",
+    "issuer": "Anthropic Developer Program",
     "date": "July 2026",
     "file": "Introduction to subagents.jpg",
-    "category": "ai-ml",
-    "driveId": "1IjxZNjT4TvFyKucCxMBHjlT7geq2F11P"
+    "image": "Introduction to subagents.jpg",
+    "category": "claude",
+    "type": "Developer Course",
+    "driveId": "1IjxZNjT4TvFyKucCxMBHjlT7geq2F11P",
+    "label": "Anthropic · Subagents course"
+  },
+  {
+    "title": "ML Ops Fundamentals — Building, Deploying & Scaling AI Solutions",
+    "issuer": "Scaler Academy Workshop",
+    "date": "July 2026",
+    "file": "ML Ops Fundamentals - Building Deploying and Scaling AI Solutions.png",
+    "image": "ML Ops Fundamentals - Building Deploying and Scaling AI Solutions.png",
+    "category": "scaler",
+    "type": "Scaler Masterclass",
+    "driveId": "1QdOOS793QKTxDOlVpTh33EovfrLXQjTr",
+    "label": "Scaler · MLOps masterclass"
+  },
+  {
+    "title": "Orchestrating Multi-Agent Systems",
+    "issuer": "Scaler Academy Workshop",
+    "date": "July 2026",
+    "file": "Orchestrating Multi-Agent Systems.png",
+    "image": "Orchestrating Multi-Agent Systems.png",
+    "category": "scaler",
+    "type": "Scaler Masterclass",
+    "driveId": "1D3WHSJj6VzfDDFS-JtxBAbkUAcC3DlkE",
+    "label": "Scaler · Multi-agent masterclass"
+  },
+  {
+    "title": "Designing Scalable RAG Pipelines",
+    "issuer": "Scaler Academy Workshop",
+    "date": "April 2026",
+    "file": "Designing Scalable RAG Pipelines.png",
+    "image": "Designing Scalable RAG Pipelines.png",
+    "category": "scaler",
+    "type": "Scaler Masterclass",
+    "driveId": "1sEUUfQ3lcq7JMeqiIHsg6w9gkySiENqd",
+    "label": "Scaler · RAG masterclass"
+  },
+  {
+    "title": "Fundamentals of Docker & Kubernetes",
+    "issuer": "Scaler Academy Workshop",
+    "date": "April 2026",
+    "file": "Fundamentals of Docker & Kubernetes.png",
+    "image": "Fundamentals of Docker & Kubernetes.png",
+    "category": "scaler",
+    "type": "Scaler Masterclass",
+    "driveId": "1x74RtfT-P_g93jHQ2r7Cm8JxGwRX36J_",
+    "label": "Scaler · Containers masterclass"
+  },
+  {
+    "title": "Low-Level Design of Payment Apps",
+    "issuer": "Scaler Academy Workshop",
+    "date": "April 2026",
+    "file": "Low-Level Design of Payment Apps.png",
+    "image": "Low-Level Design of Payment Apps.png",
+    "category": "scaler",
+    "type": "Scaler Masterclass",
+    "driveId": "1oYexUnIGuA7YIaGa_1r9hNs5PEVYal53",
+    "label": "Scaler · System design masterclass"
+  },
+  {
+    "title": "SOLID Principles Every Developer Must Know",
+    "issuer": "Scaler Academy Workshop",
+    "date": "July 2026",
+    "file": "SOLID Principles Every Developer Must Know.png",
+    "image": "SOLID Principles Every Developer Must Know.png",
+    "category": "scaler",
+    "type": "Scaler Masterclass",
+    "driveId": "1CLOEo2D4nkC8hGjR4L2FOEdRkjk3pN_j",
+    "label": "Scaler · Software design masterclass"
   },
   {
     "title": "GenAI Job Simulation",
     "issuer": "BCG X & Forage",
     "date": "August 2026",
     "file": "GenAl Job Simulation.pdf",
+    "image": "GenAl Job Simulation.png",
     "category": "simulations",
-    "driveId": "6a7f13e7ba854243f4fa6979"
-  },
-  {
-    "title": "Fundamentals of Docker & Kubernetes",
-    "issuer": "Cloud Infrastructure Certification",
-    "date": "April 2026",
-    "file": "Fundamentals of Docker & Kubernetes.png",
-    "category": "systems",
-    "driveId": "1x74RtfT-P_g93jHQ2r7Cm8JxGwRX36J_"
-  },
-  {
-    "title": "Low-Level Design of Payment Apps",
-    "issuer": "Software Architecture & LLD Course",
-    "date": "April 2026",
-    "file": "Low-Level Design of Payment Apps.png",
-    "category": "systems",
-    "driveId": "1oYexUnIGuA7YIaGa_1r9hNs5PEVYal53"
-  },
-  {
-    "title": "SOLID Principles Every Developer Must Know",
-    "issuer": "Software Design Patterns Certificate",
-    "date": "July 2026",
-    "file": "SOLID Principles Every Developer Must Know.png",
-    "category": "systems",
-    "driveId": "1CLOEo2D4nkC8hGjR4L2FOEdRkjk3pN_j"
+    "type": "Enterprise Simulation",
+    "driveId": "6a7f13e7ba854243f4fa6979",
+    "label": "BCG X · GenAI job simulation"
   },
   {
     "title": "Advanced Software Engineering Job Simulation",
     "issuer": "Walmart Global Tech & Forage",
     "date": "August 2026",
     "file": "Advanced Software Engineering Job Simulation.pdf",
+    "image": "Advanced Software Engineering Job Simulation.png",
     "category": "simulations",
-    "driveId": "6a7f23376dfcb5ce71b8a869"
+    "type": "Enterprise Simulation",
+    "driveId": "6a7f23376dfcb5ce71b8a869",
+    "label": "Walmart · Software engineering simulation"
   },
   {
     "title": "Adobe University Hackathon",
     "issuer": "Adobe & Unstop",
     "date": "August 2026",
     "file": "Adobe Hackathon.pdf",
+    "image": "Adobe Hackathon.png",
     "category": "hackathons",
-    "driveId": "unstop-adobe-2026"
-  },
-  {
-    "title": "Outskill Professional Certification",
-    "issuer": "Outskill Developer Bootcamp",
-    "date": "June 2026",
-    "file": "Outskill Certificate.pdf",
-    "category": "workshops",
-    "driveId": "1BlOkZJULhFiQwqHjN0nxxgfUHwul4Rz3"
+    "type": "Participation",
+    "driveId": "unstop-adobe-2026",
+    "label": "Adobe · University hackathon (participant)"
   },
   {
     "title": "be10x AI Professional Certification",
-    "issuer": "be10x AI Tools Workshop & Program",
+    "issuer": "be10x AI Tools Program",
     "date": "June 2026",
     "file": "be10x Certificate.pdf",
+    "image": "be10x Certificate.png",
     "category": "workshops",
-    "driveId": "10fZxuUfyG7Xdz2J3214NtzkrE4YcIlav"
+    "type": "AI Tools Workshop",
+    "driveId": "10fZxuUfyG7Xdz2J3214NtzkrE4YcIlav",
+    "label": "be10x · AI tools workshop"
+  },
+  {
+    "title": "Outskill Professional Certification",
+    "issuer": "Outskill Full-Stack Bootcamp",
+    "date": "June 2026",
+    "file": "Outskill Certificate.pdf",
+    "image": "Outskill Certificate.png",
+    "category": "workshops",
+    "type": "Full-Stack Bootcamp",
+    "driveId": "1BlOkZJULhFiQwqHjN0nxxgfUHwul4Rz3",
+    "label": "Outskill · Full-stack bootcamp"
   }
 ]

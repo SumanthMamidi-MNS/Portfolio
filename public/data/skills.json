@@ -1,36 +1,77 @@
 {
   "categories": [
     {
-      "id": "ai-ml",
-      "name": "AI & Machine Learning",
+      "id": "ml-dl",
+      "number": "01",
+      "name": "Machine Learning & Deep Learning",
+      "blurb": "Models for vision, forecasting and tracking, trained and evaluated against real ground truth.",
       "skills": [
-        "Python", "Machine Learning", "Deep Learning", "NLP",
-        "Generative AI", "LLMs", "Computer Vision", "Prompt Engineering",
-        "RAG Pipelines", "MLOps"
+        "PyTorch",
+        "Vision Transformers",
+        "CNNs",
+        "LightGBM",
+        "Quantile Regression",
+        "scikit-learn",
+        "YOLOv8 (Ultralytics)",
+        "OpenCV",
+        "NumPy",
+        "SciPy",
+        "pandas"
       ]
     },
     {
-      "id": "frontend",
-      "name": "Frontend Development",
+      "id": "llm-rag-agents",
+      "number": "02",
+      "name": "LLMs, RAG & Agents",
+      "blurb": "Retrieval and agent pipelines that cite sources, verify claims and run closed loops.",
       "skills": [
-        "React", "JavaScript", "TypeScript", "HTML5", "CSS3",
-        "Tailwind CSS", "Framer Motion", "Three.js"
+        "RAG Pipelines",
+        "BGE-M3 Embeddings",
+        "ChromaDB",
+        "Hybrid Search (BM25)",
+        "Claude & Gemini APIs",
+        "Ollama (Llama 3.1, Qwen 2.5)",
+        "Multi-Agent Systems",
+        "Entailment Verification"
       ]
     },
     {
-      "id": "backend",
-      "name": "Backend & Data",
+      "id": "backend-web",
+      "number": "03",
+      "name": "Backend, Web & Data Systems",
+      "blurb": "APIs, real-time services and interfaces that put the models in front of users.",
       "skills": [
-        "Node.js", "Express.js", "Java", "REST APIs",
-        "JWT Auth", "MySQL", "MongoDB", "Python"
+        "FastAPI",
+        "REST APIs",
+        "WebSockets",
+        "SSE Streaming",
+        "PostgreSQL",
+        "Supabase",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Three.js",
+        "Framer Motion"
       ]
     },
     {
-      "id": "devops",
-      "name": "DevOps & Cloud",
+      "id": "science-tools",
+      "number": "04",
+      "name": "Scientific Data, Geospatial & Tools",
+      "blurb": "Satellite and sensor data pipelines, algorithms, and the tooling to ship and deploy.",
       "skills": [
-        "Git", "GitHub", "Docker", "Kubernetes",
-        "CI/CD", "AWS", "Linux", "Postman"
+        "NetCDF / Xarray",
+        "Satellite & Argo Data",
+        "Geospatial Analysis",
+        "MapLibre GL",
+        "Graph Algorithms",
+        "Min-Cost Flow",
+        "Docker",
+        "Git & GitHub",
+        "Vercel",
+        "Hugging Face Spaces",
+        "Streamlit"
       ]
     }
   ]

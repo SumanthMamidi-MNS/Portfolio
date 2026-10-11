@@ -1,21 +1,19 @@
 {
   "name": "Sumanth Mamidi",
-  "role": "AI/ML Engineer & Developer",
+  "role": "AI Systems & ML Engineering Student",
+  "tagline": "B.Tech in Computer Science & Engineering",
+  "specialization": "Specialization in Artificial Intelligence & Machine Learning · SRMIST",
+  "focus": ["Machine Learning", "Computer Vision", "RAG Pipelines", "LLM Agents"],
   "location": "Chennai, India",
   "email": "sumanthmamidi77@gmail.com",
-  "bio": "I build intelligent systems, neural network pipelines, and high-performance interactive interfaces. From closed-loop multi-agent security engines to quantum visualization tools — I combine deep ML expertise with full-stack engineering to ship products that actually matter.",
+  "bio": "Second-year B.Tech CSE (AI & ML) student building applied ML and LLM agent systems: vision-transformer ocean modeling, YOLOv8 vehicle tracking, citation-verified RAG pipelines, and multi-agent security repair. Author of a published research paper.",
   "avatar": "/assets/profile/Profile.png",
-  "video": "/assets/videos/AI_ML_engineer_speaking_portfolio_202607221711.mp4",
   "resume": "/assets/resume/Sumanth_Mamidi_Resume.pdf",
+  "video": "/assets/videos/AI_ML_engineer_speaking_portfolio_202607221711.mp4",
+  "poster": "/assets/videos/video_poster.jpg",
   "social": {
     "github": "https://github.com/SumanthMamidi-MNS",
-    "linkedin": "https://www.linkedin.com/in/mns-sumanth",
-    "instagram": "https://www.instagram.com/_m_n_s_sumanth_"
+    "linkedin": "https://www.linkedin.com/in/mns-sumanth"
   },
-  "status": "Available for AI Engineering roles",
-  "stats": [
-    { "value": "5+", "label": "Projects Shipped" },
-    { "value": "17", "label": "Certifications" },
-    { "value": "2+", "label": "Years Building" }
-  ]
+  "status": "Seeking AI systems, ML or full-stack internships"
 }

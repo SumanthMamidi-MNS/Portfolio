@@ -1,0 +1,61 @@
+[
+  {
+    "id": "srmist",
+    "institution": "SRM Institute of Science and Technology (SRMIST)",
+    "campus": "Ramapuram Campus, Chennai",
+    "degree": "B.Tech in Computer Science and Engineering (AI & ML)",
+    "period": "Aug 2025 – May 2029",
+    "location": "Ramapuram, Chennai, Tamil Nadu",
+    "status": "Undergraduate Degree",
+    "grade": "10.0/10.0",
+    "gradeLabel": "CGPA",
+    "skills": [
+      "Python",
+      "Machine Learning",
+      "Deep Learning",
+      "Neural Networks"
+    ],
+    "description": "Specializing in AI and Machine Learning; building applied ML, computer-vision, RAG, and agent systems alongside coursework.",
+    "logo": "/assets/education/srm_logo.png",
+    "featured": true
+  },
+  {
+    "id": "sri-sarada",
+    "institution": "Sri Sarada Junior College",
+    "campus": "Vijayawada",
+    "degree": "Higher Secondary Certificate · MPC (Maths, Physics, Chemistry)",
+    "period": "Jun 2023 – Mar 2025",
+    "location": "Vijayawada, Andhra Pradesh",
+    "status": "Higher Secondary Certificate",
+    "grade": "98.2%",
+    "gradeLabel": "Percentage",
+    "skills": [
+      "Advanced Mathematics",
+      "Analytical Mechanics",
+      "Physical Chemistry",
+      "Calculus & Problem Solving"
+    ],
+    "description": "Higher secondary education in Mathematics, Physics, and Chemistry.",
+    "logo": "/assets/education/sarada_logo.png",
+    "featured": true
+  },
+  {
+    "id": "stbem",
+    "institution": "S.T.B.E.M High School",
+    "campus": "Vijayawada",
+    "degree": "Secondary School Certificate (SSC)",
+    "period": "Jun 2022 – Apr 2023",
+    "location": "Vijayawada, Andhra Pradesh",
+    "status": "Secondary School Certificate",
+    "grade": "93%",
+    "gradeLabel": "Percentage",
+    "skills": [
+      "Mathematics",
+      "Science",
+      "Logical Reasoning"
+    ],
+    "description": "Secondary school certificate (Class 10).",
+    "logo": "/assets/education/stbem_logo.png",
+    "featured": true
+  }
+]
