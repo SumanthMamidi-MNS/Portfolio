@@ -26,13 +26,13 @@ export default function Preloader() {
       return undefined;
     }
 
-    // Animate progress 0 → 100 over ~1.7s
+    // Animate progress 0 → 100 over 2.6 s (was 1.1 s)
     let frame;
     let start;
     const animate = (ts) => {
       if (!start) start = ts;
       const elapsed = ts - start;
-      const pct = Math.min(Math.round((elapsed / 1100) * 100), 100);
+      const pct = Math.min(Math.round((elapsed / 2600) * 100), 100);
       setProgress(pct);
       if (pct < 100) {
         frame = requestAnimationFrame(animate);
@@ -40,16 +40,16 @@ export default function Preloader() {
     };
     frame = requestAnimationFrame(animate);
 
-    // Same sequence (initials, name, 0 → 100%, curtain), about 1.2 s shorter than before: ~1.75 s in total.
-    const t1 = setTimeout(() => setPhase(1), 350);
-    const t2 = setTimeout(() => setPhase(2), 1150);
+    // Same sequence (initials, name, 0 → 100%, curtain), 1.5 s longer than the previous setting: ~3.4 s in total.
+    const t1 = setTimeout(() => setPhase(1), 800);
+    const t2 = setTimeout(() => setPhase(2), 2450);
     const t3 = setTimeout(() => {
       setCurtainOpen(true);
       onLoaded(); // Synchronize hero reveal right as curtain splits open
-    }, 1250);
+    }, 2750);
     const t4 = setTimeout(() => {
       setShow(false);
-    }, 1900);
+    }, 3400);
 
     return () => {
       cancelAnimationFrame(frame);
