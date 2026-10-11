@@ -1,6 +1,6 @@
 # 📬 How to Receive Contact Form Messages in Your Gmail Inbox
 
-Your portfolio's contact form is powered by **Web3Forms** — a free, lightweight service that forwards form entries straight to your personal Gmail inbox (`mamidinagasaisumanth@gmail.com`) with zero server setup required.
+Your portfolio's contact form is powered by **Web3Forms** — a free, lightweight service that forwards form entries straight to your contact inbox (`your-public-contact-email@example.com`) with zero server setup required.
 
 ---
 
@@ -8,7 +8,7 @@ Your portfolio's contact form is powered by **Web3Forms** — a free, lightweigh
 
 ### Step 1: Get Your Free Access Key
 1. Go to **[https://web3forms.com](https://web3forms.com)** in your browser.
-2. Type your email: `mamidinagasaisumanth@gmail.com`
+2. Type your email: `your-public-contact-email@example.com`
 3. Click **"Create Access Key"**.
 4. Check your Gmail inbox — Web3Forms will instantly send you an Access Key (a long string like `a1b2c3d4-e5f6-7890-abcd-ef1234567890`).
 
@@ -36,7 +36,7 @@ VITE_WEB3FORMS_KEY=your_access_key_here
 1. Open your portfolio in the browser.
 2. Scroll to **"Let's Work Together"** (Contact section).
 3. Fill out First Name, Last Name, Email, Message, check the consent box, and click **Send Message**.
-4. Check your Gmail inbox (`mamidinagasaisumanth@gmail.com`) — the message will land in your inbox immediately!
+4. Check your Gmail inbox (`your-public-contact-email@example.com`) — the message will land in your inbox immediately!
 
 ---
 
@@ -58,3 +58,9 @@ VITE_WEB3FORMS_KEY=your_access_key_here
 2. Set Build Command to `npm run build` and Output Directory to `dist`.
 3. Add Environment Variable: `VITE_WEB3FORMS_KEY` = `your_key_here`.
 4. Click **Deploy**!
+
+
+> **Important:** create the Web3Forms access key with the email address you want messages delivered to
+> (the public contact address), then add it as `VITE_WEB3FORMS_KEY` in your hosting provider's environment
+> variables (Vercel: Project Settings → Environment Variables). Never commit the key to the repository.
+> Without the key the contact form opens the visitor's mail app instead.

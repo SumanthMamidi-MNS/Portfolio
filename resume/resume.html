@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Sumanth Mamidi — Resume</title>
+<meta name="author" content="Sumanth Mamidi" />
+<style>
+  /* Single font family (Calibri, TrueType) for reliable ATS text extraction.
+     One accent colour (navy) on the name, headings and links only. */
+  :root {
+    --accent: #1F3864;
+    --ink: #111111;
+    --sub: #404040;
+    --rule: #8E9AAB;
+  }
+  @page { size: A4; margin: 0.42in 0.55in 0.35in 0.55in; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: Calibri, "Segoe UI", Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.19;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  p { margin: 0; }
+  .nw { white-space: nowrap; }
+
+  header { margin-bottom: 2pt; }
+  h1 { margin: 0 0 3pt; font-size: 26pt; line-height: 1.05; font-weight: 700; color: var(--accent); letter-spacing: 0.2pt; }
+  .contact { color: var(--sub); line-height: 1.35; }
+  .contact .sep { padding: 0 6pt; color: var(--rule); }
+
+  h2 {
+    margin: 7.5pt 0 3.5pt; padding-bottom: 1.4pt;
+    font-size: 10.5pt; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--accent); border-bottom: 0.8pt solid var(--accent);
+  }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10pt; }
+  .right { text-align: right; white-space: nowrap; }
+  .b { font-weight: 700; }
+  .sub { color: var(--sub); }
+  .entry { margin-top: 3pt; }
+  .entry:first-of-type { margin-top: 0; }
+
+  .project { margin-top: 5.5pt; }
+  .project:first-of-type { margin-top: 0; }
+  ul { margin: 1.5pt 0 0; padding-left: 13pt; }
+  li { margin: 0.8pt 0; padding-left: 1pt; }
+
+  .grid { display: grid; grid-template-columns: 124pt 1fr; row-gap: 2.7pt; column-gap: 8pt; }
+  .grid .k { font-weight: 700; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Sumanth Mamidi</h1>
+  <div class="contact">
+    <span>Chennai, India</span><span class="sep">|</span><span>+91 76619 20205</span><span class="sep">|</span><a href="mailto:sumanthmamidi77@gmail.com">sumanthmamidi77@gmail.com</a>
+  </div>
+  <div class="contact">
+    <a href="https://www.linkedin.com/in/mns-sumanth">linkedin.com/in/mns-sumanth</a><span class="sep">|</span><a href="https://github.com/SumanthMamidi-MNS">github.com/SumanthMamidi-MNS</a><span class="sep">|</span><a href="https://sumanth-portfolio-delta.vercel.app/">sumanth-portfolio-delta.vercel.app</a>
+  </div>
+</header>
+
+<h2>Summary</h2>
+<p>
+  Second-year B.Tech CSE (AI &amp; ML) student with hands-on experience building applied ML and LLM agent systems:
+  <span class="nw">vision-transformer</span> ocean modeling, YOLOv8 vehicle tracking, citation-verified RAG pipelines, and multi-agent security repair.
+  Author of a published research paper. Seeking an <span class="nw">AI systems</span>, <span class="nw">ML</span> or <span class="nw">full-stack</span> internship.
+</p>
+
+<h2>Education</h2>
+<div class="entry">
+  <div class="row"><span><span class="b">SRM Institute of Science and Technology</span>, Ramapuram, Chennai</span><span class="right">Aug 2025 – May 2029</span></div>
+  <div class="row"><span class="sub">B.Tech, Computer Science and Engineering (AI &amp; ML)</span><span class="right b">CGPA: 10.0/10.0</span></div>
+</div>
+<div class="entry">
+  <div class="row"><span><span class="b">Sri Sarada Junior College</span>, Vijayawada <span class="sub">— Higher Secondary Certificate (MPC),</span> <b>98.2%</b></span><span class="right">Jun 2023 – Mar 2025</span></div>
+</div>
+<div class="entry">
+  <div class="row"><span><span class="b">S.T.B.E.M High School</span>, Vijayawada <span class="sub">— Secondary School Certificate (SSC),</span> <b>93%</b></span><span class="right">Jun 2022 – Apr 2023</span></div>
+</div>
+
+<h2>Publications</h2>
+<p>
+  L. Y. Reddy, <b>M. N. S. Sumanth</b>, R. Regin, S. R. Bose, S. S. Jeev, and S. B. Sherine, “SECUREPATCH: Specialized Multi-Agent
+  Architecture with Automated Validation for Security Vulnerability Repair,” <i>AVE Trends in Intelligent Computing Systems</i>,
+  <span class="nw">vol. 3, no. 1,</span> <span class="nw">pp. 23–47,</span> 2026. DOI: <a href="https://doi.org/10.64091/ATICS.2026.000283">10.64091/ATICS.2026.000283</a>.
+</p>
+<p class="sub">Contribution: initial multi-agent prototype (OMNIFIX). The paper reports 99.4% repair success on 160 vulnerabilities.</p>
+
+<h2>Projects</h2>
+
+<div class="project">
+  <div class="row"><span><span class="b">OceanEmbed</span> — 3D Ocean Temperature Reconstruction</span><span class="right"><a href="https://github.com/SumanthMamidi-MNS/OceanEmbed">github.com/SumanthMamidi-MNS/OceanEmbed</a></span></div>
+  <div class="sub">PyTorch · Vision Transformer · FastAPI · React</div>
+  <ul>
+    <li>Predicts 3D ocean temperature (15 depths, to 1,000 m) from satellite data with a CNN–Vision Transformer.</li>
+    <li>0.98 °C thermocline error, 33% below climatology, validated on 5,512 Argo float profiles.</li>
+  </ul>
+</div>
+
+<div class="project">
+  <div class="row"><span><span class="b">UrbanTrace</span> — Multi-Camera ANPR Vehicle Tracking</span><span class="right"><a href="https://github.com/SumanthMamidi-MNS/UrbanTrace">github.com/SumanthMamidi-MNS/UrbanTrace</a></span></div>
+  <div class="sub">YOLOv8 · Min-Cost Flow · FastAPI · WebSockets · Docker</div>
+  <ul>
+    <li>Tracks vehicles across city cameras by fusing noisy plate reads, appearance, and travel time (0.972 IDF1).</li>
+    <li>Raised degraded-plate accuracy from 87.8% to 99.95%; flags cloned plates in real time (0.998 AUC).</li>
+  </ul>
+</div>
+
+<div class="project">
+  <div class="row"><span><span class="b">TrueCite</span> — Citation-Verified Legal RAG</span><span class="right"><a href="https://github.com/SumanthMamidi-MNS/TrueCite">github.com/SumanthMamidi-MNS/TrueCite</a></span></div>
+  <div class="sub">FastAPI · ChromaDB · BGE-M3 · BM25 · Knowledge Graph</div>
+  <ul>
+    <li>Legal Q&amp;A that cites its sources: hybrid BGE-M3 + BM25 retrieval over 20 legal instruments.</li>
+    <li>Checks every claim with 2-of-3 entailment consensus: zero false answers on benchmarks.</li>
+  </ul>
+</div>
+
+<div class="project">
+  <div class="row"><span><span class="b">FieldCast</span> — Hyperlocal Agro-Weather Downscaling</span><span class="right"><a href="https://github.com/SumanthMamidi-MNS/FieldCast">github.com/SumanthMamidi-MNS/FieldCast</a></span></div>
+  <div class="sub">LightGBM · FastAPI · React · MapLibre GL · TypeScript</div>
+  <ul>
+    <li>Downscales block forecasts to 9,802 gram panchayats with a two-stage LightGBM quantile model.</li>
+    <li>Calibrated 80% prediction intervals checked against NOAA gauges; NumPy-only inference in ~100 ms.</li>
+  </ul>
+</div>
+
+<div class="project">
+  <div class="row"><span><span class="b">Auxin</span> — AI-Powered Agricultural Commerce Platform</span><span class="right"><a href="https://github.com/SumanthMamidi-MNS/Auxin">github.com/SumanthMamidi-MNS/Auxin</a></span></div>
+  <div class="sub">React / Next.js · FastAPI · PostgreSQL / Supabase · RAG</div>
+  <ul>
+    <li>Full-stack farm-to-customer platform with customer, farmer, delivery, and admin portals.</li>
+    <li>GPS job matching with OTP-verified delivery; Milo AI answers agricultural questions via RAG.</li>
+  </ul>
+</div>
+
+<h2>Technical Skills</h2>
+<div class="grid">
+  <span class="k">Languages</span><span>Python, JavaScript, TypeScript, SQL</span>
+  <span class="k">ML &amp; Deep Learning</span><span>PyTorch, scikit-learn, LightGBM, Vision Transformers, YOLOv8, OpenCV, NumPy</span>
+  <span class="k">LLMs &amp; RAG</span><span>Claude and Gemini APIs, Ollama (Llama 3.1, Qwen 2.5), RAG, ChromaDB, BGE-M3</span>
+  <span class="k">Backend &amp; Web</span><span>FastAPI, REST APIs, WebSockets, React, Next.js, Tailwind CSS, MapLibre GL</span>
+  <span class="k">Data &amp; Tools</span><span>PostgreSQL, Supabase, NetCDF / Xarray, Docker, Git, GitHub</span>
+</div>
+
+<h2>Certifications &amp; Hackathons</h2>
+<div class="grid">
+  <span class="k">Google (Coursera)</span><span>AI Professional Certificate · AI Essentials</span>
+  <span class="k">Anthropic</span><span>Claude API · Claude Code · Model Context Protocol · Agent Skills · Subagents</span>
+  <span class="k">Forage &amp; Scaler</span><span>BCG X GenAI · Walmart Software Engineering · Multi-Agent Systems · RAG · MLOps</span>
+  <span class="k">Hackathons</span><span>Participant: Adobe University Hackathon · HackerRank 24-hour hackathon</span>
+</div>
+
+</body>
+</html>
