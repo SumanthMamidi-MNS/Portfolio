@@ -236,7 +236,7 @@ export default function Hero() {
                   {/* Top chrome bar */}
                   <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/5">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-violet-400" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-soft" />
                       <span
                         className="label-sm text-slate-400"
                         style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem' }}
@@ -299,7 +299,10 @@ export default function Hero() {
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.3 }}
-                          className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/25 hover:bg-black/15 transition-colors"
+                          className="absolute inset-0 flex flex-col items-center justify-center gap-3"
+                          /* No full-picture dimming: the poster stays as bright as the playing video.
+                             Only a small soft shade sits behind the play button so it stays readable. */
+                          style={{ background: 'radial-gradient(circle at 50% 50%, rgba(7,11,20,0.30) 0, rgba(7,11,20,0) 130px)' }}
                           aria-label={ended ? 'Replay intro video' : 'Play intro video'}
                           data-cursor="Play"
                         >
@@ -325,7 +328,7 @@ export default function Hero() {
                               )}
                             </span>
                           </span>
-                          <span className="label-sm text-white/90">
+                          <span className="label-sm text-white" style={{ textShadow: '0 1px 10px rgba(0,0,0,0.55)' }}>
                             {buffering ? 'Loading…' : ended ? 'Watch again' : 'Play intro'}
                           </span>
                         </motion.button>
