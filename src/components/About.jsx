@@ -40,6 +40,8 @@ export default function About() {
   const certCount = certificates?.length || 19;
   const paragraphs = profile?.about?.length ? profile.about : DEFAULT_ABOUT;
 
+
+
   const stats = [
     { value: 1, label: 'Published paper', note: 'AVE Trends, 2026' },
     { value: featuredCount, label: 'Featured projects', note: 'With measured results' },
@@ -57,7 +59,7 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.6, ease: EASE }}
             className="w-full max-w-xs mx-auto lg:mx-0"
           >
@@ -76,27 +78,26 @@ export default function About() {
               </span>
             </motion.div>
 
-            {/* Soft 3D tilt with a pointer glare (instead of a colour-inverting cursor) makes the photo feel
-                like a physical card; a violet edge brightens on hover. */}
+            {/* Soft 3D tilt with pointer glare. Curtain wipe down reveal and image zoom-out settle. */}
             <TiltCard maxTilt={7} radius={16}>
               <motion.div
                 data-cursor-solid
                 initial={{ clipPath: 'inset(0 0 100% 0 round 16px)' }}
                 whileInView={{ clipPath: 'inset(0 0 0% 0 round 16px)' }}
-                viewport={{ once: true, margin: '-60px' }}
+                viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1], delay: 0.1 }}
                 className="relative rounded-2xl overflow-hidden aspect-[3/4] border border-white/15 bg-white/[0.03] shadow-[0_18px_50px_-18px_rgba(99,102,241,0.45)]"
               >
                 <motion.img
                   src={profile?.avatar || '/assets/profile/Profile.png'}
                   alt="Sumanth Mamidi"
+                  loading="eager"
+                  decoding="async"
                   initial={{ scale: 1.15 }}
                   whileInView={{ scale: 1 }}
-                  viewport={{ once: true, margin: '-60px' }}
+                  viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
                   className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
                 />
               </motion.div>
             </TiltCard>

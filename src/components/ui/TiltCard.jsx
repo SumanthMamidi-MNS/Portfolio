@@ -45,7 +45,7 @@ export default function TiltCard({ children, className = '', maxTilt = 8, radius
   };
 
   return (
-    <div style={{ perspective: '1100px' }} className={`h-full ${className}`}>
+    <div style={{ perspective: active ? '1100px' : undefined }} className={`h-full ${className}`}>
       <motion.div
         ref={ref}
         onPointerEnter={handleEnter}
@@ -53,7 +53,7 @@ export default function TiltCard({ children, className = '', maxTilt = 8, radius
         onPointerLeave={handleLeave}
         animate={{ scale: active ? lift : 1 }}
         transition={{ type: 'spring', stiffness: 220, damping: 22 }}
-        style={{ rotateX, rotateY, transformStyle: 'preserve-3d', willChange: 'transform', borderRadius: radius }}
+        style={{ rotateX, rotateY, transformStyle: active ? 'preserve-3d' : undefined, willChange: active ? 'transform' : undefined, borderRadius: radius }}
         className="relative h-full"
       >
         {children}
