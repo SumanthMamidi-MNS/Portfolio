@@ -23,8 +23,12 @@ const LinkedInIcon = ({ size = 16 }) => (
   </svg>
 );
 
+// Shown in the glass box under the photo
+const INTRO =
+  "I'm Sumanth, an AI engineer specialized in multi-agent workflows and intelligent systems. I'm ready to share my work and connect with you through my portfolio.";
+
 const DEFAULT_ABOUT = [
-  "I'm Sumanth, a second-year B.Tech CSE (AI & ML) student at SRM Institute of Science and Technology, building applied ML and multi-agent LLM systems.",
+  'Second-year B.Tech CSE (AI & ML) student at SRM Institute of Science and Technology, building applied ML and multi-agent LLM systems.',
   'My projects span ocean-temperature reconstruction, multi-camera vehicle tracking, citation-verified legal RAG and agro-weather downscaling, each measured against independent ground truth.',
   'Based in Chennai and looking for an internship in AI systems, machine learning or full-stack engineering.',
 ];
@@ -100,12 +104,28 @@ export default function About() {
                 />
               </motion.div>
             </TiltCard>
-            <div className="mt-4">
-              <p className="font-semibold text-white" style={{ fontFamily: 'var(--font-display)' }}>
+            {/* Intro box under the photo: see-through glass (the page background shows through) */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.55, ease: EASE, delay: 0.25 }}
+              className="mt-4 rounded-2xl border border-white/12 px-4 py-3.5 backdrop-blur-md"
+              style={{
+                background: 'rgba(15, 22, 41, 0.45)',
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), 0 12px 30px -16px rgba(0,0,0,0.55)',
+              }}
+            >
+              <p className="font-semibold text-white m-0" style={{ fontFamily: 'var(--font-display)' }}>
                 {profile?.name || 'Sumanth Mamidi'}
               </p>
-              <p className="text-sm text-slate-400">{profile?.role || 'AI Systems & ML Engineering Student'} · {profile?.location || 'Chennai, India'}</p>
-            </div>
+              <p className="label-sm text-violet-300 mt-1 mb-0 leading-snug">
+                {profile?.role || 'AI Systems & ML Engineering Student'}
+              </p>
+              <p className="text-sm text-slate-300 leading-relaxed mt-3 mb-0 pt-3 border-t border-white/10">
+                {INTRO}
+              </p>
+            </motion.div>
           </motion.div>
 
           {/* Text */}

@@ -268,25 +268,25 @@ body {
 
 
 
-/* ── Navigation capsule: frosted glass ──
-   A translucent tinted body, strong blur + saturation, and one clean 1px border. The border is a real
-   CSS border (no masks or pseudo-element edges), so the curve stays perfectly smooth at every size and zoom.
-   Depth comes from inset highlights and a soft shadow rather than extra edge layers. */
+/* ── Navigation bar: rounded rectangle of see-through glass ──
+   A light dark tint with a gentle blur, so the page content stays visible behind the bar (as in the
+   original design). One real 1px border, a 16px radius to match the cards, and no glossy highlights.
+   After scrolling the tint deepens a little so links stay readable over bright sections. */
 .nav-glass {
   position: relative;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.035) 100%);
-  -webkit-backdrop-filter: blur(20px) saturate(170%);
-  backdrop-filter: blur(20px) saturate(170%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 15, 30, 0.36);
+  -webkit-backdrop-filter: blur(9px) saturate(130%);
+  backdrop-filter: blur(9px) saturate(130%);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.22),
-    0 12px 36px -12px rgba(0, 0, 0, 0.6);
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 12px 32px -14px rgba(0, 0, 0, 0.55);
   transition: background 0.35s ease, border-color 0.35s ease;
 }
 .nav-glass--scrolled {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.025) 100%), rgba(10, 14, 32, 0.5);
-  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(10, 15, 30, 0.52);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 /* ── Buttons ── */
@@ -458,9 +458,9 @@ body {
   transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .project-glass:hover {
-  -webkit-backdrop-filter: blur(16px) saturate(190%);
-  backdrop-filter: blur(16px) saturate(190%);
-  border-color: rgba(255, 255, 255, 0.22) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(125%);
+  backdrop-filter: blur(10px) saturate(125%);
+  border-color: rgba(255, 255, 255, 0.16) !important;
 }
 
 /* ── Dot Grid ── */

@@ -6,7 +6,7 @@ import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } fr
  * so the card feels like a physical surface. Touch devices and reduced-motion users get a static card
  * (MotionConfig reducedMotion="user" disables the transform animation; coarse pointers skip the handlers).
  */
-export default function TiltCard({ children, className = '', maxTilt = 8, radius = 22, lift = 1.025 }) {
+export default function TiltCard({ children, className = '', maxTilt = 8, radius = 22, lift = 1.025, glareStrength = 1 }) {
   const ref = useRef(null);
   const [active, setActive] = useState(false);
 
@@ -22,7 +22,7 @@ export default function TiltCard({ children, className = '', maxTilt = 8, radius
   const rotateY = useTransform(sx, [0, 1], [-maxTilt, maxTilt]);
   const glareX = useTransform(sx, [0, 1], [0, 100]);
   const glareY = useTransform(sy, [0, 1], [0, 100]);
-  const glare = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.14), rgba(167,139,250,0.06) 35%, transparent 60%)`;
+  const glare = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,${0.14 * glareStrength}), rgba(167,139,250,${0.06 * glareStrength}) 35%, transparent 60%)`;
 
   const handleMove = (e) => {
     if (e.pointerType && e.pointerType !== 'mouse') return;

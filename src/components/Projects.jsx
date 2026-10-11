@@ -47,7 +47,7 @@ function ProjectCard({ project, index, number, onClick }) {
   const delay = Math.min((index % 6) * 0.05, 0.3);
 
   return (
-    <TiltCard maxTilt={7}>
+    <TiltCard maxTilt={7} glareStrength={0.35}>
       <motion.article
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -61,7 +61,7 @@ function ProjectCard({ project, index, number, onClick }) {
         data-cursor="VIEW"
       >
         <SpotlightCard
-          spotColor={`${themeColor}40`}
+          spotColor={`${themeColor}1F`}
           className="project-glass h-full flex flex-col overflow-hidden group rounded-[22px] border border-white/9 transition-all duration-300 relative hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.5)]"
           style={{
             // Translucent fill; the frosted blur is added only on hover (.project-glass), and the hover
@@ -72,7 +72,7 @@ function ProjectCard({ project, index, number, onClick }) {
         >
           {/* Top Cover Banner with theme-matched radial aura */}
           <div
-            className="h-40 md:h-44 relative overflow-hidden flex items-center justify-center px-6 py-4"
+            className="h-36 md:h-40 relative overflow-hidden flex items-center justify-center px-6 py-3"
             style={{
               background: `radial-gradient(circle at 50% 38%, ${glowColor} 0%, rgba(10, 16, 30, 0.5) 55%, ${bgEnd} 85%)`,
             }}
@@ -123,8 +123,8 @@ function ProjectCard({ project, index, number, onClick }) {
           />
 
           {/* Card Body */}
-          <div className="p-5 flex flex-col flex-1">
-            <div className="mb-2">
+          <div className="p-4 md:p-[18px] flex flex-col flex-1">
+            <div className="mb-1.5">
               <h3
                 className="text-lg font-bold text-white group-hover:text-violet-300 transition-colors tracking-tight"
                 style={{ fontFamily: 'var(--font-display)' }}
@@ -153,7 +153,7 @@ function ProjectCard({ project, index, number, onClick }) {
                 <span className="skill-pill text-[10px] px-1.5 py-0.5">+{project.tags.length - 3}</span>
               )}
             </div>
-            <div className="flex items-center gap-1 pt-3 mt-3 border-t border-white/5 cursor-pointer" data-cursor="VIEW">
+            <div className="flex items-center gap-1 pt-2.5 mt-2.5 border-t border-white/5 cursor-pointer" data-cursor="VIEW">
               <span className="text-[11px] font-semibold text-violet-400 group-hover:text-violet-300 flex items-center gap-1 transition-colors">
                 View Details <ArrowUpRight size={11} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </span>
