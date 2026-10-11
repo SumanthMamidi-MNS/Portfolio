@@ -5,15 +5,15 @@ import { usePreloader } from '../context/PreloaderContext';
 
 const navLinks = [
   { label: 'About',           href: '#about' },
-  { label: 'Expertise',       href: '#expertise' },
-  { label: 'Skills',          href: '#skills' },
-  { label: 'AI Playground',   href: '#ai-playground' },
   { label: 'Projects',        href: '#projects' },
+  { label: 'Publications',    href: '#publications' },
+  { label: 'Education',       href: '#education' },
+  { label: 'Skills',          href: '#skills' },
   { label: 'Certifications',  href: '#certifications' },
   { label: 'Contact',         href: '#contact' },
 ];
 
-const sectionIds = ['home', 'about', 'expertise', 'skills', 'ai-playground', 'projects', 'certifications', 'contact'];
+const sectionIds = ['home', 'about', 'projects', 'publications', 'education', 'skills', 'certifications', 'contact'];
 
 export default function Navbar({ onOpenCommandPalette }) {
   const [scrolled, setScrolled]         = useState(false);
@@ -52,11 +52,11 @@ export default function Navbar({ onOpenCommandPalette }) {
           scrolled ? 'py-3 px-4 md:px-8' : 'py-5 px-6 md:px-12'
         }`}
       >
-        <div className={`mx-auto max-w-7xl transition-all duration-500 ${
-          scrolled
-            ? 'glass rounded-2xl px-5 py-3 shadow-xl'
-            : 'flex items-center justify-between'
-        } ${scrolled ? 'flex items-center justify-between' : ''}`}>
+        {/* Same behaviour and measurements as the live site: no box at the top; after scrolling a 70% dark
+            rounded panel (no blur, page visible through it) fades in (see .nav-glass in index.css). */}
+        <div
+          className={`nav-glass ${scrolled ? 'nav-glass--on' : ''} mx-auto max-w-7xl flex items-center justify-between`}
+        >
 
           {/* Logo */}
           <a href="#home" className="font-black text-white text-xl tracking-tight no-underline hover:opacity-80 transition-opacity"
@@ -88,18 +88,18 @@ export default function Navbar({ onOpenCommandPalette }) {
             })}
           </nav>
 
-          {/* Right: Cmd+K + Hire Me */}
+          {/* Right: command palette + contact */}
           <div className="hidden lg:flex items-center gap-3">
             <button
               onClick={onOpenCommandPalette}
               className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 text-slate-500 hover:text-slate-300 hover:border-white/20 transition-all text-xs font-mono"
             >
               <Search size={12} />
-              <span>⌘K</span>
+              <span>Ctrl K</span>
             </button>
             <a href="#contact"
               className="btn-primary text-sm px-4 py-2 no-underline">
-              Hire Me
+              Get in touch
             </a>
           </div>
 
@@ -107,7 +107,7 @@ export default function Navbar({ onOpenCommandPalette }) {
           <button
             className="lg:hidden text-slate-400 hover:text-white transition-colors p-1"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
+            aria-label="Toggle menu" aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -133,7 +133,7 @@ export default function Navbar({ onOpenCommandPalette }) {
             ))}
             <div className="px-6 pt-3 pb-2 border-t border-white/5 mt-2">
               <a href="#contact" onClick={() => setMobileOpen(false)} className="btn-primary text-sm w-full justify-center no-underline">
-                Hire Me
+                Get in touch
               </a>
             </div>
           </motion.div>

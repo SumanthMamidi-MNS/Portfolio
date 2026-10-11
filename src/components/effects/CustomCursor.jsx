@@ -6,6 +6,11 @@ export default function CustomCursor() {
   const cursorY = useMotionValue(-200);
   const [hovered, setHovered] = useState(false);
   const [label, setLabel] = useState('');
+  // Over photos and video the colour-inverting blend would look like a negative / scan, so the cursor
+  // switches to a plain white dot with a violet edge there.
+  const [solid, setSolid] = useState(false);
+  // Over certificate cards the circle is slightly see-through so the certificate stays readable.
+  const [soft, setSoft] = useState(false);
 
   // Inner dot — snappy spring
   const springCfg = { damping: 28, stiffness: 400 };
@@ -34,6 +39,10 @@ export default function CustomCursor() {
 
   useEffect(() => {
     const handleOver = (e) => {
+      // Only real photos/video (your portrait, the intro video, screenshots) get the plain dot.
+      // Logos, covers and certificates keep the colour-blending cursor with its "VIEW" label.
+      setSolid(!!e.target?.closest?.('video, [data-cursor-solid]'));
+      setSoft(!!e.target?.closest?.('[data-cursor-soft]'));
       const el = e.target?.closest?.('[data-cursor], a, button, [role="button"]');
       if (el) {
         setHovered(true);
@@ -52,7 +61,9 @@ export default function CustomCursor() {
     <>
       {/* ── Outer trailing ring ── */}
       <motion.div
-        className="pointer-events-none fixed z-[9998] hidden md:block rounded-full border border-white/25 mix-blend-difference"
+        className={`pointer-events-none fixed z-[9998] hidden md:block rounded-full border ${
+          solid ? 'border-violet-300/70' : 'border-white/25 mix-blend-difference'
+        }`}
         style={{
           x: outerX,
           y: outerY,
@@ -69,7 +80,9 @@ export default function CustomCursor() {
 
       {/* ── Inner dot ── */}
       <motion.div
-        className="pointer-events-none fixed z-[9999] hidden md:flex items-center justify-center rounded-full bg-white mix-blend-difference"
+        className={`pointer-events-none fixed z-[9999] hidden md:flex items-center justify-center rounded-full bg-white ${
+          solid ? 'shadow-[0_0_0_2px_rgba(139,92,246,0.85)]' : 'mix-blend-difference'
+        }`}
         style={{
           x: smoothX,
           y: smoothY,
@@ -83,7 +96,9 @@ export default function CustomCursor() {
         animate={{
           width:  hovered ? 56 : 12,
           height: hovered ? 56 : 12,
-          opacity: 1,
+          // Full-strength blend everywhere (the green / cream circles on buttons and links);
+          // only over certificates is it slightly see-through so the certificate stays readable.
+          opacity: hovered && soft ? 0.65 : 1,
         }}
         transition={{ type: 'spring', stiffness: 320, damping: 22 }}
       >

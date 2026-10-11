@@ -1,11 +1,12 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, ZoomIn } from 'lucide-react';
+import { X, ExternalLink, ZoomIn, FileText } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Lightbox({ cert, onClose }) {
   const [zoomed, setZoomed] = useState(false);
   const isPdf = cert?.file?.toLowerCase().endsWith('.pdf');
-  const src = `/assets/certificates/${cert?.file}`;
+  const pdfSrc = isPdf ? `/assets/certificates/${cert?.file}` : null;
+  const imageSrc = cert?.image ? `/assets/certificates/${cert?.image}` : `/assets/certificates/${cert?.file}`;
 
   return (
     <AnimatePresence>
@@ -17,7 +18,7 @@ export default function Lightbox({ cert, onClose }) {
           transition={{ duration: 0.25 }}
           className="fixed inset-0 z-[80] flex items-center justify-center p-4"
           onClick={onClose}
-          style={{ background: 'rgba(5,9,18,0.85)', backdropFilter: 'blur(16px)' }}
+          style={{ background: 'rgba(5,9,18,0.88)', backdropFilter: 'blur(16px)' }}
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.94, y: 24 }}
@@ -25,10 +26,10 @@ export default function Lightbox({ cert, onClose }) {
             exit={{ opacity: 0, scale: 0.94, y: 24 }}
             transition={{ type: 'spring', damping: 28, stiffness: 340 }}
             onClick={(e) => e.stopPropagation()}
-            className="glass rounded-2xl overflow-hidden w-full max-w-2xl max-h-[88vh] flex flex-col"
+            className="glass rounded-2xl overflow-hidden w-full max-w-3xl max-h-[90vh] flex flex-col border border-white/10 shadow-2xl"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-white/5">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 bg-slate-950/40">
               <div>
                 <p className="label-sm text-violet-400 mb-0.5">{cert.issuer}</p>
                 <h3
@@ -39,70 +40,72 @@ export default function Lightbox({ cert, onClose }) {
                 </h3>
               </div>
               <div className="flex items-center gap-2">
-                {!isPdf && (
-                  <button
-                    onClick={() => setZoomed(!zoomed)}
-                    className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/8 transition-all"
-                    title="Toggle zoom"
-                  >
-                    <ZoomIn size={15} />
-                  </button>
-                )}
-                <a
-                  href={src}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => setZoomed(!zoomed)}
                   className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/8 transition-all"
-                  title="Open in new tab"
+                  title="Toggle zoom"
                 >
-                  <ExternalLink size={15} />
-                </a>
+                  <ZoomIn size={16} />
+                </button>
+                {pdfSrc ? (
+                  <a
+                    href={pdfSrc}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-indigo-300 bg-indigo-500/15 border border-indigo-500/30 hover:bg-indigo-500/25 transition-all"
+                    title="Open original PDF"
+                  >
+                    <FileText size={14} /> PDF
+                  </a>
+                ) : (
+                  <a
+                    href={imageSrc}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/8 transition-all"
+                    title="Open full image"
+                  >
+                    <ExternalLink size={16} />
+                  </a>
+                )}
                 <button
                   onClick={onClose}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/8 transition-all"
+                  className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/8 transition-all ml-1"
                 >
-                  <X size={15} />
+                  <X size={17} />
                 </button>
               </div>
             </div>
 
-            {/* Content */}
-            <div className="flex-1 overflow-auto p-2 flex items-center justify-center bg-black/20 min-h-[360px] md:min-h-[500px]">
-              {isPdf ? (
-                <div className="w-full h-full flex flex-col items-center gap-2 min-h-[380px] md:min-h-[480px]">
-                  <iframe
-                    src={`${src}#toolbar=0`}
-                    title={cert.title}
-                    className="w-full flex-1 min-h-[340px] md:min-h-[440px] rounded-lg border border-white/10 bg-slate-900/50"
-                  />
-                  <div className="w-full flex justify-end pt-1">
-                    <a
-                      href={src}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-primary text-xs py-1.5 px-3"
-                    >
-                      <ExternalLink size={13} /> Open Full PDF
-                    </a>
-                  </div>
-                </div>
-              ) : (
-                <motion.img
-                  src={src}
-                  alt={cert.title}
-                  animate={{ scale: zoomed ? 1.6 : 1 }}
-                  transition={{ type: 'spring', stiffness: 260, damping: 24 }}
-                  className="max-w-full max-h-full object-contain rounded-lg"
-                  style={{ cursor: zoomed ? 'zoom-out' : 'zoom-in' }}
-                  onClick={() => setZoomed(!zoomed)}
-                />
-              )}
+            {/* High-Resolution Certificate Preview */}
+            <div className="flex-1 overflow-auto p-4 flex items-center justify-center bg-black/40 min-h-[360px] md:min-h-[520px]">
+              <motion.img
+                src={imageSrc}
+                alt={cert.title}
+                animate={{ scale: zoomed ? 1.5 : 1 }}
+                transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+                className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-lg border border-white/5"
+                style={{ cursor: zoomed ? 'zoom-out' : 'zoom-in' }}
+                onClick={() => setZoomed(!zoomed)}
+              />
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-between px-5 py-3 border-t border-white/5">
-              <span className="label-sm text-slate-500">{cert.date}</span>
-              <span className="label-sm text-violet-400">Verified Certificate</span>
+            <div className="flex items-center justify-between px-6 py-3.5 border-t border-white/5 bg-slate-950/40">
+              <span className="label-sm text-slate-400">{cert.date}</span>
+              <div className="flex items-center gap-3">
+                {pdfSrc && (
+                  <a
+                    href={pdfSrc}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-indigo-400 hover:text-indigo-300 flex items-center gap-1 font-medium transition-colors"
+                  >
+                    <ExternalLink size={13} /> View Original Document
+                  </a>
+                )}
+                <span className="label-sm text-violet-400">Certificate</span>
+              </div>
             </div>
           </motion.div>
         </motion.div>

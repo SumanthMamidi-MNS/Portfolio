@@ -27,30 +27,33 @@
 
 This repository houses the complete source code for **Sumanth's Portfolio** — an executive, high-performance personal platform engineered to demonstrate advanced machine learning pipelines, production full-stack architectures, and interactive digital experiences.
 
-Built with **React 19**, **Vite 8**, and **Tailwind CSS v4**, the platform bridges technical depth with modern creative engineering through hardware-accelerated animations, live CLI terminal access, and an obsidian design system.
+Built with **React 19**, **Vite 8**, and **Tailwind CSS v4**, the platform bridges technical depth with modern creative engineering through scroll-driven animations, a click-to-play intro video, and a dark design system.
 
 ---
 
 <a id="sections"></a>
 ## 🗂️ Portfolio Sections
 
-> **⚡ Hero & Terminal**  
-> Dynamic headline, profile stats counter, interactive background intro audio player, and a fully functional embedded CLI terminal emulator.
+> **⚡ Hero**  
+> Headline, short bio, resume download, and a click-to-play intro video (nothing downloads or plays until you press play).
 >
-> **🧠 About & Expertise**  
-> Comprehensive overview of technical background, core focus areas (AI/ML, Systems Engineering, Modern Web), and problem-solving philosophy.
+> **💼 Projects**  
+> Six featured projects (OceanEmbed, UrbanTrace, TrueCite, FieldCast, Auxin, CampusFlow) with measured results, plus a filterable "show all" gallery with detail modals and repository links.
 >
-> **🤖 Interactive AI Playground**  
-> Real-time visualizers demonstrating multi-agent decision loops, RAG pipeline vector chunking, and inference latency telemetry.
+> **📚 Publications**  
+> The published SecurePatch paper (AVE Trends in Intelligent Computing Systems, 2026) with DOI and contribution note.
 >
-> **💼 Featured Projects Gallery**  
-> Filterable project showcase (*AI & ML*, *Interactive*, *Systems*) with rich preview modals, architecture tags, and repository links.
+> **🧠 About & Education**  
+> Short background, key numbers, and a dated education timeline.
 >
-> **📜 Verified Certifications**  
-> Interactive credential cards highlighting certified specializations in Machine Learning, Deep Learning, and Software Development.
+> **🛠️ Skills**  
+> Only tools actually used in the projects above.
 >
-> **📬 Contact Studio**  
-> Client-side validated inquiry form integrated with Web3Forms for direct-to-inbox messaging with zero backend dependencies.
+> **📜 Certifications**  
+> Certificate cards with an in-page viewer for each document.
+>
+> **📬 Contact**  
+> Inquiry form powered by Web3Forms when `VITE_WEB3FORMS_KEY` is set, otherwise it opens the visitor's mail app.
 
 ---
 
@@ -59,10 +62,10 @@ Built with **React 19**, **Vite 8**, and **Tailwind CSS v4**, the platform bridg
 
 | Feature | Interaction | Purpose |
 | :--- | :--- | :--- |
-| **Command Palette** | `⌘K` or `Ctrl+K` | Quick-search across sections, projects, and external links |
-| **CLI Terminal** | Type commands (`help`, `skills`, `projects`) | Explore background and competencies in a developer-native environment |
-| **Audio Intro Player** | Tap the sound pill button | Toggle procedural ambient intro narration with live equalizer animation |
-| **Project Modals** | Click any project card | Open detailed view with feature lists, tech stack, and trapped scroll container |
+| **Command Palette** | `⌘K` or `Ctrl+K` | Jump to any section or download the resume |
+| **Click-to-Play Intro** | Press the play button in the hero | Plays the intro video on demand; pauses automatically when scrolled out of view |
+| **Project Modals** | Click (or press Enter on) a project card | Open detailed view with feature lists, tech stack, and trapped scroll container |
+| **Reduced Motion** | OS "reduce motion" setting | Animations and the intro curtain are skipped |
 | **Smooth Momentum** | Mouse wheel or touch scroll | Hardware-accelerated Lenis scrolling with isolated modal containers |
 | **Dynamic Cursor** | Move pointer over elements | `mix-blend-difference` custom cursor providing high-contrast inverted feedback |
 
@@ -77,7 +80,7 @@ The diagram below outlines the portfolio's component hierarchy, state flow, and 
 flowchart TD
     %% Input
     subgraph S1 ["1. USER INTERFACE & INPUTS"]
-        A["Visitor Navigation<br/>(Mouse • ⌘K Hotkeys • CLI Terminal • Form)"]
+        A["Visitor Navigation<br/>(Mouse • Keyboard • ⌘K Hotkeys • Form)"]
     end
 
     %% Interaction Layer
@@ -96,15 +99,15 @@ flowchart TD
 
     %% Sections
     subgraph S4 ["4. SECTION MODULES"]
-        H["Hero & Interactive Terminal"]
-        I["AI Playground Simulator"]
+        H["Hero & Intro Video"]
+        I["Publications & Education"]
         J["Projects Gallery & Modals"]
         K["Contact Form & Validation"]
     end
 
     %% Delivery
     subgraph S5 ["5. DISPATCH & HOSTING"]
-        L["Web3Forms API<br/>(Inquiries to sumanthmamidi77@gmail.com)"]
+        L["Web3Forms API<br/>(Inquiries to the configured inbox)"]
         M["Edge Deployment<br/>(Vercel: sumanth-portfolio-delta.vercel.app)"]
     end
 
@@ -143,24 +146,26 @@ WebPortfolio/
 │   ├── assets/                 # Profile avatars, certificates, video assets
 │   └── data/
 │       ├── certificates.json   # Certifications dataset
-│       ├── profile.json        # Bio, coordinates, and social profiles
+│       ├── education.json      # Education timeline
+│       ├── profile.json        # Bio, resume path, video, and social profiles
 │       ├── projects.json       # Projects catalog & tags
+│       ├── publications.json   # Published papers
 │       └── skills.json         # Technical skill categories
 ├── src/
 │   ├── components/
 │   │   ├── effects/            # CustomCursor, GradientMesh, ambient effects
 │   │   ├── layout/             # SmoothScroll, Navbar, Footer
 │   │   ├── ui/                 # SpotlightCard, TiltCard, SectionHeader
-│   │   ├── AIPlayground.jsx    # Interactive AI pipeline simulator
-│   │   ├── About.jsx           # Background and philosophy
-│   │   ├── Certifications.jsx  # Verified certification cards
-│   │   ├── Contact.jsx         # Direct contact form with Web3Forms
-│   │   ├── Expertise.jsx       # Competency overview
-│   │   ├── Hero.jsx            # Hero banner, terminal & audio player
-│   │   ├── Preloader.jsx       # Initial loading screen
+│   │   ├── About.jsx           # Background and key numbers
+│   │   ├── Certifications.jsx  # Certification cards and viewer
+│   │   ├── Contact.jsx         # Contact form (Web3Forms or mail app)
+│   │   ├── Education.jsx       # Education timeline
+│   │   ├── Hero.jsx            # Hero banner and click-to-play intro video
+│   │   ├── Preloader.jsx       # Intro curtain (once per session)
 │   │   ├── Projects.jsx        # Project gallery & modal system
-│   │   └── Skills.jsx          # Interactive skills cloud
-│   ├── hooks/                  # Custom data hooks (useProfile, useProjects)
+│   │   ├── Publications.jsx    # Published research
+│   │   └── Skills.jsx          # Skills by category
+│   ├── hooks/                  # Data hooks sharing one cached fetch per JSON file
 │   ├── App.jsx                 # Application layout coordinator
 │   ├── main.jsx                # React root mount
 │   └── index.css               # Design tokens, variables & resets
@@ -233,7 +238,7 @@ npm run preview
 ## 👤 Author & Contact
 
 **Sumanth Mamidi**  
-*AI/ML Engineer & Developer — Chennai, India (Remote Worldwide)*
+*AI Systems & ML Engineering Student — Chennai, India*
 
 - 📧 **Email**: [sumanthmamidi77@gmail.com](mailto:sumanthmamidi77@gmail.com)
 - 🐙 **GitHub**: [@SumanthMamidi-MNS](https://github.com/SumanthMamidi-MNS)

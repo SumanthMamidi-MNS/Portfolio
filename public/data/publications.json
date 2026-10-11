@@ -1,0 +1,20 @@
+[
+  {
+    "id": "securepatch",
+    "title": "SECUREPATCH: Specialized Multi-Agent Architecture with Automated Validation for Security Vulnerability Repair",
+    "authors": ["L. Yashwanth Reddy", "M. N. S. Sumanth", "R. Regin", "S. Rubin Bose", "S. Sharan Jeev", "S. Benitta Sherine"],
+    "me": "M. N. S. Sumanth",
+    "venue": "AVE Trends in Intelligent Computing Systems",
+    "volume": "3",
+    "issue": "1",
+    "pages": "23–47",
+    "year": 2026,
+    "doi": "10.64091/ATICS.2026.000283",
+    "url": "https://doi.org/10.64091/ATICS.2026.000283",
+    "role": "Built the initial multi-agent prototype (OMNIFIX) that the study extends.",
+    "result": "99.4% repair success on 160 Python vulnerabilities across 8 CWE categories.",
+    "links": [
+      { "label": "OMNIFIX prototype", "url": "https://github.com/SumanthMamidi-MNS/OMNIFIX" }
+    ]
+  }
+]

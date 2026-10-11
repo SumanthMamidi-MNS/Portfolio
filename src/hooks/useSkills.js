@@ -1,17 +1,15 @@
 import { useState, useEffect } from 'react';
+import { fetchJson } from './fetchJson';
 
 export function useSkills() {
   const [skills, setSkills] = useState({ categories: [] });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/data/skills.json')
-      .then(r => r.json())
-      .then(data => {
-        setSkills(data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    fetchJson('/data/skills.json')
+      .then(data => setSkills(data))
+      .catch(() => {})
+      .finally(() => setLoading(false));
   }, []);
 
   return { skills, loading };

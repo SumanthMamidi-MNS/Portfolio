@@ -2,21 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePreloader } from '../context/PreloaderContext';
 
+// The 0 → 100% intro plays on every page load, exactly as designed. The only visitors who skip it are
+// those whose system asks for reduced motion.
+function shouldSkipIntro() {
+  try {
+    return !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  } catch {
+    return false;
+  }
+}
+
 export default function Preloader() {
+  const [skip] = useState(shouldSkipIntro);
   const [phase, setPhase] = useState(0); // 0=initials, 1=fullname, 2=done
   const [progress, setProgress] = useState(0);
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(!skip);
   const [curtainOpen, setCurtainOpen] = useState(false);
   const { onLoaded } = usePreloader();
 
   useEffect(() => {
-    // Animate progress 0 → 100 over ~1.7s
+    if (skip) {
+      onLoaded(); // reveal the hero immediately
+      return undefined;
+    }
+
+    // Animate progress 0 → 100 over 2.1 s
     let frame;
     let start;
     const animate = (ts) => {
       if (!start) start = ts;
       const elapsed = ts - start;
-      const pct = Math.min(Math.round((elapsed / 1700) * 100), 100);
+      const pct = Math.min(Math.round((elapsed / 2100) * 100), 100);
       setProgress(pct);
       if (pct < 100) {
         frame = requestAnimationFrame(animate);
@@ -24,21 +40,22 @@ export default function Preloader() {
     };
     frame = requestAnimationFrame(animate);
 
-    const t1 = setTimeout(() => setPhase(1), 550);
-    const t2 = setTimeout(() => setPhase(2), 1900);
+    // Same sequence (initials, name, 0 → 100%, curtain): 1.0 s longer than the shortened version, ~2.9 s in total.
+    const t1 = setTimeout(() => setPhase(1), 650);
+    const t2 = setTimeout(() => setPhase(2), 1950);
     const t3 = setTimeout(() => {
       setCurtainOpen(true);
       onLoaded(); // Synchronize hero reveal right as curtain splits open
     }, 2250);
     const t4 = setTimeout(() => {
       setShow(false);
-    }, 2950);
+    }, 2900);
 
     return () => {
       cancelAnimationFrame(frame);
       clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4);
     };
-  }, [onLoaded]);
+  }, [onLoaded, skip]);
 
   return (
     <AnimatePresence>

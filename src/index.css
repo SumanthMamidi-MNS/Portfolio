@@ -81,9 +81,10 @@ body {
   overflow-x: hidden;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  body { cursor: none; }
-  a, button, [role="button"], input, textarea, select, label[for] {
+/* Custom cursor: the system cursor is hidden only where the custom one is shown
+   (mouse/trackpad AND a window at least 768px wide, matching the component's md breakpoint). */
+@media (hover: hover) and (pointer: fine) and (min-width: 768px) {
+  *, *::before, *::after {
     cursor: none !important;
   }
 }
@@ -265,6 +266,37 @@ body {
   pointer-events: none;
 }
 
+
+
+/* ── Navigation bar ──
+   Matches the live site exactly (measured from its computed styles). At the top of the page there is no
+   box. Once scrolled (.nav-glass--on) a panel with 16px corners fades in: a 70% dark fill (15,22,41) with
+   NO blur, so the page behind stays clearly visible through it, a 1px strong border, an inset highlight and
+   soft shadows, with 12px/20px inner padding. The properties exist in both states, so the change is a smooth
+   fade; the header's own padding animates just like the original. */
+.nav-glass {
+  position: relative;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  padding: 0;
+  background: rgba(15, 22, 41, 0);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0), 0 8px 32px rgba(0, 0, 0, 0), 0 1px 0 rgba(99, 102, 241, 0);
+  transition:
+    background-color 0.5s ease,
+    border-color 0.5s ease,
+    box-shadow 0.5s ease,
+    padding 0.5s ease;
+}
+.nav-glass--on {
+  padding: 12px 20px;
+  border-color: var(--color-border-strong);
+  background: rgba(15, 22, 41, 0.7);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 1px 0 rgba(99, 102, 241, 0.08);
+}
+
 /* ── Buttons ── */
 .btn-primary {
   display: inline-flex;
@@ -422,12 +454,22 @@ body {
   z-index: 1;
   background: radial-gradient(
     600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(99, 102, 241, 0.10),
-    transparent 40%
+    var(--spot-color, rgba(99, 102, 241, 0.10)),
+    transparent 45%
   );
   border-radius: inherit;
 }
 .spotlight-card:hover .spotlight-overlay { opacity: 1; }
+
+/* Project cards: frosted glass appears only while the pointer is on the card (cheap while scrolling) */
+.project-glass {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.project-glass:hover {
+  -webkit-backdrop-filter: blur(10px) saturate(125%);
+  backdrop-filter: blur(10px) saturate(125%);
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
 
 /* ── Dot Grid ── */
 .dot-grid, .dot-grid-light {
