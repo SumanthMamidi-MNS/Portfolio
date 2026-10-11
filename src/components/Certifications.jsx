@@ -63,7 +63,8 @@ function CertCard({ cert, index, onClick }) {
       role="button"
       aria-label={`${cert.title}: view certificate`}
       tabIndex={0}
-      data-cursor="CERT"
+      data-cursor="VIEW"
+      data-cursor-soft
     >
       <SpotlightCard
         className="h-full flex flex-col overflow-hidden group rounded-[22px] border border-white/9 transition-all duration-300 relative hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.5)]"
@@ -73,20 +74,10 @@ function CertCard({ cert, index, onClick }) {
           boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
         }}
       >
-        {/* Corner description: plain text on the card's own background, no shaded strip and no overlay */}
-        <div className="flex items-center justify-between gap-3 px-4 pt-3 pb-2.5">
-          <span className="inline-flex items-center gap-2 text-[11px] font-medium text-slate-100 min-w-0">
-            <span className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0" />
-            <span className="truncate">{cert.label || cat.badge}</span>
-          </span>
-          {isPdf && (
-            <span className="text-[9px] font-mono uppercase tracking-wider text-slate-500 shrink-0">PDF</span>
-          )}
-        </div>
-
-        {/* Certificate preview */}
+        {/* Certificate preview: the image fills the top of the card, with the description as a small
+            chip on its top-left corner (and PDF on the right) */}
         <div
-          className="h-52 relative overflow-hidden flex items-center justify-center"
+          className="aspect-[8/5] relative overflow-hidden flex items-center justify-center"
           style={{
             background: `radial-gradient(ellipse at 50% 35%, ${cat.glow} 0%, rgba(10, 16, 32, 0.5) 60%, rgba(10, 16, 32, 0.95) 100%)`,
           }}
@@ -117,16 +108,23 @@ function CertCard({ cert, index, onClick }) {
               <span className="label-sm text-slate-400 tracking-wider text-[10px]">Certificate PDF</span>
             </div>
           )}
-        </div>
 
-        {/* Luminous Specular Horizon Beam */}
-        <div
-          className="h-[1px] w-full relative z-10"
-          style={{
-            background: `linear-gradient(90deg, transparent, ${cat.accent}80, transparent)`,
-            boxShadow: `0 0 12px ${cat.accent}45`,
-          }}
-        />
+          {/* Corner chip: small, dark and translucent, so the certificate stays visible around it */}
+          <span
+            className="absolute top-3 left-3 z-10 max-w-[78%] truncate px-2.5 py-1 rounded-md text-[10px] font-mono uppercase tracking-wide border backdrop-blur-md"
+            style={{ color: cat.accent, borderColor: cat.border, background: 'rgba(10, 15, 30, 0.68)' }}
+          >
+            {cert.label || cat.badge}
+          </span>
+          {isPdf && (
+            <span
+              className="absolute top-3 right-3 z-10 px-2 py-1 rounded-md text-[9px] font-mono uppercase tracking-wider border border-white/10 text-slate-300 backdrop-blur-md"
+              style={{ background: 'rgba(10, 15, 30, 0.68)' }}
+            >
+              PDF
+            </span>
+          )}
+        </div>
 
         {/* Card Content */}
         <div className="p-5 flex flex-col gap-2 flex-1">
@@ -143,7 +141,7 @@ function CertCard({ cert, index, onClick }) {
               className="label-sm transition-colors flex items-center gap-1 font-medium group-hover:text-white"
               style={{ color: cat.accent }}
             >
-              View Certificate →
+              View →
             </span>
           </div>
         </div>

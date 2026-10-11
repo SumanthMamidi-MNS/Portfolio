@@ -268,25 +268,32 @@ body {
 
 
 
-/* ── Navigation bar: rounded rectangle of see-through glass ──
-   A light dark tint with a gentle blur, so the page content stays visible behind the bar (as in the
-   original design). One real 1px border, a 16px radius to match the cards, and no glossy highlights.
-   After scrolling the tint deepens a little so links stay readable over bright sections. */
+/* ── Navigation bar ──
+   At the top of the page there is no box at all. Once the page is scrolled (.nav-glass--on) a see-through
+   glass box with 16px corners fades in around the same content: a light dark tint, a gentle blur so the page
+   stays visible behind it, one real 1px border and a soft shadow. The same properties exist in both states
+   (just transparent/zero), so the change is a smooth fade and nothing moves. */
 .nav-glass {
   position: relative;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(10, 15, 30, 0.36);
+  border: 1px solid transparent;
+  background: rgba(10, 15, 30, 0);
+  -webkit-backdrop-filter: blur(0px) saturate(100%);
+  backdrop-filter: blur(0px) saturate(100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0), 0 12px 32px -14px rgba(0, 0, 0, 0);
+  transition:
+    background-color 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease,
+    backdrop-filter 0.45s ease,
+    -webkit-backdrop-filter 0.45s ease;
+}
+.nav-glass--on {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(10, 15, 30, 0.46);
   -webkit-backdrop-filter: blur(9px) saturate(130%);
   backdrop-filter: blur(9px) saturate(130%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 12px 32px -14px rgba(0, 0, 0, 0.55);
-  transition: background 0.35s ease, border-color 0.35s ease;
-}
-.nav-glass--scrolled {
-  background: rgba(10, 15, 30, 0.52);
-  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 12px 32px -14px rgba(0, 0, 0, 0.55);
 }
 
 /* ── Buttons ── */

@@ -9,6 +9,8 @@ export default function CustomCursor() {
   // Over photos and video the colour-inverting blend would look like a negative / scan, so the cursor
   // switches to a plain white dot with a violet edge there.
   const [solid, setSolid] = useState(false);
+  // Over certificate cards the circle is slightly see-through so the certificate stays readable.
+  const [soft, setSoft] = useState(false);
 
   // Inner dot — snappy spring
   const springCfg = { damping: 28, stiffness: 400 };
@@ -40,6 +42,7 @@ export default function CustomCursor() {
       // Only real photos/video (your portrait, the intro video, screenshots) get the plain dot.
       // Logos, covers and certificates keep the colour-blending cursor with its "VIEW" label.
       setSolid(!!e.target?.closest?.('video, [data-cursor-solid]'));
+      setSoft(!!e.target?.closest?.('[data-cursor-soft]'));
       const el = e.target?.closest?.('[data-cursor], a, button, [role="button"]');
       if (el) {
         setHovered(true);
@@ -95,7 +98,7 @@ export default function CustomCursor() {
           height: hovered ? 56 : 12,
           // Full-strength blend everywhere (the green / cream circles on buttons and links);
           // only over certificates is it slightly see-through so the certificate stays readable.
-          opacity: hovered && label === 'CERT' ? 0.65 : 1,
+          opacity: hovered && soft ? 0.65 : 1,
         }}
         transition={{ type: 'spring', stiffness: 320, damping: 22 }}
       >

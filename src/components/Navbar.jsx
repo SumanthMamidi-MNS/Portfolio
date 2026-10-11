@@ -48,12 +48,15 @@ export default function Navbar({ onOpenCommandPalette }) {
         initial={{ y: -24, opacity: 0 }}
         animate={isLoaded ? { y: 0, opacity: 1 } : { y: -24, opacity: 0 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
-        className="fixed top-0 left-0 right-0 z-[50] px-4 md:px-8 pt-3"
+        className={`fixed top-0 left-0 right-0 z-[50] px-4 md:px-8 transition-[padding] duration-500 ${
+          scrolled ? 'pt-3' : 'pt-4'
+        }`}
       >
-        {/* Floating see-through glass bar with rounded-rectangle corners (see .nav-glass in index.css).
-            Always the same size and position; only its tint deepens a little after scrolling. */}
+        {/* At the top of the page the bar has no box. After scrolling, a see-through glass box with
+            rounded-rectangle corners fades in around the same content (see .nav-glass in index.css),
+            so nothing jumps. */}
         <div
-          className={`nav-glass ${scrolled ? 'nav-glass--scrolled' : ''} mx-auto w-full max-w-6xl flex items-center justify-between pl-5 pr-2.5 py-2.5`}
+          className={`nav-glass ${scrolled ? 'nav-glass--on' : ''} mx-auto w-full max-w-7xl flex items-center justify-between pl-5 pr-2.5 py-2.5`}
         >
 
           {/* Logo */}
