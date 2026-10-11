@@ -90,13 +90,19 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="home"
-      className="section-0 relative min-h-screen flex items-center pt-24 pb-32 px-6 md:px-12 overflow-hidden"
+      className="section-0 relative min-h-screen flex items-center pt-20 pb-40 px-6 md:px-12 overflow-hidden"
     >
       {/* Layered backgrounds with parallax */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none">
         <DotGrid theme="dark" />
         <GradientMesh />
       </motion.div>
+
+      {/* Soft lift on the right-hand side so the video card does not sit in a dark void */}
+      <div
+        className="absolute right-0 top-1/2 -translate-y-1/2 w-full lg:w-[62%] h-[85%] pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse at 70% 50%, rgba(129,140,248,0.24) 0%, rgba(99,102,241,0.10) 40%, transparent 70%)' }}
+      />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto w-full">
@@ -228,17 +234,20 @@ export default function Hero() {
                 {/* Ambient glow behind card */}
                 <div
                   className="absolute -inset-8 rounded-3xl pointer-events-none"
-                  style={{ background: 'radial-gradient(ellipse at center, rgba(99,102,241,0.12) 0%, transparent 70%)' }}
+                  style={{ background: 'radial-gradient(ellipse at center, rgba(129,140,248,0.30) 0%, transparent 70%)' }}
                 />
 
-                {/* Glassmorphic video container */}
-                <div className="glass rounded-2xl overflow-hidden relative">
+                {/* Glassmorphic video container (lighter fill than the nav panel so the card reads bright) */}
+                <div
+                  className="glass rounded-2xl overflow-hidden relative"
+                  style={{ background: 'rgba(36, 48, 88, 0.62)', borderColor: 'rgba(255,255,255,0.20)' }}
+                >
                   {/* Top chrome bar */}
-                  <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/5">
+                  <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-violet-400" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-violet-300" />
                       <span
-                        className="label-sm text-slate-400"
+                        className="label-sm text-slate-200"
                         style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem' }}
                       >
                         Sumanth Mamidi — Intro
@@ -280,12 +289,13 @@ export default function Hero() {
                         else v.pause();
                       }}
                       className="w-full h-full object-cover"
+                      style={{ filter: 'brightness(1.14) saturate(1.12) contrast(1.02)' }}
                     />
-                    {/* Subtle vignette */}
+                    {/* Very light vignette (kept low so the picture stays bright) */}
                     <div
                       className="absolute inset-0 pointer-events-none"
                       style={{
-                        background: 'linear-gradient(to bottom, rgba(7,11,20,0.1) 0%, transparent 30%, transparent 70%, rgba(7,11,20,0.4) 100%)',
+                        background: 'linear-gradient(to bottom, transparent 0%, transparent 75%, rgba(7,11,20,0.14) 100%)',
                       }}
                     />
                     {/* Click-to-play overlay: fades out while playing, returns on pause/end */}
@@ -299,7 +309,7 @@ export default function Hero() {
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.3 }}
-                          className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/25 hover:bg-black/15 transition-colors"
+                          className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/5 hover:bg-transparent transition-colors"
                           aria-label={ended ? 'Replay intro video' : 'Play intro video'}
                           data-cursor="Play"
                         >
@@ -334,11 +344,11 @@ export default function Hero() {
                   </div>
 
                   {/* Bottom info bar */}
-                  <div className="flex items-center justify-between px-5 py-3 border-t border-white/5">
-                    <span className="label-sm text-slate-500">Chennai, India</span>
+                  <div className="flex items-center justify-between px-5 py-3 border-t border-white/10">
+                    <span className="label-sm text-slate-300">Chennai, India</span>
                     <div className="flex items-center gap-1.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                      <span className="label-sm text-emerald-400" style={{ fontSize: '0.625rem' }}>Open to internships</span>
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-300" />
+                      <span className="label-sm text-emerald-300" style={{ fontSize: '0.625rem' }}>Open to internships</span>
                     </div>
                   </div>
                 </div>

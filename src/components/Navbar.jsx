@@ -48,15 +48,14 @@ export default function Navbar({ onOpenCommandPalette }) {
         initial={{ y: -24, opacity: 0 }}
         animate={isLoaded ? { y: 0, opacity: 1 } : { y: -24, opacity: 0 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-[50] px-4 md:px-8 transition-[padding] duration-500 ${
-          scrolled ? 'pt-3' : 'pt-4'
+        className={`fixed top-0 left-0 right-0 z-[50] transition-all duration-500 ${
+          scrolled ? 'py-3 px-4 md:px-8' : 'py-5 px-6 md:px-12'
         }`}
       >
-        {/* At the top of the page the bar has no box. After scrolling, a see-through glass box with
-            rounded-rectangle corners fades in around the same content (see .nav-glass in index.css),
-            so nothing jumps. */}
+        {/* Same behaviour and measurements as the live site: no box at the top; after scrolling a 70% dark
+            rounded panel (no blur, page visible through it) fades in (see .nav-glass in index.css). */}
         <div
-          className={`nav-glass ${scrolled ? 'nav-glass--on' : ''} mx-auto w-full max-w-7xl flex items-center justify-between px-5 py-3`}
+          className={`nav-glass ${scrolled ? 'nav-glass--on' : ''} mx-auto max-w-7xl flex items-center justify-between`}
         >
 
           {/* Logo */}
@@ -73,16 +72,13 @@ export default function Navbar({ onOpenCommandPalette }) {
               return (
                 <a key={link.href} href={link.href}
                   className={`relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors no-underline ${
-                    isActive ? 'text-white' : 'text-slate-300/85 hover:text-white'
+                    isActive ? 'text-white' : 'text-slate-500 hover:text-slate-300'
                   }`}>
                   {isActive && (
                     <motion.span
                       layoutId="navbar-active-pill"
                       className="absolute inset-0 rounded-lg"
-                      style={{
-                        background: 'rgba(99,102,241,0.16)',
-                        border: '1px solid rgba(129,140,248,0.30)',
-                      }}
+                      style={{ background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.2)' }}
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
@@ -96,13 +92,13 @@ export default function Navbar({ onOpenCommandPalette }) {
           <div className="hidden lg:flex items-center gap-3">
             <button
               onClick={onOpenCommandPalette}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/15 bg-white/[0.03] text-slate-300 hover:text-white hover:border-white/30 transition-all text-xs font-mono"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 text-slate-500 hover:text-slate-300 hover:border-white/20 transition-all text-xs font-mono"
             >
               <Search size={12} />
               <span>Ctrl K</span>
             </button>
             <a href="#contact"
-              className="btn-primary text-sm px-5 py-2 no-underline">
+              className="btn-primary text-sm px-4 py-2 no-underline">
               Get in touch
             </a>
           </div>

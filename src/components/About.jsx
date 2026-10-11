@@ -100,23 +100,22 @@ export default function About() {
                 />
               </motion.div>
             </TiltCard>
-            {/* Compact intro box: sits against the photo's lower edge (a few pixels over it), bright frosted glass */}
+            {/* Compact intro box under the photo: name and one line, see-through glass */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, ease: EASE, delay: 0.2 }}
-              className="relative z-10 -mt-3 rounded-xl border border-white/30 px-4 py-2.5 backdrop-blur-xl"
+              className="mt-2.5 rounded-xl border border-white/12 px-4 py-2.5 backdrop-blur-md"
               style={{
-                background:
-                  'linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.09)), rgba(40, 52, 92, 0.55)',
-                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.35), 0 14px 30px -14px rgba(0,0,0,0.6)',
+                background: 'rgba(15, 22, 41, 0.45)',
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), 0 10px 26px -16px rgba(0,0,0,0.55)',
               }}
             >
               <p className="font-semibold text-white leading-tight m-0" style={{ fontFamily: 'var(--font-display)' }}>
                 {profile?.name || 'Sumanth Mamidi'}
               </p>
-              <p className="label-sm text-violet-100 mt-1 mb-0 leading-snug">
+              <p className="label-sm text-violet-300 mt-1 mb-0 leading-snug">
                 {profile?.role || 'AI Systems & ML Engineering Student'}
               </p>
             </motion.div>
