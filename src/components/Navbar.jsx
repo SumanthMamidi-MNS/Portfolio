@@ -56,7 +56,7 @@ export default function Navbar({ onOpenCommandPalette }) {
             rounded-rectangle corners fades in around the same content (see .nav-glass in index.css),
             so nothing jumps. */}
         <div
-          className={`nav-glass ${scrolled ? 'nav-glass--on' : ''} mx-auto w-full max-w-7xl flex items-center justify-between pl-5 pr-2.5 py-2.5`}
+          className={`nav-glass ${scrolled ? 'nav-glass--on' : ''} mx-auto w-full max-w-7xl flex items-center justify-between px-5 py-3`}
         >
 
           {/* Logo */}

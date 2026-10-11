@@ -269,10 +269,11 @@ body {
 
 
 /* ── Navigation bar ──
-   At the top of the page there is no box at all. Once the page is scrolled (.nav-glass--on) a see-through
-   glass box with 16px corners fades in around the same content: a light dark tint, a gentle blur so the page
-   stays visible behind it, one real 1px border and a soft shadow. The same properties exist in both states
-   (just transparent/zero), so the change is a smooth fade and nothing moves. */
+   At the top of the page there is no box at all. Once the page is scrolled (.nav-glass--on) a glass box with
+   16px corners fades in around the same content. Its look is exactly the original site's `.glass` panel
+   (70% dark fill, 20px blur, 180% saturation, strong border, inset highlight and soft shadows), which is the
+   transparency the live site has. The same properties exist in both states (just transparent/zero), so the
+   change is a smooth fade and nothing moves. */
 .nav-glass {
   position: relative;
   border-radius: 16px;
@@ -289,11 +290,14 @@ body {
     -webkit-backdrop-filter 0.45s ease;
 }
 .nav-glass--on {
-  border-color: rgba(255, 255, 255, 0.14);
-  background: rgba(10, 15, 30, 0.46);
-  -webkit-backdrop-filter: blur(9px) saturate(130%);
-  backdrop-filter: blur(9px) saturate(130%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 12px 32px -14px rgba(0, 0, 0, 0.55);
+  border-color: var(--color-border-strong);
+  background: rgba(15, 22, 41, 0.7);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 1px 0 rgba(99, 102, 241, 0.08);
 }
 
 /* ── Buttons ── */

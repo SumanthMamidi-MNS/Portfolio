@@ -237,7 +237,7 @@
     ],
     "github": "https://github.com/SumanthMamidi-MNS/Auxin",
     "demo": null,
-    "cover": "/assets/projects/auxin/auxin-logo.svg",
+    "cover": "/assets/projects/auxin/auxin-logo.png",
     "featured": true,
     "year": 2026,
     "metric": "4 role portals with an AI assistant",
@@ -274,7 +274,6 @@
       "Redis",
       "Docker"
     ],
-    "badge": "In development",
     "description": "A role-based college management, learning, and online examination platform for administrators, lecturers, and students: departments, sections, coursework, assignments, grading, and results. Secure online exams, a live invigilator view, and sandboxed coding assessments are under active development.",
     "features": [
       "Role-based access control for administrators, lecturers, and students",

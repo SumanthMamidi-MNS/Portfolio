@@ -36,6 +36,53 @@ const projectThemeAccents = {
 
 const filterLabels = { all: 'All', 'ai-ml': 'AI & ML', 'interactive': 'Interactive', 'systems': 'Systems' };
 
+// Covers that are logos (SVG wordmarks, or the stacked PNG lockup) sit contained and centred;
+// anything else is a screenshot that fills the banner.
+const isLogoCover = (cover) => /-logo\.(svg|png)$/.test(cover || '');
+const isLockup = (cover) => /-logo\.png$/.test(cover || '');
+
+// CampusFlow's mark is drawn in the page (icon + live text) instead of an image, so the pair is centred
+// exactly whatever font the visitor's device falls back to, and it scales cleanly with the card.
+function CampusFlowMark({ large = false }) {
+  return (
+    <div
+      role="img"
+      aria-label="CampusFlow"
+      className={`flex items-center justify-center ${large ? 'gap-4' : 'gap-3'} select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
+    >
+      <svg viewBox="3 7 90 90" className={`${large ? 'h-[4.5rem] w-[4.5rem]' : 'h-14 w-14'} shrink-0`} fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="cfm-border" x1="6" y1="6" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#A5B4FC" />
+            <stop offset="50%" stopColor="#6366F1" />
+            <stop offset="100%" stopColor="#312E81" />
+          </linearGradient>
+          <linearGradient id="cfm-bg" x1="48" y1="6" x2="48" y2="94" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#111533" />
+            <stop offset="100%" stopColor="#0A0C22" />
+          </linearGradient>
+          <linearGradient id="cfm-cap" x1="24" y1="28" x2="72" y2="64" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#E0E7FF" />
+            <stop offset="100%" stopColor="#818CF8" />
+          </linearGradient>
+        </defs>
+        <rect x="6" y="10" width="84" height="84" rx="20" fill="url(#cfm-bg)" stroke="url(#cfm-border)" strokeWidth="3" />
+        <path d="M48 28 L76 42 L48 56 L20 42 Z" fill="url(#cfm-cap)" />
+        <path d="M32 50 V62 C32 66 40 70 48 70 C56 70 64 66 64 62 V50 L48 58 Z" fill="url(#cfm-cap)" opacity="0.85" />
+        <path d="M76 42 V58" stroke="#818CF8" strokeWidth="3" strokeLinecap="round" />
+      </svg>
+      <span
+        className={`${large ? 'text-4xl' : 'text-3xl'} font-bold tracking-tight leading-none text-white whitespace-nowrap`}
+        style={{ fontFamily: 'var(--font-display)' }}
+      >
+        Campus<span style={{ color: '#818CF8' }}>Flow</span>
+      </span>
+    </div>
+  );
+}
+
+const INLINE_LOGOS = { campusflow: CampusFlowMark };
+
 function ProjectCard({ project, index, number, onClick }) {
   const accent = categoryAccents[project.category] || categoryAccents['ai-ml'];
   const specific = projectThemeAccents[project.id?.toLowerCase()] || {};
@@ -77,14 +124,18 @@ function ProjectCard({ project, index, number, onClick }) {
               background: `radial-gradient(circle at 50% 38%, ${glowColor} 0%, rgba(10, 16, 30, 0.5) 55%, ${bgEnd} 85%)`,
             }}
           >
-            {project.cover && !imageError ? (
+            {INLINE_LOGOS[project.id?.toLowerCase()] ? (
+              <div className="transition-transform duration-500 ease-out group-hover:scale-105">
+                {React.createElement(INLINE_LOGOS[project.id.toLowerCase()])}
+              </div>
+            ) : project.cover && !imageError ? (
               <img
                 src={project.cover}
                 alt={project.title}
                 onError={() => setImageError(true)}
                 className={`transition-transform duration-500 ease-out ${
-                  project.cover?.endsWith?.('.svg')
-                    ? 'max-h-24 md:max-h-26 w-auto max-w-[88%] object-contain group-hover:scale-105 drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]'
+                  isLogoCover(project.cover)
+                    ? `${isLockup(project.cover) ? 'max-h-[7.25rem]' : 'max-h-24 md:max-h-26'} w-auto max-w-[88%] object-contain group-hover:scale-105 drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`
                     : 'w-full h-full object-cover group-hover:scale-105'
                 }`}
               />
@@ -108,7 +159,6 @@ function ProjectCard({ project, index, number, onClick }) {
               {filterLabels[project.category] || project.category}
             </span>
             <span className="absolute top-3.5 right-4 z-10 inline-flex items-center gap-2 text-[11px] font-mono text-slate-400 tabular-nums">
-              {project.badge === 'In development' && <span className="text-amber-300/90 font-sans font-medium">In development</span>}
               {number}
             </span>
           </div>
@@ -223,14 +273,16 @@ function ProjectModal({ project, onClose }) {
         >
           <div className="h-48 relative overflow-hidden flex items-center justify-center border-b border-white/5 px-6 py-4"
             style={{ background: `radial-gradient(ellipse at 50% 40%, ${accent.color}30 0%, #0A0F1E 90%)` }}>
-            {project.cover && !imageError ? (
+            {INLINE_LOGOS[project.id?.toLowerCase()] ? (
+              React.createElement(INLINE_LOGOS[project.id.toLowerCase()], { large: true })
+            ) : project.cover && !imageError ? (
               <img
                 src={project.cover}
                 alt={project.title}
                 onError={() => setImageError(true)}
                 className={`transition-transform duration-500 ease-out ${
-                  project.cover?.endsWith?.('.svg')
-                    ? 'max-h-28 w-auto max-w-[85%] object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.7)]'
+                  isLogoCover(project.cover)
+                    ? `${isLockup(project.cover) ? 'max-h-36' : 'max-h-28'} w-auto max-w-[85%] object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.7)]`
                     : 'w-full h-full object-cover'
                 }`}
               />
