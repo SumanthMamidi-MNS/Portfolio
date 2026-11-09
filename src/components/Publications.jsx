@@ -119,17 +119,19 @@ export default function Publications() {
                       <motion.p
                         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07 } } }}
                         className="text-sm text-slate-400 mt-3 mb-0 leading-relaxed"
+                        dir="ltr"
                       >
                         {pub.authors.map((author, i) => (
-                          <React.Fragment key={author}>
-                            <motion.span
-                              variants={authorIn}
-                              className={author === pub.me ? 'inline-block text-white font-semibold' : 'inline-block'}
-                            >
+                          <motion.span
+                            key={author}
+                            variants={authorIn}
+                            className="inline"
+                          >
+                            <span className={author === pub.me ? 'text-white font-semibold' : ''}>
                               {author}
-                            </motion.span>
-                            {i < pub.authors.length - 1 ? ', ' : ''}
-                          </React.Fragment>
+                            </span>
+                            {i < pub.authors.length - 1 && ', '}
+                          </motion.span>
                         ))}
                       </motion.p>
 
