@@ -168,8 +168,8 @@ export default function Certifications() {
   const getInitialAllSample = (certs) => {
     const priorityFiles = [
       'Google AI Professional.pdf',
+      'Google AI Essentials.pdf',
       'python_basic certificate.pdf',
-      'java_basic certificate.pdf',
       'Building with the Claude API.jpg',
       'ML Ops Fundamentals - Building Deploying and Scaling AI Solutions.png',
       'GenAl Job Simulation.pdf',
@@ -178,6 +178,7 @@ export default function Certifications() {
     const usedFiles = new Set();
 
     for (const file of priorityFiles) {
+      if (sample.length >= INITIAL) break;
       const item = certs.find(c => c.file === file);
       if (item) {
         sample.push(item);
