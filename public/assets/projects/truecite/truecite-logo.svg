@@ -33,6 +33,12 @@
   </defs>
 
   <style>
+    :root { color-scheme: only dark; }
+    @media (prefers-color-scheme: light) {
+      :root { color-scheme: only dark !important; }
+      .tc-true { fill: #FFFFFF !important; }
+      .tc-cite { fill: url(#tc-text-gold) !important; }
+    }
     @keyframes tcGrowAndGlow {
       0%, 100% {
         opacity: 0.5;
@@ -59,14 +65,6 @@
     .tc-cite {
       font-weight: 500;
       fill: url(#tc-text-gold);
-    }
-    @media (prefers-color-scheme: light) {
-      .tc-true {
-        fill: #0F172A;
-      }
-      .tc-cite {
-        fill: #CA8A04;
-      }
     }
   </style>
 
@@ -102,7 +100,7 @@
 
     <!-- Wordmark "TrueCite" (72px font size, refined non-thick weight, vertically centered) -->
     <text x="114" y="74" class="tc-wordmark">
-      <tspan class="tc-true">True</tspan><tspan class="tc-cite">Cite</tspan>
+      <tspan class="tc-true" style="fill: #FFFFFF !important;">True</tspan><tspan class="tc-cite" style="fill: url(#tc-text-gold) !important;">Cite</tspan>
     </text>
   </g>
 </svg>

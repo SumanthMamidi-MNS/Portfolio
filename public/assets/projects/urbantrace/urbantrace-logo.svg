@@ -25,6 +25,12 @@
   </defs>
 
   <style>
+    :root { color-scheme: only dark; }
+    @media (prefers-color-scheme: light) {
+      :root { color-scheme: only dark !important; }
+      .ut-urban { fill: #FFFFFF !important; }
+      .ut-trace { fill: #3CC4D8 !important; }
+    }
     /* 1. Ambient Background Vector Aura Breathing */
     @keyframes auraBreathe {
       0%, 100% { opacity: 0.35; }
@@ -138,15 +144,6 @@
       font-weight: 600;
       fill: #3CC4D8;
     }
-
-    @media (prefers-color-scheme: light) {
-      .ut-urban {
-        fill: #0F172A;
-      }
-      .ut-trace {
-        fill: #0891B2;
-      }
-    }
   </style>
 
   <!-- Centered Lockup: BrandMark Trajectory Squircle and Wordmark -->
@@ -218,7 +215,7 @@
 
     <!-- Wordmark "UrbanTrace" (72px font size, two-tone, vertically centered) -->
     <text x="122" y="74" class="ut-wordmark">
-      <tspan class="ut-urban">Urban</tspan><tspan class="ut-trace">Trace</tspan>
+      <tspan class="ut-urban" style="fill: #FFFFFF !important;">Urban</tspan><tspan class="ut-trace" style="fill: #3CC4D8 !important;">Trace</tspan>
     </text>
   </g>
 </svg>

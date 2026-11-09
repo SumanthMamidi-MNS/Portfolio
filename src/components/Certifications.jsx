@@ -20,6 +20,7 @@ const categoryConfig = {
   'claude':      { ...VIOLET, label: 'Anthropic Claude Courses',  badge: 'Anthropic' },
   'scaler':      { ...VIOLET, label: 'Scaler Workshops',          badge: 'Scaler Academy' },
   'coursera':    { ...VIOLET, label: 'Coursera & Google',         badge: 'Google · Coursera' },
+  'hackerrank':  { ...VIOLET, label: 'HackerRank Certifications', badge: 'HackerRank' },
   'simulations': { ...VIOLET, label: 'Job Simulations',           badge: 'Job simulation' },
   'hackathons':  { ...VIOLET, label: 'Hackathons',                badge: 'Hackathon' },
   'workshops':   { ...VIOLET, label: 'Workshops & Bootcamps',     badge: 'Workshop' },
@@ -27,12 +28,11 @@ const categoryConfig = {
 
 const filterTabs = [
   { id: 'all', label: 'All' },
+  { id: 'hackerrank', label: 'HackerRank' },
   { id: 'claude', label: 'Claude Courses' },
   { id: 'scaler', label: 'Scaler Workshops' },
   { id: 'coursera', label: 'Coursera' },
   { id: 'simulations', label: 'Job Simulations' },
-  { id: 'hackathons', label: 'Hackathons' },
-  { id: 'workshops', label: 'Workshops' },
 ];
 
 function CertCard({ cert, index, onClick }) {
@@ -157,18 +157,28 @@ export default function Certifications() {
   const [lightboxCert, setLightboxCert] = useState(null);
   const INITIAL = 6;
 
-  const filtered = filter === 'all'
-    ? certificates
-    : certificates.filter(c => c.category === filter);
+  // Active certificates exclude hackathons per current requirements
+  const activeCertificates = certificates.filter(c => c.category !== 'hackathons');
 
-  // Balanced initial sampling: 1 representative certificate from each category
+  const filtered = filter === 'all'
+    ? activeCertificates
+    : activeCertificates.filter(c => c.category === filter);
+
+  // Balanced initial sampling: Prioritize high-value credentials with HackerRank Python & Java leading
   const getInitialAllSample = (certs) => {
-    const desiredCategories = ['coursera', 'claude', 'scaler', 'simulations', 'hackathons', 'workshops'];
+    const priorityFiles = [
+      'Google AI Professional.pdf',
+      'python_basic certificate.pdf',
+      'java_basic certificate.pdf',
+      'Building with the Claude API.jpg',
+      'ML Ops Fundamentals - Building Deploying and Scaling AI Solutions.png',
+      'GenAl Job Simulation.pdf',
+    ];
     const sample = [];
     const usedFiles = new Set();
 
-    for (const cat of desiredCategories) {
-      const item = certs.find(c => c.category === cat && !usedFiles.has(c.file));
+    for (const file of priorityFiles) {
+      const item = certs.find(c => c.file === file);
       if (item) {
         sample.push(item);
         usedFiles.add(item.file);
@@ -186,18 +196,16 @@ export default function Certifications() {
 
   const keyOf = (c) => c.file || c.title;
 
-  // Importance order used when everything is shown: Google/Coursera specializations, then job
-  // simulations, Anthropic, Scaler, hackathon and workshops. Array.sort is stable, so the original
-  // order is kept inside a group.
-  const IMPORTANCE = ['coursera', 'simulations', 'claude', 'scaler', 'hackathons', 'workshops'];
+  // Importance order used when everything is shown: Coursera, HackerRank, Claude, Scaler, simulations, workshops.
+  const IMPORTANCE = ['coursera', 'hackerrank', 'claude', 'scaler', 'simulations', 'workshops'];
   const rank = (c) => {
     const i = IMPORTANCE.indexOf(c.category);
     return i === -1 ? IMPORTANCE.length : i;
   };
   const orderedAll = [...filtered].sort((a, b) => rank(a) - rank(b));
 
-  // Collapsed: one representative from each category. Expanded: every certificate, most important first.
-  const baseItems = filter === 'all' ? getInitialAllSample(certificates) : orderedAll.slice(0, INITIAL);
+  // Collapsed: 6 prioritized credentials. Expanded: all active credentials, ordered by importance.
+  const baseItems = filter === 'all' ? getInitialAllSample(activeCertificates) : orderedAll.slice(0, INITIAL);
   const items = showAll ? orderedAll : baseItems;
 
   return (
@@ -209,8 +217,8 @@ export default function Certifications() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <SectionHeader
             label="Certifications"
-            heading={loading ? 'Certifications' : `${certificates.length} Certifications`}
-            subtext="Courses and simulations from Google, Anthropic, Scaler, BCG X, and Walmart, plus hackathon participation. Click a card to open the certificate."
+            heading={loading ? 'Certifications' : `${activeCertificates.length} Certifications`}
+            subtext="Courses, skill assessments, and simulations from Google, Anthropic, HackerRank, Scaler, BCG X, and Walmart. Click a card to open the certificate."
             theme="dark"
           />
 
@@ -221,8 +229,8 @@ export default function Certifications() {
           >
             {filterTabs.map(tab => {
               const count = tab.id === 'all'
-                ? certificates.length
-                : certificates.filter(c => c.category === tab.id).length;
+                ? activeCertificates.length
+                : activeCertificates.filter(c => c.category === tab.id).length;
 
               if (count === 0 && !loading) return null;
 

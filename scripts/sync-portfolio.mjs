@@ -88,6 +88,10 @@ function syncCertificates() {
         category = 'coursera';
         issuer = 'Google Career Certificates (Coursera)';
         type = 'Specialization';
+      } else if (lower.includes('hackerrank') || lower.includes('python_basic') || lower.includes('java_basic')) {
+        category = 'hackerrank';
+        issuer = 'HackerRank';
+        type = 'Skill Certification';
       } else if (lower.includes('simulation') || lower.includes('walmart') || lower.includes('forage')) {
         category = 'simulations';
         issuer = 'Walmart Global Tech & Forage';

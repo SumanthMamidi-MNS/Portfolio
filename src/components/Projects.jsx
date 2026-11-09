@@ -41,6 +41,194 @@ const filterLabels = { all: 'All', 'ai-ml': 'AI & ML', 'interactive': 'Interacti
 const isLogoCover = (cover) => /-logo\.(svg|png)$/.test(cover || '');
 const isLockup = (cover) => /-logo\.png$/.test(cover || '');
 
+// OceanEmbed mark: animated squircle emblem + live DOM wordmark (bulletproof across all color schemes)
+function OceanEmbedMark({ large = false }) {
+  return (
+    <div
+      role="img"
+      aria-label="OceanEmbed"
+      className={`flex items-center justify-center ${large ? 'gap-3.5' : 'gap-2.5'} select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
+    >
+      <svg viewBox="0 0 96 96" className={`${large ? 'h-[4.25rem] w-[4.25rem]' : 'h-13 w-13'} shrink-0`} fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="oem-border" x1="6" y1="6" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#45C4D6" />
+            <stop offset="40%" stopColor="#0A5A78" />
+            <stop offset="75%" stopColor="#06445C" />
+            <stop offset="100%" stopColor="#14212B" />
+          </linearGradient>
+          <linearGradient id="oem-water" x1="48" y1="6" x2="48" y2="90" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#0E1728" />
+            <stop offset="50%" stopColor="#0A1222" />
+            <stop offset="100%" stopColor="#070D1A" />
+          </linearGradient>
+          <radialGradient id="oem-aura" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#45C4D6" stopOpacity="0.45" />
+            <stop offset="50%" stopColor="#0A5A78" stopOpacity="0.18" />
+            <stop offset="100%" stopColor="#070D1A" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <ellipse cx="48" cy="48" rx="54" ry="54" fill="url(#oem-aura)" />
+        <rect x="6" y="6" width="84" height="84" rx="22" fill="url(#oem-water)" stroke="url(#oem-border)" strokeWidth="4.5" strokeLinejoin="round" />
+        <rect x="9.5" y="9.5" width="77" height="77" rx="19" fill="none" stroke="#45C4D6" strokeWidth="0.8" strokeOpacity="0.35" />
+        <line x1="22" y1="33" x2="74" y2="33" stroke="#FFFFFF" strokeWidth="7.0" strokeLinecap="round" />
+        <line x1="22" y1="48" x2="56" y2="48" stroke="#45C4D6" strokeWidth="7.0" strokeLinecap="round" />
+        <line x1="22" y1="63" x2="38" y2="63" stroke="#0A5A78" strokeWidth="7.0" strokeLinecap="round" opacity="0.6" />
+      </svg>
+      <span
+        className={`${large ? 'text-4xl' : 'text-3xl'} font-semibold tracking-tight leading-none text-white whitespace-nowrap`}
+        style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif", letterSpacing: '-0.03em' }}
+      >
+        Ocean<span style={{ color: '#45C4D6' }}>Embed</span>
+      </span>
+    </div>
+  );
+}
+
+// UrbanTrace mark: multi-camera sensor node squircle + live DOM wordmark
+function UrbanTraceMark({ large = false }) {
+  return (
+    <div
+      role="img"
+      aria-label="UrbanTrace"
+      className={`flex items-center justify-center ${large ? 'gap-3.5' : 'gap-2.5'} select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
+    >
+      <svg viewBox="0 0 96 96" className={`${large ? 'h-[4.25rem] w-[4.25rem]' : 'h-13 w-13'} shrink-0`} fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="utm-cyan-border" x1="6" y1="6" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#A5F3FC" />
+            <stop offset="35%" stopColor="#6FDCEC" />
+            <stop offset="70%" stopColor="#3CC4D8" />
+            <stop offset="100%" stopColor="#1D6F7C" />
+          </linearGradient>
+          <linearGradient id="utm-track-grad" x1="22" y1="66" x2="72" y2="32" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#1D6F7C" />
+            <stop offset="50%" stopColor="#3CC4D8" />
+            <stop offset="100%" stopColor="#6FDCEC" />
+          </linearGradient>
+          <radialGradient id="utm-vector-aura" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#CFFAFE" stopOpacity="0.75" />
+            <stop offset="30%" stopColor="#6FDCEC" stopOpacity="0.5" />
+            <stop offset="60%" stopColor="#3CC4D8" stopOpacity="0.2" />
+            <stop offset="100%" stopColor="#1D6F7C" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <ellipse cx="48" cy="48" rx="54" ry="54" fill="url(#utm-vector-aura)" />
+        <rect x="6" y="6" width="84" height="84" rx="20" fill="#070A0E" stroke="url(#utm-cyan-border)" strokeWidth="4.5" strokeLinejoin="round" />
+        <rect x="9.5" y="9.5" width="77" height="77" rx="17" fill="none" stroke="#A5F3FC" strokeWidth="0.8" strokeOpacity="0.4" />
+        <path d="M22 66 L44 36 L72 32" fill="none" stroke="url(#utm-track-grad)" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="22" cy="66" r="6.5" fill="#070A0E" stroke="#2A9FB1" strokeWidth="4.5" />
+        <circle cx="44" cy="36" r="6.5" fill="#070A0E" stroke="#3CC4D8" strokeWidth="4.5" />
+        <circle cx="72" cy="32" r="14" fill="#3CC4D8" opacity="0.2" />
+        <circle cx="72" cy="32" r="7.5" fill="#6FDCEC" />
+        <circle cx="72" cy="32" r="3" fill="#FFFFFF" />
+        <path d="M82 22 A14 14 0 0 1 84 42" fill="none" stroke="#6FDCEC" strokeWidth="2.2" strokeLinecap="round" opacity="0.85" />
+      </svg>
+      <span
+        className={`${large ? 'text-4xl' : 'text-3xl'} font-semibold tracking-tight leading-none text-white whitespace-nowrap`}
+        style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif", letterSpacing: '-0.02em' }}
+      >
+        Urban<span style={{ color: '#3CC4D8' }}>Trace</span>
+      </span>
+    </div>
+  );
+}
+
+// TrueCite mark: legal verification shield + live DOM wordmark
+function TrueCiteMark({ large = false }) {
+  return (
+    <div
+      role="img"
+      aria-label="TrueCite"
+      className={`flex items-center justify-center ${large ? 'gap-3.5' : 'gap-2.5'} select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
+    >
+      <svg viewBox="0 0 96 96" className={`${large ? 'h-[4.25rem] w-[4.25rem]' : 'h-13 w-13'} shrink-0`} fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="tcm-gold" x1="14" y1="6" x2="82" y2="90" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#FEF08A" />
+            <stop offset="35%" stopColor="#FACC15" />
+            <stop offset="70%" stopColor="#EAB308" />
+            <stop offset="100%" stopColor="#CA8A04" />
+          </linearGradient>
+          <linearGradient id="tcm-emerald" x1="34" y1="38" x2="64" y2="60" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#34D399" />
+            <stop offset="100%" stopColor="#10B981" />
+          </linearGradient>
+          <radialGradient id="tcm-vector-aura" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#FFFBEB" stopOpacity="0.9" />
+            <stop offset="25%" stopColor="#FACC15" stopOpacity="0.75" />
+            <stop offset="50%" stopColor="#EAB308" stopOpacity="0.3" />
+            <stop offset="85%" stopColor="#CA8A04" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <ellipse cx="48" cy="48" rx="56" ry="56" fill="url(#tcm-vector-aura)" opacity="0.6" />
+        <path d="M48 6 L82 22 V58 C82 78 48 90 48 90 C48 90 14 78 14 58 V22 Z" fill="#111827" stroke="url(#tcm-gold)" strokeWidth="5" strokeLinejoin="round" />
+        <path d="M48 9 L79 24 V57 C79 75 48 86 48 86 C48 86 17 75 17 57 V24 Z" fill="none" stroke="#FEF9C3" strokeWidth="0.8" strokeOpacity="0.6" />
+        <path d="M34 50 L44 60 L64 38" fill="none" stroke="url(#tcm-emerald)" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      <span
+        className={`${large ? 'text-4xl' : 'text-3xl'} font-semibold tracking-tight leading-none text-white whitespace-nowrap`}
+        style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif", letterSpacing: '-0.02em' }}
+      >
+        True<span style={{ color: '#FACC15' }}>Cite</span>
+      </span>
+    </div>
+  );
+}
+
+// FieldCast mark: meteorological radar beacon + live DOM wordmark
+function FieldCastMark({ large = false }) {
+  return (
+    <div
+      role="img"
+      aria-label="FieldCast"
+      className={`flex items-center justify-center ${large ? 'gap-3.5' : 'gap-2.5'} select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
+    >
+      <svg viewBox="0 0 96 96" className={`${large ? 'h-[4.25rem] w-[4.25rem]' : 'h-13 w-13'} shrink-0`} fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="fcm-outer" x1="8" y1="8" x2="25" y2="25" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#0A3B34" />
+            <stop offset="50%" stopColor="#14554A" />
+            <stop offset="100%" stopColor="#08302A" />
+          </linearGradient>
+          <linearGradient id="fcm-inner" x1="11" y1="11" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#059669" />
+            <stop offset="30%" stopColor="#10B981" />
+            <stop offset="50%" stopColor="#34D399" />
+            <stop offset="100%" stopColor="#059669" />
+          </linearGradient>
+          <radialGradient id="fcm-beacon" cx="38%" cy="32%" r="62%">
+            <stop offset="0%" stopColor="#FFFBEB" />
+            <stop offset="25%" stopColor="#FDE68A" />
+            <stop offset="55%" stopColor="#F59E0B" />
+            <stop offset="100%" stopColor="#D97706" />
+          </radialGradient>
+          <radialGradient id="fcm-aura" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.6" />
+            <stop offset="50%" stopColor="#F59E0B" stopOpacity="0.2" />
+            <stop offset="100%" stopColor="#F59E0B" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <path d="M 66 32 A 24 24 0 0 1 72 48 A 24 24 0 0 1 66 64" fill="none" stroke="#6EE7B7" strokeWidth="2.8" strokeLinecap="round" opacity="0.9" />
+        <path d="M 74 26 A 32 32 0 0 1 82 48 A 32 32 0 0 1 74 70" fill="none" stroke="#34D399" strokeWidth="2.4" strokeLinecap="round" opacity="0.75" />
+        <g transform="translate(44, 48) scale(2.4) translate(-16.5, -16.5)">
+          <path d="M8 8 C12.5 3.5 20.5 3.5 25 8 C29.5 12.5 29.5 20.5 25 25 C20.5 29.5 12.5 29.5 8 25" fill="none" stroke="url(#fcm-outer)" strokeWidth="2.6" strokeLinecap="round" />
+          <path d="M11 11 C14 8 19 8 22 11 C25 14 25 19 22 22" fill="none" stroke="url(#fcm-inner)" strokeWidth="2.6" strokeLinecap="round" />
+          <circle cx="16.5" cy="16.5" r="5.5" fill="url(#fcm-aura)" />
+          <circle cx="16.5" cy="16.5" r="3" fill="url(#fcm-beacon)" />
+          <circle cx="15.4" cy="15.3" r="0.75" fill="#FFFFFF" opacity="0.85" />
+        </g>
+      </svg>
+      <span
+        className={`${large ? 'text-4xl' : 'text-3xl'} font-semibold tracking-tight leading-none text-white whitespace-nowrap`}
+        style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif", letterSpacing: '-0.02em' }}
+      >
+        Field<span style={{ color: '#10B981' }}>Cast</span>
+      </span>
+    </div>
+  );
+}
+
 // CampusFlow's mark is drawn in the page (icon + live text) instead of an image, so the pair is centred
 // exactly whatever font the visitor's device falls back to, and it scales cleanly with the card.
 function CampusFlowMark({ large = false }) {
@@ -81,7 +269,13 @@ function CampusFlowMark({ large = false }) {
   );
 }
 
-const INLINE_LOGOS = { campusflow: CampusFlowMark };
+const INLINE_LOGOS = {
+  oceanembed: OceanEmbedMark,
+  urbantrace: UrbanTraceMark,
+  truecite: TrueCiteMark,
+  fieldcast: FieldCastMark,
+  campusflow: CampusFlowMark,
+};
 
 function ProjectCard({ project, index, number, onClick }) {
   const accent = categoryAccents[project.category] || categoryAccents['ai-ml'];
@@ -113,7 +307,7 @@ function ProjectCard({ project, index, number, onClick }) {
           style={{
             // Translucent fill; the frosted blur is added only on hover (.project-glass), and the hover
             // spotlight takes this project's own colour.
-            background: 'rgba(13, 20, 36, 0.72)',
+            background: '#0D1424',
             boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.10)',
           }}
         >

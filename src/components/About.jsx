@@ -53,13 +53,13 @@ export default function About() {
   const loading = profileLoading || projectsLoading || certsLoading;
 
   const featuredCount = projects?.filter((p) => p.featured).length || 6;
-  const certCount = certificates?.length || 19;
+  const certCount = certificates?.filter(c => c.category !== 'hackathons')?.length || 20;
   const paragraphs = profile?.about?.length ? profile.about : DEFAULT_ABOUT;
 
   const stats = [
     { value: 1, label: 'Published paper', note: 'AVE Trends, 2026' },
     { value: featuredCount, label: 'Featured projects', note: 'With measured results' },
-    { value: certCount, label: 'Certifications', note: 'Google, Anthropic, Scaler' },
+    { value: certCount, label: 'Certifications', note: 'Google, Anthropic, HackerRank' },
   ];
 
   return (

@@ -43,6 +43,12 @@
   </defs>
 
   <style><![CDATA[
+    :root { color-scheme: only dark; }
+    @media (prefers-color-scheme: light) {
+      :root { color-scheme: only dark !important; }
+      .oe-ocean { fill: #FFFFFF !important; }
+      .oe-embed { fill: #45C4D6 !important; }
+    }
     /* Ambient Breathing Background */
     @keyframes g1AuraPulse {
       0%, 100% { opacity: 0.35; transform: scale(0.96); }
@@ -119,16 +125,6 @@
     }
     .oe-ocean { font-weight: 600; fill: #FFFFFF; }
     .oe-embed { font-weight: 600; fill: #45C4D6; }
-
-    /* Light Theme Adaptation */
-    @media (prefers-color-scheme: light) {
-      .g1-casing-bg { fill: #F7F6F2 !important; stroke: #0A5A78 !important; }
-      .g1-bar-surface { stroke: #14212B !important; }
-      .g1-bar-thermo { stroke: #0A5A78 !important; }
-      .g1-bar-abyss { stroke: #0A5A78 !important; }
-      .oe-ocean { fill: #14212B !important; }
-      .oe-embed { fill: #0A5A78 !important; }
-    }
   ]]></style>
 
   <!-- Lockup Container (viewBox 520x116, translate 14, 10) -->
@@ -204,7 +200,7 @@
 
     <!-- Wordmark "OceanEmbed" (71px, perfectly proportioned to 540x116) -->
     <text x="106" y="74" class="oe-wordmark">
-      <tspan class="oe-ocean">Ocean</tspan><tspan class="oe-embed">Embed</tspan>
+      <tspan class="oe-ocean" style="fill: #FFFFFF !important;">Ocean</tspan><tspan class="oe-embed" style="fill: #45C4D6 !important;">Embed</tspan>
     </text>
   </g>
 </svg>

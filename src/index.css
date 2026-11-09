@@ -66,6 +66,18 @@
 /* ── Base Reset ── */
 *, *::before, *::after { box-sizing: border-box; }
 
+:root {
+  color-scheme: only dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root, html, body {
+    color-scheme: only dark !important;
+    background-color: var(--color-surface-1) !important;
+    color: var(--color-text-primary) !important;
+  }
+}
+
 html {
   scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;

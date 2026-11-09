@@ -22,6 +22,28 @@
     "label": "Google · 5-course specialization"
   },
   {
+    "title": "Python (Basic) Skill Certification",
+    "issuer": "HackerRank",
+    "date": "October 2026",
+    "file": "python_basic certificate.pdf",
+    "image": "python_basic certificate.png",
+    "category": "hackerrank",
+    "type": "Skill Certification",
+    "driveId": "hackerrank-10fd6c464f4f",
+    "label": "HackerRank · Python"
+  },
+  {
+    "title": "Java (Basic) Skill Certification",
+    "issuer": "HackerRank",
+    "date": "October 2026",
+    "file": "java_basic certificate.pdf",
+    "image": "java_basic certificate.png",
+    "category": "hackerrank",
+    "type": "Skill Certification",
+    "driveId": "hackerrank-3bae8c44085a",
+    "label": "HackerRank · Java"
+  },
+  {
     "title": "Building with the Claude API",
     "issuer": "Anthropic Developer Program",
     "date": "July 2026",
@@ -208,4 +230,4 @@
     "driveId": "1BlOkZJULhFiQwqHjN0nxxgfUHwul4Rz3",
     "label": "Outskill · Full-stack bootcamp"
   }
-]
+]

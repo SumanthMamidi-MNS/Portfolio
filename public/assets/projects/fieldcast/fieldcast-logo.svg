@@ -35,6 +35,12 @@
   </defs>
 
   <style>
+    :root { color-scheme: only dark; }
+    @media (prefers-color-scheme: light) {
+      :root { color-scheme: only dark !important; }
+      .fc-field { fill: #FFFFFF !important; }
+      .fc-cast { fill: #10B981 !important; }
+    }
     /* Directional High-Intensity Meteorological Sonar Waves */
     @keyframes sonarWave1 {
       0% {
@@ -135,15 +141,6 @@
       font-weight: 600;
       fill: #10B981;
     }
-
-    @media (prefers-color-scheme: light) {
-      .fc-field {
-        fill: #131A17;
-      }
-      .fc-cast {
-        fill: #047857;
-      }
-    }
   </style>
 
   <!-- Lockup matching portfolio showcase standards (viewBox 520x116, translate 18, 10) -->
@@ -199,7 +196,7 @@
 
     <!-- Wordmark "FieldCast" (76px font size, matching portfolio proportion at x=118, y=75) -->
     <text x="118" y="75" class="fc-wordmark">
-      <tspan class="fc-field">Field</tspan><tspan class="fc-cast">Cast</tspan>
+      <tspan class="fc-field" style="fill: #FFFFFF !important;">Field</tspan><tspan class="fc-cast" style="fill: #10B981 !important;">Cast</tspan>
     </text>
   </g>
 </svg>
