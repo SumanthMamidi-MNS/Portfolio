@@ -41,11 +41,12 @@ const filterLabels = { all: 'All', 'ai-ml': 'AI & ML', 'interactive': 'Interacti
 const isLogoCover = (cover) => /-logo\.(svg|png)$/.test(cover || '');
 const isLockup = (cover) => /-logo\.png$/.test(cover || '');
 
-// OceanEmbed mark: full-size original vector lockup (540x116)
+// OceanEmbed mark: full-size vector lockup with dynamic hydrothermal strata wave animations (540x116)
 function OceanEmbedMark({ large = false }) {
   return (
     <svg
-      viewBox="0 0 540 116" className={`${large ? 'w-[360px] md:w-[420px] max-w-[88%]' : 'w-[270px] sm:w-[295px] md:w-[315px] max-w-[88%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
+      viewBox="0 0 540 116"
+      className={`${large ? 'w-[380px] md:w-[450px] max-w-[92%]' : 'w-[290px] sm:w-[325px] md:w-[345px] max-w-[92%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
       fill="none"
       role="img"
       aria-label="OceanEmbed"
@@ -63,26 +64,105 @@ function OceanEmbedMark({ large = false }) {
           <stop offset="100%" stopColor="#070D1A" />
         </linearGradient>
         <radialGradient id="oem-aura" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#45C4D6" stopOpacity="0.5" />
-          <stop offset="50%" stopColor="#0A5A78" stopOpacity="0.2" />
+          <stop offset="0%" stopColor="#45C4D6" stopOpacity="0.6" />
+          <stop offset="50%" stopColor="#0A5A78" stopOpacity="0.25" />
           <stop offset="100%" stopColor="#070D1A" stopOpacity="0" />
         </radialGradient>
+        <linearGradient id="oem-glint-surface" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0" />
+          <stop offset="50%" stopColor="#FFFFFF" stopOpacity="1" />
+          <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
+        </linearGradient>
+        <linearGradient id="oem-glint-thermo" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#45C4D6" stopOpacity="0" />
+          <stop offset="50%" stopColor="#E8F9FC" stopOpacity="1" />
+          <stop offset="100%" stopColor="#45C4D6" stopOpacity="0" />
+        </linearGradient>
+        <linearGradient id="oem-glint-abyss" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#0A5A78" stopOpacity="0" />
+          <stop offset="50%" stopColor="#45C4D6" stopOpacity="1" />
+          <stop offset="100%" stopColor="#0A5A78" stopOpacity="0" />
+        </linearGradient>
+        <clipPath id="oem-clip-surface">
+          <rect x="18.5" y="29.5" width="59" height="7" rx="3.5" />
+        </clipPath>
+        <clipPath id="oem-clip-thermo">
+          <rect x="18.5" y="44.5" width="41" height="7" rx="3.5" />
+        </clipPath>
+        <clipPath id="oem-clip-abyss">
+          <rect x="18.5" y="59.5" width="23" height="7" rx="3.5" />
+        </clipPath>
       </defs>
+      <style>{`
+        @keyframes oemAuraPulse {
+          0%, 100% { opacity: 0.45; transform: scale(0.96); }
+          50% { opacity: 0.85; transform: scale(1.06); }
+        }
+        @keyframes oemSurfaceSweep {
+          0% { transform: translateX(-30px); opacity: 0; }
+          4% { opacity: 1; }
+          26% { transform: translateX(58px); opacity: 1; }
+          30%, 100% { transform: translateX(58px); opacity: 0; }
+        }
+        @keyframes oemSurfaceGlow {
+          0% { filter: none; }
+          5%, 25% { filter: drop-shadow(0 0 10px #FFFFFF) drop-shadow(0 0 18px rgba(69,196,214,0.85)); }
+          32%, 100% { filter: none; }
+        }
+        @keyframes oemThermoSweep {
+          0%, 30% { transform: translateX(-24px); opacity: 0; }
+          34% { opacity: 1; }
+          56% { transform: translateX(42px); opacity: 1; }
+          60%, 100% { transform: translateX(42px); opacity: 0; }
+        }
+        @keyframes oemThermoGlow {
+          0%, 30% { filter: none; }
+          35%, 55% { filter: drop-shadow(0 0 12px #45C4D6) drop-shadow(0 0 20px rgba(69,196,214,0.9)); }
+          62%, 100% { filter: none; }
+        }
+        @keyframes oemAbyssSweep {
+          0%, 60% { transform: translateX(-18px); opacity: 0; }
+          64% { opacity: 1; }
+          84% { transform: translateX(26px); opacity: 1; }
+          88%, 100% { transform: translateX(26px); opacity: 0; }
+        }
+        @keyframes oemAbyssGlow {
+          0%, 60% { filter: none; opacity: 0.55; }
+          65%, 84% { filter: drop-shadow(0 0 10px #45C4D6); opacity: 0.95; }
+          90%, 100% { filter: none; opacity: 0.55; }
+        }
+        .oem-aura { transform-origin: 48px 48px; animation: oemAuraPulse 3.4s ease-in-out infinite; }
+        .oem-bar-surface { animation: oemSurfaceGlow 3.4s ease-in-out infinite; }
+        .oem-surface-light { animation: oemSurfaceSweep 3.4s ease-in-out infinite; }
+        .oem-bar-thermo { animation: oemThermoGlow 3.4s ease-in-out infinite; }
+        .oem-thermo-light { animation: oemThermoSweep 3.4s ease-in-out infinite; }
+        .oem-bar-abyss { animation: oemAbyssGlow 3.4s ease-in-out infinite; }
+        .oem-abyss-light { animation: oemAbyssSweep 3.4s ease-in-out infinite; }
+      `}</style>
       <g transform="translate(14, 10)">
         <g transform="translate(0, 0)">
-          <ellipse cx="48" cy="48" rx="54" ry="54" fill="url(#oem-aura)" opacity="0.65" />
+          <ellipse cx="48" cy="48" rx="54" ry="54" fill="url(#oem-aura)" className="oem-aura" />
           <rect x="6" y="6" width="84" height="84" rx="22" fill="url(#oem-water)" stroke="url(#oem-border)" strokeWidth="4.5" strokeLinejoin="round" />
           <rect x="9.5" y="9.5" width="77" height="77" rx="19" fill="none" stroke="#45C4D6" strokeWidth="0.8" strokeOpacity="0.35" />
-          <line x1="22" y1="33" x2="74" y2="33" stroke="#FFFFFF" strokeWidth="7.0" strokeLinecap="round" />
-          <line x1="22" y1="48" x2="56" y2="48" stroke="#45C4D6" strokeWidth="7.0" strokeLinecap="round" />
-          <line x1="22" y1="63" x2="38" y2="63" stroke="#0A5A78" strokeWidth="7.0" strokeLinecap="round" opacity="0.6" />
+          <line x1="22" y1="33" x2="74" y2="33" stroke="#FFFFFF" strokeWidth="7.0" strokeLinecap="round" className="oem-bar-surface" />
+          <g clipPath="url(#oem-clip-surface)">
+            <rect x="22" y="29" width="28" height="8" fill="url(#oem-glint-surface)" className="oem-surface-light" />
+          </g>
+          <line x1="22" y1="48" x2="56" y2="48" stroke="#45C4D6" strokeWidth="7.0" strokeLinecap="round" className="oem-bar-thermo" />
+          <g clipPath="url(#oem-clip-thermo)">
+            <rect x="22" y="44" width="22" height="8" fill="url(#oem-glint-thermo)" className="oem-thermo-light" />
+          </g>
+          <line x1="22" y1="63" x2="38" y2="63" stroke="#0A5A78" strokeWidth="7.0" strokeLinecap="round" opacity="0.6" className="oem-bar-abyss" />
+          <g clipPath="url(#oem-clip-abyss)">
+            <rect x="22" y="59" width="16" height="8" fill="url(#oem-glint-abyss)" className="oem-abyss-light" />
+          </g>
         </g>
         <text
           x="106"
-          y="74"
+          y="75"
           style={{
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif",
-            fontSize: '71px',
+            fontSize: '75px',
             letterSpacing: '-1.8px',
           }}
         >
@@ -94,11 +174,12 @@ function OceanEmbedMark({ large = false }) {
   );
 }
 
-// UrbanTrace mark: full-size original vector lockup (520x116)
+// UrbanTrace mark: full-size vector lockup with multi-camera surveillance sonar radar animations (520x116)
 function UrbanTraceMark({ large = false }) {
   return (
     <svg
-      viewBox="0 0 520 116" className={`${large ? 'w-[360px] md:w-[420px] max-w-[88%]' : 'w-[270px] sm:w-[295px] md:w-[315px] max-w-[88%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
+      viewBox="0 0 520 116"
+      className={`${large ? 'w-[380px] md:w-[450px] max-w-[92%]' : 'w-[290px] sm:w-[325px] md:w-[345px] max-w-[92%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
       fill="none"
       role="img"
       aria-label="UrbanTrace"
@@ -116,33 +197,66 @@ function UrbanTraceMark({ large = false }) {
           <stop offset="100%" stopColor="#6FDCEC" />
         </linearGradient>
         <radialGradient id="utm-vector-aura" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#CFFAFE" stopOpacity="0.8" />
-          <stop offset="30%" stopColor="#6FDCEC" stopOpacity="0.55" />
-          <stop offset="60%" stopColor="#3CC4D8" stopOpacity="0.2" />
+          <stop offset="0%" stopColor="#CFFAFE" stopOpacity="0.85" />
+          <stop offset="30%" stopColor="#6FDCEC" stopOpacity="0.6" />
+          <stop offset="60%" stopColor="#3CC4D8" stopOpacity="0.25" />
           <stop offset="100%" stopColor="#1D6F7C" stopOpacity="0" />
         </radialGradient>
       </defs>
+      <style>{`
+        @keyframes utmAuraBreathe {
+          0%, 100% { opacity: 0.4; }
+          50% { opacity: 0.8; }
+        }
+        @keyframes utmSonarWave1 {
+          0% { opacity: 0; transform: scale(0.65); stroke-width: 2.6px; }
+          15% { opacity: 0.95; stroke: #A5F3FC; }
+          65% { opacity: 0.45; stroke: #3CC4D8; }
+          100% { opacity: 0; transform: scale(2.2); stroke-width: 1.2px; }
+        }
+        @keyframes utmSonarWave2 {
+          0%, 25% { opacity: 0; transform: scale(0.65); stroke-width: 2.6px; }
+          40% { opacity: 0.9; stroke: #6FDCEC; }
+          75% { opacity: 0.35; stroke: #2A9FB1; }
+          100% { opacity: 0; transform: scale(2.2); stroke-width: 1.2px; }
+        }
+        @keyframes utmSonarWave3 {
+          0%, 50% { opacity: 0; transform: scale(0.65); stroke-width: 2.6px; }
+          65% { opacity: 0.85; stroke: #3CC4D8; }
+          90% { opacity: 0.25; stroke: #1D6F7C; }
+          100% { opacity: 0; transform: scale(2.2); stroke-width: 1.2px; }
+        }
+        @keyframes utmSensorBeat {
+          0%, 100% { fill: #6FDCEC; transform: scale(1); }
+          50% { fill: #FFFFFF; transform: scale(1.35); }
+        }
+        .utm-aura { animation: utmAuraBreathe 3.6s ease-in-out infinite; }
+        .utm-sonar-1 { transform-origin: 72px 32px; animation: utmSonarWave1 1.8s ease-out infinite; }
+        .utm-sonar-2 { transform-origin: 72px 32px; animation: utmSonarWave2 1.8s ease-out infinite; }
+        .utm-sonar-3 { transform-origin: 72px 32px; animation: utmSonarWave3 1.8s ease-out infinite; }
+        .utm-sensor-led { transform-origin: 72px 32px; animation: utmSensorBeat 1.8s ease-in-out infinite; }
+      `}</style>
       <g transform="translate(18, 10)">
         <g transform="translate(0, 0)">
-          <ellipse cx="48" cy="48" rx="54" ry="54" fill="url(#utm-vector-aura)" opacity="0.6" />
+          <ellipse cx="48" cy="48" rx="54" ry="54" fill="url(#utm-vector-aura)" className="utm-aura" />
           <rect x="6" y="6" width="84" height="84" rx="20" fill="#070A0E" stroke="url(#utm-cyan-border)" strokeWidth="4.5" strokeLinejoin="round" />
           <rect x="9.5" y="9.5" width="77" height="77" rx="17" fill="none" stroke="#A5F3FC" strokeWidth="0.8" strokeOpacity="0.4" />
           <path d="M22 66 L44 36 L72 32" fill="none" stroke="url(#utm-track-grad)" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" />
           <circle cx="22" cy="66" r="6.5" fill="#070A0E" stroke="#2A9FB1" strokeWidth="4.5" />
           <circle cx="44" cy="36" r="6.5" fill="#070A0E" stroke="#3CC4D8" strokeWidth="4.5" />
           <circle cx="72" cy="32" r="14" fill="#3CC4D8" opacity="0.2" />
-          <circle cx="72" cy="32" r="7.5" fill="#6FDCEC" />
+          <circle cx="72" cy="32" r="7.5" fill="#6FDCEC" className="utm-sensor-led" />
           <circle cx="72" cy="32" r="3" fill="#FFFFFF" />
-          <path d="M82 22 A14 14 0 0 1 84 42" fill="none" stroke="#6FDCEC" strokeWidth="2.2" strokeLinecap="round" opacity="0.85" />
-          <path d="M82 22 A14 14 0 0 1 84 42" fill="none" stroke="#3CC4D8" strokeWidth="2.2" strokeLinecap="round" opacity="0.6" />
-          <path d="M82 22 A14 14 0 0 1 84 42" fill="none" stroke="#A5F3FC" strokeWidth="2.2" strokeLinecap="round" opacity="0.4" />
+          <path d="M82 22 A14 14 0 0 1 84 42" fill="none" stroke="#6FDCEC" strokeWidth="2.2" strokeLinecap="round" className="utm-sonar-1" />
+          <path d="M82 22 A14 14 0 0 1 84 42" fill="none" stroke="#3CC4D8" strokeWidth="2.2" strokeLinecap="round" className="utm-sonar-2" />
+          <path d="M82 22 A14 14 0 0 1 84 42" fill="none" stroke="#A5F3FC" strokeWidth="2.2" strokeLinecap="round" className="utm-sonar-3" />
         </g>
         <text
           x="122"
-          y="74"
+          y="75"
           style={{
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif",
-            fontSize: '72px',
+            fontSize: '76px',
             letterSpacing: '-1.2px',
           }}
         >
@@ -154,11 +268,12 @@ function UrbanTraceMark({ large = false }) {
   );
 }
 
-// TrueCite mark: full-size original vector lockup (500x116)
+// TrueCite mark: full-size vector lockup with golden vector shield and emerald verification pulse (500x116)
 function TrueCiteMark({ large = false }) {
   return (
     <svg
-      viewBox="0 0 500 116" className={`${large ? 'w-[360px] md:w-[420px] max-w-[88%]' : 'w-[270px] sm:w-[295px] md:w-[315px] max-w-[88%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
+      viewBox="0 0 500 116"
+      className={`${large ? 'w-[380px] md:w-[450px] max-w-[92%]' : 'w-[290px] sm:w-[325px] md:w-[345px] max-w-[92%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
       fill="none"
       role="img"
       aria-label="TrueCite"
@@ -186,19 +301,31 @@ function TrueCiteMark({ large = false }) {
           <stop offset="85%" stopColor="#CA8A04" stopOpacity="0" />
         </radialGradient>
       </defs>
+      <style>{`
+        @keyframes tcmAuraPulse {
+          0%, 100% { opacity: 0.45; transform: scale(0.96); }
+          50% { opacity: 0.85; transform: scale(1.06); }
+        }
+        @keyframes tcmCheckGlow {
+          0%, 100% { filter: drop-shadow(0 0 4px rgba(16,185,129,0.5)); }
+          50% { filter: drop-shadow(0 0 10px rgba(52,211,153,0.95)) drop-shadow(0 0 16px rgba(16,185,129,0.7)); }
+        }
+        .tcm-aura { transform-origin: 48px 48px; animation: tcmAuraPulse 2.8s ease-in-out infinite; }
+        .tcm-check { animation: tcmCheckGlow 2.8s ease-in-out infinite; }
+      `}</style>
       <g transform="translate(18, 10)">
         <g transform="translate(0, 0)">
-          <ellipse cx="48" cy="48" rx="58" ry="58" fill="url(#tcm-vector-aura)" opacity="0.65" />
+          <ellipse cx="48" cy="48" rx="58" ry="58" fill="url(#tcm-vector-aura)" className="tcm-aura" />
           <path d="M48 6 L82 22 V58 C82 78 48 90 48 90 C48 90 14 78 14 58 V22 Z" fill="#111827" stroke="url(#tcm-gold)" strokeWidth="5" strokeLinejoin="round" />
           <path d="M48 9 L79 24 V57 C79 75 48 86 48 86 C48 86 17 75 17 57 V24 Z" fill="none" stroke="#FEF9C3" strokeWidth="0.8" strokeOpacity="0.6" />
-          <path d="M34 50 L44 60 L64 38" fill="none" stroke="url(#tcm-emerald)" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M34 50 L44 60 L64 38" fill="none" stroke="url(#tcm-emerald)" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" className="tcm-check" />
         </g>
         <text
           x="114"
-          y="74"
+          y="75"
           style={{
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif",
-            fontSize: '72px',
+            fontSize: '76px',
             letterSpacing: '-0.8px',
           }}
         >
@@ -210,11 +337,12 @@ function TrueCiteMark({ large = false }) {
   );
 }
 
-// FieldCast mark: full-size original vector lockup (520x116)
+// FieldCast mark: full-size vector lockup with radar sonar waves and beacon animations (520x116)
 function FieldCastMark({ large = false }) {
   return (
     <svg
-      viewBox="0 0 520 116" className={`${large ? 'w-[360px] md:w-[420px] max-w-[88%]' : 'w-[270px] sm:w-[295px] md:w-[315px] max-w-[88%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
+      viewBox="0 0 520 116"
+      className={`${large ? 'w-[380px] md:w-[450px] max-w-[92%]' : 'w-[290px] sm:w-[325px] md:w-[345px] max-w-[92%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
       fill="none"
       role="img"
       aria-label="FieldCast"
@@ -243,25 +371,53 @@ function FieldCastMark({ large = false }) {
           <stop offset="100%" stopColor="#F59E0B" stopOpacity="0" />
         </radialGradient>
       </defs>
+      <style>{`
+        @keyframes fcmSonarWave1 {
+          0% { opacity: 0; transform: scale(0.65); stroke-width: 2.8px; }
+          20% { opacity: 0.95; stroke: #A7F3D0; }
+          65% { opacity: 0.35; stroke: #34D399; }
+          100% { opacity: 0; transform: scale(2.0); stroke-width: 1.2px; }
+        }
+        @keyframes fcmSonarWave2 {
+          0%, 25% { opacity: 0; transform: scale(0.65); stroke-width: 2.8px; }
+          45% { opacity: 0.9; stroke: #6EE7B7; }
+          80% { opacity: 0.3; stroke: #059669; }
+          100% { opacity: 0; transform: scale(2.0); stroke-width: 1.2px; }
+        }
+        @keyframes fcmSonarWave3 {
+          0%, 50% { opacity: 0; transform: scale(0.65); stroke-width: 2.8px; }
+          70% { opacity: 0.85; stroke: #34D399; }
+          90% { opacity: 0.25; stroke: #047857; }
+          100% { opacity: 0; transform: scale(2.0); stroke-width: 1.2px; }
+        }
+        @keyframes fcmBeaconPulse {
+          0%, 100% { transform: scale(1); opacity: 0.7; }
+          50% { transform: scale(1.35); opacity: 1; }
+        }
+        .fcm-sonar-1 { transform-origin: 48px 48px; animation: fcmSonarWave1 2.0s ease-out infinite; }
+        .fcm-sonar-2 { transform-origin: 48px 48px; animation: fcmSonarWave2 2.0s ease-out infinite; }
+        .fcm-sonar-3 { transform-origin: 48px 48px; animation: fcmSonarWave3 2.0s ease-out infinite; }
+        .fcm-beacon-pulse { transform-origin: 16.5px 16.5px; animation: fcmBeaconPulse 2.2s ease-in-out infinite; }
+      `}</style>
       <g transform="translate(18, 10)">
         <g transform="translate(48, 48) scale(1.40) translate(-48, -48)">
-          <path d="M 64 34 A 22 22 0 0 1 70 48 A 22 22 0 0 1 64 62" fill="none" stroke="#6EE7B7" strokeWidth="2.5" strokeLinecap="round" />
-          <path d="M 64 34 A 22 22 0 0 1 70 48 A 22 22 0 0 1 64 62" fill="none" stroke="#34D399" strokeWidth="2.5" strokeLinecap="round" />
-          <path d="M 64 34 A 22 22 0 0 1 70 48 A 22 22 0 0 1 64 62" fill="none" stroke="#A7F3D0" strokeWidth="2.5" strokeLinecap="round" />
+          <path d="M 64 34 A 22 22 0 0 1 70 48 A 22 22 0 0 1 64 62" fill="none" stroke="#6EE7B7" strokeWidth="2.5" strokeLinecap="round" className="fcm-sonar-1" />
+          <path d="M 64 34 A 22 22 0 0 1 70 48 A 22 22 0 0 1 64 62" fill="none" stroke="#34D399" strokeWidth="2.5" strokeLinecap="round" className="fcm-sonar-2" />
+          <path d="M 64 34 A 22 22 0 0 1 70 48 A 22 22 0 0 1 64 62" fill="none" stroke="#A7F3D0" strokeWidth="2.5" strokeLinecap="round" className="fcm-sonar-3" />
           <g transform="translate(48, 48) scale(2.4) translate(-16.5, -16.5)">
             <path d="M8 8 C12.5 3.5 20.5 3.5 25 8 C29.5 12.5 29.5 20.5 25 25 C20.5 29.5 12.5 29.5 8 25" fill="none" stroke="url(#fcm-outer)" strokeWidth="2.6" strokeLinecap="round" />
             <path d="M11 11 C14 8 19 8 22 11 C25 14 25 19 22 22" fill="none" stroke="url(#fcm-inner)" strokeWidth="2.6" strokeLinecap="round" />
-            <circle cx="16.5" cy="16.5" r="5.5" fill="url(#fcm-aura)" />
+            <circle cx="16.5" cy="16.5" r="5.5" fill="url(#fcm-aura)" className="fcm-beacon-pulse" />
             <circle cx="16.5" cy="16.5" r="3" fill="url(#fcm-beacon)" />
             <circle cx="15.4" cy="15.3" r="0.75" fill="#FFFFFF" opacity="0.85" />
           </g>
         </g>
         <text
           x="118"
-          y="75"
+          y="76"
           style={{
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif",
-            fontSize: '76px',
+            fontSize: '79px',
             letterSpacing: '-1.2px',
           }}
         >
@@ -273,11 +429,12 @@ function FieldCastMark({ large = false }) {
   );
 }
 
-// CampusFlow mark: full-size original vector lockup (540x116)
+// CampusFlow mark: full-size vector lockup with ambient glow breathing (540x116)
 function CampusFlowMark({ large = false }) {
   return (
     <svg
-      viewBox="0 0 540 116" className={`${large ? 'w-[360px] md:w-[420px] max-w-[88%]' : 'w-[270px] sm:w-[295px] md:w-[315px] max-w-[88%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
+      viewBox="0 0 540 116"
+      className={`${large ? 'w-[380px] md:w-[450px] max-w-[92%]' : 'w-[290px] sm:w-[325px] md:w-[345px] max-w-[92%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
       fill="none"
       role="img"
       aria-label="CampusFlow"
@@ -296,18 +453,31 @@ function CampusFlowMark({ large = false }) {
           <stop offset="0%" stopColor="#E0E7FF" />
           <stop offset="100%" stopColor="#818CF8" />
         </linearGradient>
+        <radialGradient id="cfm-aura" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#818CF8" stopOpacity="0.55" />
+          <stop offset="50%" stopColor="#6366F1" stopOpacity="0.2" />
+          <stop offset="100%" stopColor="#111533" stopOpacity="0" />
+        </radialGradient>
       </defs>
+      <style>{`
+        @keyframes cfmAuraPulse {
+          0%, 100% { opacity: 0.4; transform: scale(0.96); }
+          50% { opacity: 0.85; transform: scale(1.05); }
+        }
+        .cfm-aura { transform-origin: 48px 52px; animation: cfmAuraPulse 3.2s ease-in-out infinite; }
+      `}</style>
       <g transform="translate(14, 8)">
+        <ellipse cx="48" cy="52" rx="52" ry="52" fill="url(#cfm-aura)" className="cfm-aura" />
         <rect x="6" y="10" width="84" height="84" rx="20" fill="url(#cfm-bg)" stroke="url(#cfm-border)" strokeWidth="3" />
         <path d="M48 28 L76 42 L48 56 L20 42 Z" fill="url(#cfm-cap)" />
         <path d="M32 50 V62 C32 66 40 70 48 70 C56 70 64 66 64 62 V50 L48 58 Z" fill="url(#cfm-cap)" opacity="0.85" />
         <path d="M76 42 V58" stroke="#818CF8" strokeWidth="3" strokeLinecap="round" />
         <text
           x="112"
-          y="76"
+          y="77"
           style={{
             fontFamily: "'Segoe UI','Inter','Helvetica Neue',Arial,sans-serif",
-            fontSize: '58px',
+            fontSize: '63px',
             fontWeight: 700,
             letterSpacing: '-1px',
           }}
@@ -364,7 +534,7 @@ function ProjectCard({ project, index, number, onClick }) {
         >
           {/* Top Cover Banner with theme-matched radial aura */}
           <div
-            className="h-36 md:h-40 relative overflow-hidden flex items-center justify-center px-6 py-3"
+            className="h-36 md:h-40 relative overflow-hidden flex items-center justify-center px-4 sm:px-5 py-3"
             style={{
               background: `radial-gradient(circle at 50% 38%, ${glowColor} 0%, rgba(10, 16, 30, 0.5) 55%, ${bgEnd} 85%)`,
             }}
@@ -380,7 +550,7 @@ function ProjectCard({ project, index, number, onClick }) {
                 onError={() => setImageError(true)}
                 className={`transition-transform duration-500 ease-out ${
                   isLogoCover(project.cover)
-                    ? `${isLockup(project.cover) ? 'max-h-[7.25rem]' : 'max-h-24 md:max-h-26'} w-auto max-w-[88%] object-contain group-hover:scale-105 drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`
+                    ? `${isLockup(project.cover) ? 'max-h-[7.5rem] md:max-h-[8rem]' : 'max-h-24 md:max-h-26'} w-auto max-w-[88%] object-contain group-hover:scale-105 drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`
                     : 'w-full h-full object-cover group-hover:scale-105'
                 }`}
               />
