@@ -41,11 +41,11 @@ const filterLabels = { all: 'All', 'ai-ml': 'AI & ML', 'interactive': 'Interacti
 const isLogoCover = (cover) => /-logo\.(svg|png)$/.test(cover || '');
 const isLockup = (cover) => /-logo\.png$/.test(cover || '');
 
-// OceanEmbed mark: full-size vector lockup with dynamic hydrothermal strata wave animations (540x116)
+// OceanEmbed mark: full-size vector lockup with dynamic hydrothermal strata wave animations (570x116)
 function OceanEmbedMark({ large = false }) {
   return (
     <svg
-      viewBox="0 0 540 116"
+      viewBox="0 0 570 116"
       className={`${large ? 'w-[380px] md:w-[450px] max-w-[92%]' : 'w-[290px] sm:w-[325px] md:w-[345px] max-w-[92%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
       fill="none"
       role="img"
@@ -139,7 +139,7 @@ function OceanEmbedMark({ large = false }) {
         .oem-bar-abyss { animation: oemAbyssGlow 3.4s ease-in-out infinite; }
         .oem-abyss-light { animation: oemAbyssSweep 3.4s ease-in-out infinite; }
       `}</style>
-      <g transform="translate(14, 10)">
+      <g transform="translate(10, 10)">
         <g transform="translate(0, 0)">
           <ellipse cx="48" cy="48" rx="54" ry="54" fill="url(#oem-aura)" className="oem-aura" />
           <rect x="6" y="6" width="84" height="84" rx="22" fill="url(#oem-water)" stroke="url(#oem-border)" strokeWidth="4.5" strokeLinejoin="round" />
@@ -158,11 +158,11 @@ function OceanEmbedMark({ large = false }) {
           </g>
         </g>
         <text
-          x="106"
-          y="75"
+          x="104"
+          y="74"
           style={{
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif",
-            fontSize: '75px',
+            fontSize: '72px',
             letterSpacing: '-1.8px',
           }}
         >
@@ -429,11 +429,11 @@ function FieldCastMark({ large = false }) {
   );
 }
 
-// CampusFlow mark: full-size vector lockup with ambient glow breathing (540x116)
+// CampusFlow mark: full-size vector lockup with ambient glow breathing (570x116)
 function CampusFlowMark({ large = false }) {
   return (
     <svg
-      viewBox="0 0 540 116"
+      viewBox="0 0 570 116"
       className={`${large ? 'w-[380px] md:w-[450px] max-w-[92%]' : 'w-[290px] sm:w-[325px] md:w-[345px] max-w-[92%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
       fill="none"
       role="img"
@@ -466,18 +466,18 @@ function CampusFlowMark({ large = false }) {
         }
         .cfm-aura { transform-origin: 48px 52px; animation: cfmAuraPulse 3.2s ease-in-out infinite; }
       `}</style>
-      <g transform="translate(14, 8)">
+      <g transform="translate(10, 8)">
         <ellipse cx="48" cy="52" rx="52" ry="52" fill="url(#cfm-aura)" className="cfm-aura" />
         <rect x="6" y="10" width="84" height="84" rx="20" fill="url(#cfm-bg)" stroke="url(#cfm-border)" strokeWidth="3" />
         <path d="M48 28 L76 42 L48 56 L20 42 Z" fill="url(#cfm-cap)" />
         <path d="M32 50 V62 C32 66 40 70 48 70 C56 70 64 66 64 62 V50 L48 58 Z" fill="url(#cfm-cap)" opacity="0.85" />
         <path d="M76 42 V58" stroke="#818CF8" strokeWidth="3" strokeLinecap="round" />
         <text
-          x="112"
-          y="77"
+          x="108"
+          y="76"
           style={{
             fontFamily: "'Segoe UI','Inter','Helvetica Neue',Arial,sans-serif",
-            fontSize: '63px',
+            fontSize: '72px',
             fontWeight: 700,
             letterSpacing: '-1px',
           }}
@@ -550,7 +550,7 @@ function ProjectCard({ project, index, number, onClick }) {
                 onError={() => setImageError(true)}
                 className={`transition-transform duration-500 ease-out ${
                   isLogoCover(project.cover)
-                    ? `${isLockup(project.cover) ? 'max-h-[7.5rem] md:max-h-[8rem]' : 'max-h-24 md:max-h-26'} w-auto max-w-[88%] object-contain group-hover:scale-105 drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`
+                    ? `${isLockup(project.cover) ? 'max-h-[6.5rem] md:max-h-[6.75rem]' : 'max-h-24 md:max-h-26'} w-auto max-w-[88%] object-contain group-hover:scale-105 drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`
                     : 'w-full h-full object-cover group-hover:scale-105'
                 }`}
               />
