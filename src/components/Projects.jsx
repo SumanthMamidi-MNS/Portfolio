@@ -41,12 +41,12 @@ const filterLabels = { all: 'All', 'ai-ml': 'AI & ML', 'interactive': 'Interacti
 const isLogoCover = (cover) => /-logo\.(svg|png)$/.test(cover || '');
 const isLockup = (cover) => /-logo\.png$/.test(cover || '');
 
-// OceanEmbed mark: full-size vector lockup with dynamic hydrothermal strata wave animations (570x116)
+// OceanEmbed mark: full-size vector lockup with dynamic hydrothermal strata wave animations (540x116)
 function OceanEmbedMark({ large = false }) {
   return (
     <svg
-      viewBox="0 0 570 116"
-      className={`${large ? 'w-[380px] md:w-[450px] max-w-[92%]' : 'w-[290px] sm:w-[325px] md:w-[345px] max-w-[92%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
+      viewBox="0 0 540 116"
+      className={`${large ? 'h-20 md:h-24' : 'h-14 sm:h-15 md:h-16'} w-auto max-w-[90%] object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
       fill="none"
       role="img"
       aria-label="OceanEmbed"
@@ -159,10 +159,10 @@ function OceanEmbedMark({ large = false }) {
         </g>
         <text
           x="104"
-          y="74"
+          y="75"
           style={{
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif",
-            fontSize: '72px',
+            fontSize: '70px',
             letterSpacing: '-1.8px',
           }}
         >
@@ -179,7 +179,7 @@ function UrbanTraceMark({ large = false }) {
   return (
     <svg
       viewBox="0 0 520 116"
-      className={`${large ? 'w-[380px] md:w-[450px] max-w-[92%]' : 'w-[290px] sm:w-[325px] md:w-[345px] max-w-[92%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
+      className={`${large ? 'h-20 md:h-24' : 'h-14 sm:h-15 md:h-16'} w-auto max-w-[90%] object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
       fill="none"
       role="img"
       aria-label="UrbanTrace"
@@ -236,7 +236,7 @@ function UrbanTraceMark({ large = false }) {
         .utm-sonar-3 { transform-origin: 72px 32px; animation: utmSonarWave3 1.8s ease-out infinite; }
         .utm-sensor-led { transform-origin: 72px 32px; animation: utmSensorBeat 1.8s ease-in-out infinite; }
       `}</style>
-      <g transform="translate(18, 10)">
+      <g transform="translate(10, 10)">
         <g transform="translate(0, 0)">
           <ellipse cx="48" cy="48" rx="54" ry="54" fill="url(#utm-vector-aura)" className="utm-aura" />
           <rect x="6" y="6" width="84" height="84" rx="20" fill="#070A0E" stroke="url(#utm-cyan-border)" strokeWidth="4.5" strokeLinejoin="round" />
@@ -252,11 +252,11 @@ function UrbanTraceMark({ large = false }) {
           <path d="M82 22 A14 14 0 0 1 84 42" fill="none" stroke="#A5F3FC" strokeWidth="2.2" strokeLinecap="round" className="utm-sonar-3" />
         </g>
         <text
-          x="122"
+          x="116"
           y="75"
           style={{
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif",
-            fontSize: '76px',
+            fontSize: '70px',
             letterSpacing: '-1.2px',
           }}
         >
@@ -268,12 +268,12 @@ function UrbanTraceMark({ large = false }) {
   );
 }
 
-// TrueCite mark: full-size vector lockup with golden vector shield and emerald verification pulse (500x116)
+// TrueCite mark: full-size vector lockup with golden vector shield and emerald verification pulse (420x116)
 function TrueCiteMark({ large = false }) {
   return (
     <svg
-      viewBox="0 0 500 116"
-      className={`${large ? 'w-[380px] md:w-[450px] max-w-[92%]' : 'w-[290px] sm:w-[325px] md:w-[345px] max-w-[92%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
+      viewBox="0 0 420 116"
+      className={`${large ? 'h-20 md:h-24' : 'h-14 sm:h-15 md:h-16'} w-auto max-w-[90%] object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
       fill="none"
       role="img"
       aria-label="TrueCite"
@@ -313,7 +313,7 @@ function TrueCiteMark({ large = false }) {
         .tcm-aura { transform-origin: 48px 48px; animation: tcmAuraPulse 2.8s ease-in-out infinite; }
         .tcm-check { animation: tcmCheckGlow 2.8s ease-in-out infinite; }
       `}</style>
-      <g transform="translate(18, 10)">
+      <g transform="translate(10, 10)">
         <g transform="translate(0, 0)">
           <ellipse cx="48" cy="48" rx="58" ry="58" fill="url(#tcm-vector-aura)" className="tcm-aura" />
           <path d="M48 6 L82 22 V58 C82 78 48 90 48 90 C48 90 14 78 14 58 V22 Z" fill="#111827" stroke="url(#tcm-gold)" strokeWidth="5" strokeLinejoin="round" />
@@ -321,11 +321,11 @@ function TrueCiteMark({ large = false }) {
           <path d="M34 50 L44 60 L64 38" fill="none" stroke="url(#tcm-emerald)" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" className="tcm-check" />
         </g>
         <text
-          x="114"
+          x="108"
           y="75"
           style={{
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif",
-            fontSize: '76px',
+            fontSize: '70px',
             letterSpacing: '-0.8px',
           }}
         >
@@ -337,12 +337,12 @@ function TrueCiteMark({ large = false }) {
   );
 }
 
-// FieldCast mark: full-size vector lockup with radar sonar waves and beacon animations (520x116)
+// FieldCast mark: full-size vector lockup with radar sonar waves and beacon animations (440x116)
 function FieldCastMark({ large = false }) {
   return (
     <svg
-      viewBox="0 0 520 116"
-      className={`${large ? 'w-[380px] md:w-[450px] max-w-[92%]' : 'w-[290px] sm:w-[325px] md:w-[345px] max-w-[92%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
+      viewBox="0 0 440 116"
+      className={`${large ? 'h-20 md:h-24' : 'h-14 sm:h-15 md:h-16'} w-auto max-w-[90%] object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
       fill="none"
       role="img"
       aria-label="FieldCast"
@@ -368,7 +368,7 @@ function FieldCastMark({ large = false }) {
         <radialGradient id="fcm-aura" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.6" />
           <stop offset="50%" stopColor="#F59E0B" stopOpacity="0.2" />
-          <stop offset="100%" stopColor="#F59E0B" stopOpacity="0" />
+          <stop offset="100%" stopColor="#F59E0B" stopOpacity="0.0" />
         </radialGradient>
       </defs>
       <style>{`
@@ -399,7 +399,7 @@ function FieldCastMark({ large = false }) {
         .fcm-sonar-3 { transform-origin: 48px 48px; animation: fcmSonarWave3 2.0s ease-out infinite; }
         .fcm-beacon-pulse { transform-origin: 16.5px 16.5px; animation: fcmBeaconPulse 2.2s ease-in-out infinite; }
       `}</style>
-      <g transform="translate(18, 10)">
+      <g transform="translate(10, 10)">
         <g transform="translate(48, 48) scale(1.40) translate(-48, -48)">
           <path d="M 64 34 A 22 22 0 0 1 70 48 A 22 22 0 0 1 64 62" fill="none" stroke="#6EE7B7" strokeWidth="2.5" strokeLinecap="round" className="fcm-sonar-1" />
           <path d="M 64 34 A 22 22 0 0 1 70 48 A 22 22 0 0 1 64 62" fill="none" stroke="#34D399" strokeWidth="2.5" strokeLinecap="round" className="fcm-sonar-2" />
@@ -413,11 +413,11 @@ function FieldCastMark({ large = false }) {
           </g>
         </g>
         <text
-          x="118"
-          y="76"
+          x="112"
+          y="75"
           style={{
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif",
-            fontSize: '79px',
+            fontSize: '70px',
             letterSpacing: '-1.2px',
           }}
         >
@@ -429,12 +429,12 @@ function FieldCastMark({ large = false }) {
   );
 }
 
-// CampusFlow mark: full-size vector lockup with ambient glow breathing (570x116)
+// CampusFlow mark: full-size vector lockup with ambient glow breathing (545x116)
 function CampusFlowMark({ large = false }) {
   return (
     <svg
-      viewBox="0 0 570 116"
-      className={`${large ? 'w-[380px] md:w-[450px] max-w-[92%]' : 'w-[290px] sm:w-[325px] md:w-[345px] max-w-[92%]'} h-auto object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
+      viewBox="0 0 545 116"
+      className={`${large ? 'h-20 md:h-24' : 'h-14 sm:h-15 md:h-16'} w-auto max-w-[90%] object-contain select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)]`}
       fill="none"
       role="img"
       aria-label="CampusFlow"
@@ -466,18 +466,18 @@ function CampusFlowMark({ large = false }) {
         }
         .cfm-aura { transform-origin: 48px 52px; animation: cfmAuraPulse 3.2s ease-in-out infinite; }
       `}</style>
-      <g transform="translate(10, 8)">
+      <g transform="translate(10, 10)">
         <ellipse cx="48" cy="52" rx="52" ry="52" fill="url(#cfm-aura)" className="cfm-aura" />
         <rect x="6" y="10" width="84" height="84" rx="20" fill="url(#cfm-bg)" stroke="url(#cfm-border)" strokeWidth="3" />
         <path d="M48 28 L76 42 L48 56 L20 42 Z" fill="url(#cfm-cap)" />
         <path d="M32 50 V62 C32 66 40 70 48 70 C56 70 64 66 64 62 V50 L48 58 Z" fill="url(#cfm-cap)" opacity="0.85" />
         <path d="M76 42 V58" stroke="#818CF8" strokeWidth="3" strokeLinecap="round" />
         <text
-          x="108"
-          y="76"
+          x="106"
+          y="75"
           style={{
             fontFamily: "'Segoe UI','Inter','Helvetica Neue',Arial,sans-serif",
-            fontSize: '72px',
+            fontSize: '70px',
             fontWeight: 700,
             letterSpacing: '-1px',
           }}
@@ -618,10 +618,22 @@ function ProjectCard({ project, index, number, onClick }) {
                 <span className="skill-pill text-[10px] px-1.5 py-0.5">+{project.tags.length - 3}</span>
               )}
             </div>
-            <div className="flex items-center gap-1 pt-2.5 mt-2.5 border-t border-white/5 cursor-pointer" data-cursor="VIEW">
-              <span className="text-[11px] font-semibold text-violet-400 group-hover:text-violet-300 flex items-center gap-1 transition-colors">
+            <div className="flex items-center justify-between pt-2.5 mt-2.5 border-t border-white/5">
+              <span className="text-[11px] font-semibold text-violet-400 group-hover:text-violet-300 flex items-center gap-1 transition-colors cursor-pointer" data-cursor="VIEW">
                 View Details <ArrowUpRight size={11} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </span>
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-[11px] font-medium text-emerald-400 hover:text-emerald-300 flex items-center gap-1 transition-colors z-10 px-2.5 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/20"
+                  aria-label={`${project.title} live demo`}
+                >
+                  Live Demo <ArrowUpRight size={10} />
+                </a>
+              )}
             </div>
           </div>
         </SpotlightCard>

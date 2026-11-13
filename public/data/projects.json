@@ -226,8 +226,9 @@
       "RAG"
     ],
     "badge": "Full-Stack Platform",
-    "description": "A full-stack platform connecting customers, farmers, and delivery partners: customers discover and order fresh produce, farmers manage inventory, orders, and earnings, and delivery partners handle location-aware deliveries with live tracking and OTP-based completion. Includes Milo AI, a retrieval-augmented assistant, and an admin portal for operations and analytics.",
+    "description": "A full-stack agricultural commerce ecosystem connecting customers, farmers, and delivery partners with an interactive landing showcase live at auxin-premier.vercel.app. Features fresh produce discovery, real-time inventory management, location-aware deliveries with live GPS tracking and OTP completion, an operations admin portal, and Milo AI — an integrated agricultural knowledge assistant.",
     "features": [
+      "Interactive product showcase and landing platform live at auxin-premier.vercel.app",
       "Customer portal: produce discovery, cart, orders, and delivery tracking",
       "Farmer portal: inventory management, order fulfilment, and earnings",
       "Delivery partner portal: GPS-based job matching, guided missions, and OTP verification",
@@ -236,12 +237,12 @@
       "Core API (FastAPI) handling authentication and business logic"
     ],
     "github": "https://github.com/SumanthMamidi-MNS/Auxin",
-    "demo": null,
+    "demo": "https://auxin-premier.vercel.app/",
     "cover": "/assets/projects/auxin/auxin-logo.png",
     "featured": true,
     "year": 2026,
     "metric": "4 role portals with an AI assistant",
-    "summary": "Farm-to-customer commerce platform with customer, farmer, delivery and admin portals and an AI assistant.",
+    "summary": "Farm-to-customer commerce platform with customer, farmer, delivery, and admin portals, Milo AI, and an interactive live showcase.",
     "role": "Designed and built the platform: portals, core API, database and the Milo AI assistant.",
     "results": [
       {
@@ -274,8 +275,9 @@
       "Redis",
       "Docker"
     ],
-    "description": "A role-based college management, learning, and online examination platform for administrators, lecturers, and students: departments, sections, coursework, assignments, grading, and results. Secure online exams, a live invigilator view, and sandboxed coding assessments are under active development.",
+    "description": "A modular college learning management and examination platform with an interactive product landing live at campus-flow-premier.vercel.app. Delivers role-based access control for administrators, lecturers, and students across academic departments, sections, coursework, grading, and real-time audit trails, with browser-based proctored exams and sandboxed coding assessments.",
     "features": [
+      "Interactive product tour and module preview live at campus-flow-premier.vercel.app",
       "Role-based access control for administrators, lecturers, and students",
       "Departments, sections, coursework, assignments, grading, and results",
       "Modular-monolith backend: FastAPI, SQLAlchemy 2, PostgreSQL, Redis",
@@ -283,12 +285,12 @@
       "In progress: browser-based exam monitoring, live invigilator dashboard, sandboxed code execution (C, C++, Java, Python, SQL)"
     ],
     "github": "https://github.com/SumanthMamidi-MNS/CampusFlow",
-    "demo": null,
+    "demo": "https://campus-flow-premier.vercel.app/",
     "cover": "/assets/projects/campusflow/campusflow-logo.svg",
     "featured": true,
     "year": 2026,
     "metric": "Role-based LMS with online exams",
-    "summary": "College LMS and online examination platform with role-based access for admins, lecturers and students.",
+    "summary": "Role-based college LMS and proctored exam system with an interactive live product showcase.",
     "role": "Designing and building the platform: role-based access, coursework and the exam module."
   },
   {
